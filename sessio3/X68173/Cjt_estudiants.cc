@@ -1,6 +1,7 @@
 #include "Cjt_estudiants.hh"
 #include <algorithm>
 
+
 Cjt_estudiants::Cjt_estudiants()
 {
   vest = vector<Estudiant>(MAX_NEST);
