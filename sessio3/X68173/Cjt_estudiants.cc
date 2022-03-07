@@ -9,7 +9,8 @@ Cjt_estudiants::Cjt_estudiants()
   imax = -1;
 }
 
-Cjt_estudiants::~Cjt_estudiants() {}
+Cjt_estudiants::~Cjt_estudiants()
+{}
 
 bool comp(const Estudiant &a, const Estudiant &b)
 {
