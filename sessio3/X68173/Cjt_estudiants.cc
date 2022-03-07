@@ -76,16 +76,42 @@ void Cjt_estudiants::afegir_estudiant(const Estudiant& est)
 void Cjt_estudiants::modificar_estudiant(const Estudiant& est)
 {
   int i = cerca_dicot(vest, 0, nest-1, est.consultar_DNI());
+  bool imax_changed = false;
+  if (i == imax and est.consultar_nota() < vest[imax].consultar_nota()) {
+    imax_changed = true;
+  }
+
   vest[i] = est;
-  if (est.te_nota())
-    if (est.consultar_nota() > vest[imax].consultar_nota()) imax = i;
+  if (imax_changed) recalcular_posicio_imax();
+  
+  if (est.te_nota() and not imax_changed) {
+    if (est.consultar_nota() > vest[imax].consultar_nota()) {
+      imax = i;
+    }
+    else if (est.consultar_nota() == vest[imax].consultar_nota() and est.consultar_DNI() < vest[imax].consultar_DNI()) {
+      imax = i;
+    }
+  }
 }
 
 void Cjt_estudiants::modificar_iessim(int i, const Estudiant& est)
 {
+  bool imax_changed = false;
+  if (i-1 == imax and est.consultar_nota() < vest[imax].consultar_nota()) {
+    imax_changed = true;
+  }
+
   vest[i-1] = est;
-  if (est.te_nota())
-    if (est.consultar_nota() > vest[imax].consultar_nota()) imax = i-1;
+  if (imax_changed) recalcular_posicio_imax();
+
+  if (est.te_nota() and not imax_changed) {
+    if (est.consultar_nota() > vest[imax].consultar_nota()) {
+      imax = i-1;
+    }
+    else if (est.consultar_nota() == vest[imax].consultar_nota() and est.consultar_DNI() < vest[imax].consultar_DNI()) {
+      imax = i-1;
+    }
+  }
 }
 
 void Cjt_estudiants::esborrar_estudiant(int dni)
