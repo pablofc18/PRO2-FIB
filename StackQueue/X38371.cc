@@ -3,7 +3,7 @@
 using namespace std;
 
 
-void calc_min_max_med(queue<int> &c, int &min, int &max, double &media)
+void calc_min_max_med(queue<int> c, int &min, int &max, double &media)
 {
   int num_tot = c.size();
   while (not c.empty()) {
@@ -20,14 +20,11 @@ void calcular(const queue<int> &c, int &min, int &max, double media)
 /*Pre: no vacía*/
 /*Post: dice el min el max y la media de los numeros que hay en la queue*/
 {
-  bool empty = false;
-  if (not c.empty()) min = max = c.front();
-  else empty = true;
-
-  queue<int> copia = c;
-  calc_min_max_med(copia, min, max, media);
-
-  if (not empty) cout << "min " << min << "; max " << max << "; media " << media << endl;
+  if (not c.empty()) {
+    min = max = c.front();
+    calc_min_max_med(c, min, max, media);
+    cout << "min " << min << "; max " << max << "; media " << media << endl;
+  }
   else cout << 0 << endl;
 }
 
