@@ -2,47 +2,57 @@
 #include <iostream>
 using namespace std;
 
-
-void calc_min_max_med(queue<int> c, int &min, int &max, double &media)
-{
-  int num_tot = c.size();
-  while (not c.empty()) {
-    media += c.front();
-    if (c.front() < min) min = c.front();
-    else if (c.front() > max) max = c.front();
-    c.pop();
+void calc_min_max(const queue<int> &c, int &min, int &max) {
+  queue<int> copy(c);
+  int length = copy.size();
+  min = 1001; max = -1002;
+  for (int i = 0; i < length; ++i) {
+    if (copy.front() < min) min = copy.front();
+    if (copy.front() > max) max = copy.front();
+    copy.pop();
   }
-  media /= num_tot;
 }
 
+void add_numb(queue<int> &c, int n, int &min, int &max) {
+  if (n < min) min = n;
+  if (n > max) max = n;
+  c.push(n);
+}
 
-void calcular(const queue<int> &c, int min, int max, double media)
-/*Pre: no vacía*/
-/*Post: dice el min el max y la media de los numeros que hay en la queue*/
-{
-  if (not c.empty()) {
-    min = max = c.front();
-    calc_min_max_med(c, min, max, media);
-    cout << "min " << min << "; max " << max << "; media " << media << endl;
+void remove_numb(queue<int> &c, int n, int &min, int &max) {
+  if (n == min or n == max) {
+    c.pop();
+    calc_min_max(c, min, max);
   }
-  else cout << 0 << endl;
+  else c.pop();
 }
 
 int main() {
   queue<int> c;
-  int min = 0, max = 0;
+  int min = 1001, max = -1002, total = 0;
   double media = 0;
-  int num; cin >> num;
-  while (num <= 1000 and num >= -1001) {
-    if (not c.empty() and num == -1001) {
-      c.pop();
-      calcular(c, min, max, media);
+  int num = 0;
+  while (num <= 1000 and num >= -1001 and cin >> num) {
+    if (num != -1001) {
+      add_numb(c, num, min, max);
+      total += num;
+      media = double(total)/c.size();
     }
-    else if (num != -1001) {
-      c.push(num);
-      calcular(c, min, max, media);
+    else {
+      if (not c.empty()) {
+        int number = c.front();
+        remove_numb(c, number, min, max);
+        total -= number;
+        media = double(total)/c.size();
+      }
     }
-    else cout << 0 << endl;
-    cin >> num;
+    if (num >= -1001 and num <= 1000) {
+      if (c.empty()) cout << 0 << endl;
+      else {
+        cout << "min " << min << "; ";
+        cout << "max " << max << "; ";
+        cout << "media " << media << endl;
+      }
+    }
   }
 }
