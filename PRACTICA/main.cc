@@ -1,62 +1,72 @@
+/**
+ * @mainpage Circuito de torneos de tenis
+
+Práctica PRO2 donde se construye un circuito de torneos de tenis... Se introducen
+las clases <em>Circuito</em>, <em>Torneo</em>, <em>Categoria</em>, <em>Jugador</em>.
+
+Solo se documentan los elementos públicos...
+*/
+
+/** @file main.cc
+    @brief Programa principal para la práctica de PRO2,  <em>Circuito de torneos de tenis</em>.
+*/
+
+
 // #include <>
 // #include ""
 
 
+/** @brief Programa principal para la práctica de PRO2,  <em>Circuito de torneos de tenis</em>.
+*/
+
 int main() {
 
   // Clases: Jugador, Torneo, Categoria, -CIRCUITO-
+  Circuito Circ;
+  Torneo t;
+  Categoria c;
+  Jugador p;
 
+  string opc; cin >> opc;
+  while (opc != "fin") {
+    if (opc == "nuevo_jugador" or opc == "nj") {
 
-  int opc; cin >> opc;
-  while (opc != 11) {
-    if (opc == 1) {
-
-      nuevo_jugador(p);
     }
 
-    else if (opc == 2) {
+    else if (opc == "nuevo_torneo" or opc == "nt") {
 
-      nuevo_torneo(t, c);
     }
 
-    else if (opc == 3) {
+    else if (opc == "baja_jugador" or opc == "bj") {
 
-      baja_jugador(p);
     }
 
-    else if (opc == 4) {
+    else if (opc == "baja_torneo" or opc == "bt") {
 
-      baja_torneo(t);
     }
 
-    else if (opc == 5) {
+    else if (opc == "iniciar_torneo" or opc == "it") {
 
-      iniciar_torneo(t);
     }
 
-    else if (opc == 6) {
+    else if (opc == "finalizar_torneo" or opc == "ft") {
 
-      finalizar_torneo(t);
     }
 
-    else if (opc == 7) {
+    else if (opc == "listar_ranking" or opc == "lr") {
 
-      listar_ranking();
     }
 
-    else if (opc == 8) {
+    else if (opc == "listar_jugadores" or opc == "lj") {
 
-      listar_jugadores();
     }
 
-    else if (opc == 9) {
+    else if (opc == "listar_torneos" or opc == "lt") {
 
-      listar_torneos();
     }
 
-    else if (opc == 10) {
+    else if (opc == "listar_categorias" or opc == "lc") {
 
-      listar_categorias();
     }
 
     cin >> opc;
