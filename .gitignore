@@ -31,7 +31,6 @@
 *.out
 *.app
 
-PRACTICA/Doxyfile
 PRACTICA/DOC
 teoria
 diss_mod_doxygen
