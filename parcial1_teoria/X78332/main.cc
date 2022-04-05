@@ -9,16 +9,22 @@ int mida(const BinTree<int> &a)
   else return 1 + mida(a.left()) + mida(a.right());
 }
 
+void i_cami_preferent(const BinTree<int>& a, stack<int>& c)
+{
+  
+}
+
 void cami_preferent(const BinTree<int>& a, stack<int>& c)
  /* Pre: c esta vacia */
  /* Post: c contiene el camino preferente de a; si no esta vacia, el primer
           elemento del camino esta en la cima de c */
-{
-  if (not a.empty()) {
-    if (mida(a.left())<mida(a.right())) cami_preferent(a.right(), c);
-    else cami_preferent(a.left(), c);
-    c.push(a.value());
-  }
+// {
+//   if (not a.empty()) {
+//     if (mida(a.left())<mida(a.right())) cami_preferent(a.right(), c);
+//     else cami_preferent(a.left(), c);
+//     c.push(a.value());
+//   }
+  i_cami_preferent(a, c);
 }
 
 // void write_stack(stack<int> p)
