@@ -1,5 +1,5 @@
 /**
- * @mainpage Circuito de torneos de tenis
+ * @mainpage Campeonato de torneos de tenis
 
 Práctica PRO2 donde se construye un circuito de torneos de tenis... Se introducen
 las clases <em>Circuito</em>, <em>Torneo</em>, <em>Categoria</em>, <em>Jugador</em>.
@@ -12,8 +12,11 @@ Solo se documentan los elementos públicos...
 */
 
 
-// #include <>
-// #include ""
+#include "Circuito.hh"
+#include "Torneo.hh"
+#include "Categoria.hh"
+#include "Jugador.hh"
+#include "Cjt_Jugadores.hh"
 
 
 /** @brief Programa principal para la práctica de PRO2,  <em>Circuito de torneos de tenis</em>.
@@ -25,12 +28,16 @@ int main() {
   Circuito Circ;
   Torneo t;
   Categoria c;
+  Cjt_Jugadores cjt_p;
   Jugador p;
 
   string opc; cin >> opc;
   while (opc != "fin") {
     if (opc == "nuevo_jugador" or opc == "nj") {
+      string nombre_jug; cin >> nombre_jug;
+      if (not p.existe_jugador(nombre_jug)) { // NO CORRECTO
 
+      }
     }
 
     else if (opc == "nuevo_torneo" or opc == "nt") {
@@ -58,6 +65,10 @@ int main() {
     }
 
     else if (opc == "listar_jugadores" or opc == "lj") {
+
+    }
+
+    else if (opc == "consultar_jugador" or opc == "cj") {
 
     }
 

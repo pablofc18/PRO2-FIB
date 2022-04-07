@@ -17,6 +17,7 @@ class Categoria
 {
 public:
 
+
 private:
   int num_identif;
   string nombre;
