@@ -5,6 +5,13 @@
 #ifndef _JUGADOR_HH
 #define _JUGADOR_HH
 
+#ifndef NO_DIAGRAM
+#include <utility>
+#include <string>
+#include <iostream>
+using namespace std;
+#endif
+
 /** @class Jugador
     @brief Representa un Jugador
 
@@ -18,7 +25,7 @@ public:
 
   /** @brief Creadora por defecto
 
-      Se ejecuta automáticamente al declarar un Jugador.
+      Se ejecuta automáticamente al declarar un Jugador
       \pre <em>Cierto</em>
       \post El resultado es un Jugador sin inicializar
   */
@@ -26,23 +33,56 @@ public:
 
   /** @brief Creadora con valores correctos.
 
-      \pre <em>Nombre no repetido</em>
+      \pre Nombre no repetido
       \post El resultado es un jugador con su nombre y todo inicializado a 0
   */
   Jugador(string nombre_jug);
 
   // Modificadoras
 
-  
+  /** @brief Modificador de los puntos
+
+      \pre <em>Cierto</em>
+      \post Los puntos del Jugador pasan a ser puntos_jug
+  */
+  void modificar_puntos(int puntos_jug);
+
+  /** @brief Modificador de los partidos jugados
+
+  \pre El pair consta de first = ganados, second = perdidos
+  \post Los partidos disputados del Jugador pasan a ser partidos_jug
+  */
+  void modificar_partidos_jugados(pair<int, int> partidos_jug);
+
+  /** @brief Modificador de los sets jugados
+
+      \pre El pair consta de first = ganados, second = perdidos
+      \post Los sets disputados del Jugador pasan a ser sets_jug
+  */
+  void modificar_sets_jugados(pair<int, int> sets_jug);
+
+  /** @brief Modificador de los juegos jugados
+
+      \pre El pair consta de first = ganados, second = perdidos
+      \post Los juegos disputados del Jugador pasan a ser juegos_jug
+  */
+  void modificar_juegos_jugados(pair<int, int> juegos_jug);
+
+  /** @brief Modificador de los torneos disputados
+
+      \pre torneo_disp = 1 o torneo_disp = -1
+      \post Los torneos disputados del Jugador se les suma torneo_disp
+  */
+  void modificar_torneo_disputados(int torneo_disp);
 
   // Consultoras
 
-  /** @brief Consultora si existe Jugador con ese nombre
-
-      \pre <em>Cierto</em>
-      \post El resultado es si existe o no el Jugador
-  */
-  bool existe_jugador(string nombre_jug) const;
+  // /** @brief Consultora si existe Jugador con ese nombre
+  //
+  //     \pre <em>Cierto</em>
+  //     \post El resultado es si existe o no el Jugador
+  // */
+  // bool existe_jugador(string nombre_jug) const;
 
   /** @brief Consultora del nombre del Jugador
 
@@ -88,13 +128,6 @@ public:
 
   // Escritura / Lectura
 
-  /** @brief Operación de lectura
-
-      \pre Hay preparado en el canal estándar d'entrada un string válido
-      \post El Jugador pasa a tener el nombre inicializado
-  */
-  void leer();
-
   /** @brief Operación de escritura
 
       \pre <em>Cierto</em>
@@ -103,7 +136,7 @@ public:
   void escribir() const;
 
 
-private:
+private:    // POSICIÓN EN RANKING ?? MIRAR MAIN OPC == listar_jugadores
   string nombre;
   int puntos;
   int torneos_disputados;

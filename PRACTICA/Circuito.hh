@@ -8,10 +8,9 @@
 
 #include "Jugador.hh"
 #include "Torneo.hh"
-#include "Categoria.hh"
+#include "Categorias.hh"
 
 #ifndef NO_DIAGRAM
-#include <map>
 #include <list>
 #endif
 
@@ -24,10 +23,68 @@ Contiene la lista de los torneos...
 class Circuito
 {
 public:
+  // Constructora
 
+  /** @brief Creadora por defecto
+
+      Se ejecuta automáticamente al declarar un Circuito
+      \pre <em>Cierto</em>
+      \post El resultado es un Circuito sin inicializar
+  */
+  Circuito();
+
+  // Modificadoras
+
+  /** @brief Da de alta un Torneo
+
+      \pre El párametro implícito no contiene al Torneo t
+      \post Se añade el Torneo t a la lista de torneos
+  */
+  void anadir_torneo(const Torneo &t);
+
+  /** @brief Da de baja un Torneo
+
+      \pre nombre_torneo es un nombre que existe en nuestra lista de torneos
+      \post Se elimina el Torneo con nombre nombre_torneo
+  */
+  void eliminar_torneo(string nombre_torneo);
+
+  // Consultoras
+
+  /** @brief Consulta si existe el Torneo
+
+      \pre <em>Cierto</em>
+      \post El resultado indica si existe o no el Torneo con nombre nombre_torneo
+  */
+  bool existe_torneo(string nombre_torneo);
+
+  /** @brief Consulta el total de torneos en la lista
+
+      \pre <em>Cierto</em>
+      \post El resultado es el número de torneos totales
+  */
+  static int numero_torneos_totales();
+
+  // Escritura / Lectura
+
+  /** @brief Operación de lectura de torneos
+
+      \pre <em>Cierto</em>
+      \post Se leen y almacenan los torneos en la lista de torneos
+  */
+  void leer_cjt_torneos();
+
+  /** @brief Operación de escritura de la lista de torneos
+
+      \pre <em>Cierto</em>
+      \post Se escribe todos los torneos, en orden creciente de nombre, con su categoria correspondiente
+  */
+  void escribir_torneos() const;
 
 private:
-  map<string, Torneo> lista_torneos;
+  list<Torneo> lista_torneos;
+  // Ordenar por nombre creciente
+  static bool sort_lista_torneos(const Torneo &a, const Torneo &b);
 };
 
 #endif
