@@ -131,7 +131,7 @@ public:
   /** @brief Operación de escritura
 
       \pre <em>Cierto</em>
-      \post Se han escrito en el canal estándar de salida todos los datos del Jugador
+      \post Se han escrito todos los datos del Jugador
   */
   void escribir() const;
 

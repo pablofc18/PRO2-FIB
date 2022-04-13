@@ -5,7 +5,7 @@
 #ifndef _TORNEO_HH
 #define _TORNEO_HH
 
-#include "Categorias.hh"
+#include "Categoria.hh"
 
 /** @class Torneo
     @brief Representa un Torneo del circuito
@@ -31,7 +31,7 @@ public:
       \pre Nombre no repetido
       \post El resultado es un Torneo con su nombre y su categoria correspondiente
   */
-  Torneo(string nombre_torneo, int id_categ);
+  Torneo(string nombre_torneo, Categoria categ);
 
   // Modificadoras
 
@@ -46,9 +46,16 @@ public:
   */
   void leer_torneo();
 
+  /** @brief Operación de escritura de los datos de un Torneo
+
+      \pre <em>Cierto</em>
+      \post Se escriben los datos del Torneo, nombre y categoria
+  */
+  void escribir_torneo() const;
+
 private:
   string nombre;
-  int identif_categoria;
+  Categoria categ;
 };
 
 #endif

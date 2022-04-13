@@ -8,7 +8,7 @@
 
 #include "Jugador.hh"
 #include "Torneo.hh"
-#include "Categorias.hh"
+#include "Cjt_Categorias.hh"
 
 #ifndef NO_DIAGRAM
 #include <list>

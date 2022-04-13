@@ -14,7 +14,8 @@ Solo se documentan los elementos públicos...
 
 #include "Circuito.hh"
 #include "Torneo.hh"
-#include "Categorias.hh"
+#include "Categoria.hh"
+#include "Cjt_Categorias.hh"
 #include "Jugador.hh"
 #include "Cjt_Jugadores.hh"
 
@@ -31,16 +32,17 @@ int main() {
 
   // Clases: Jugador, Torneo, Categoria, Cjt_Jugadores, -CIRCUITO-
   Circuito circ;
-  Torneo t;
-  Categorias categ;
+  Cjt_Categorias cjt_categ;
   Cjt_Jugadores cjt_jug;
-  //Jugador jug;
+  // Torneo t;
+  // Jugador jug;
+  // Categoria c;
 
   // Lee número categorias C >= 1 y niveles K >= 4 ambos constantes.
   // Y seguidamente C strings con los nombres asociados a las categorias, orden creciente
-  categ.leer_categorias();
+  cjt_categ.leer_categorias();
   // Lee C * K enteros >= 0 que serán los puntos por categoria y nivel ordenados crecientemente (categoria, nivel)
-  categ.leer_puntos_por_categoria_nivel();
+  cjt_categ.leer_puntos_por_categoria_nivel();
   // Lee número inicial de torneos T >= 0 y una secuencia de T pares string, int nombre y categoria
   circ.leer_cjt_torneos();
   // Lee número inicial de jugadores P >= 0 y una secuencia de P strings con los nombres de los jugadores
@@ -66,9 +68,10 @@ int main() {
     else if (opc == "nuevo_torneo" or opc == "nt") {
       string nombre_torneo; cin >> nombre_torneo;
       int id_categ; cin >> id_categ;
-      if (categ.es_correcta_categoria(id_categ)) {
+      if (cjt_categ.es_correcta_categoria(id_categ)) {
         if (not circ.existe_torneo(nombre_torneo)) {
-          Torneo t(nombre_torneo, id_categ);
+          Categoria c(id_categ);
+          Torneo t(nombre_torneo, c);
           circ.anadir_torneo(t);
         }
         else {
@@ -148,7 +151,7 @@ int main() {
 
     // 11
     else if (opc == "listar_categorias" or opc == "lc") {
-      categ.escribir_categorias_puntos();
+      cjt_categ.escribir_categorias_puntos();
     }
 
     cin >> opc;

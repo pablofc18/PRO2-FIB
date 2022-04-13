@@ -1,34 +1,33 @@
-/** @file Categorias.hh
-    @brief Especificación de la clase Categorias
+/** @file Cjt_Categorias.hh
+    @brief Especificación de la clase Conjunto de Categorias
 */
 
-
-#ifndef _CATEGORIAS_HH_
-#define _CATEGORIAS_HH_
+#ifndef _CJT_CATEGORIAS_HH_
+#define _CJT_CATEGORIAS_HH_
 
 #ifndef NO_DIAGRAM
 #include <vector>
 #endif
 
-/** @class Categorias
-    @brief Representa las Categorias del torneo
+/** @class Cjt_Categorias
+    @brief Representa el conjunto de las Categorias del torneo
 
 Dispone de blabalbalbala...
 
 */
 
-class Categorias
+class Cjt_Categorias
 {
 public:
   // Constructora
 
   /** @brief Creadora por defecto
 
-      Se ejecuta automáticamente al declarar Categorias
+      Se ejecuta automáticamente al declarar Cjt_Categorias
       \pre <em>Cierto</em>
-      \post El resultado es una Cateogoria sin inicializar
+      \post El resultado es un conjunto de Cateogorias sin inicializar
   */
-  Categorias();
+  Cjt_Categorias();
 
   // Modificadoras
 
@@ -66,14 +65,10 @@ public:
   void escribir_categorias_puntos() const;
 
 private:
-  struct Categoria {
-    int num_identif;
-    string nombre;
-  };
   int num_max_niveles;
   int total_categorias;
-  vector<Categoria> cjt_Categorias; // Tamaño total_categorias
-  vector< vector<int> > puntos_por_categoria_nivel; // Tamaño num_max_niveles * total_categorias
+  vector<Categoria> cjt_Categorias; // Tamaño: total_categorias
+  vector< vector<int> > puntos_por_categoria_nivel; // Tamaño: num_max_niveles * total_categorias
 };
 
 #endif
