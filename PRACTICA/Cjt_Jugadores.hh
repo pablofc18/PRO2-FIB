@@ -47,6 +47,13 @@ public:
   */
   void eliminar_jugador(string nombre_jug);
 
+  /** @brief Actualiza el ranking de jugadores
+
+      \pre Se han modificado los puntos de Jugadores
+      \post El resultado es el ranking actualizado con los valores más recientes
+  */
+  void actualizar_ranking(vector< vector<int> > pts_categ_nivel, map<int, Jugador> jugadores_del_torneo);
+
   // Consultoras
 
   /** @brief Consulta si existe el Jugador
@@ -98,6 +105,7 @@ private:
   map<int, Jugador> ranking;
   list<Jugador> lista_jugadores;
   // Ordenar por nombre creciente
+  void ordenar_lista_jugadores();
   static bool sort_lista_jug(const Jugador &a, const Jugador &b);
 };
 

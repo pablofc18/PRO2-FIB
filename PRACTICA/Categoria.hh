@@ -5,6 +5,13 @@
 #ifndef _CATEGORIA_HH_
 #define _CATEGORIA_HH_
 
+#ifndef NO_DIAGRAM
+#include <string>
+#include <iostream>
+using namespace std;
+#endif
+
+
 /** @class Categoria
     @brief Representa la Categoria de un torneo
 
@@ -41,14 +48,14 @@ public:
       \pre <em>Cierto</em>
       \post El resultado es el id de la Categoria
   */
-  int consultar_id() const;
+  int consultar_id_categ() const;
 
   /** @brief Consultora del nombre de la Categoria
 
       \pre <em>Cierto</em>
       \post El resultado es el nombre de la Categoria
   */
-  string consultar_nombre() const;
+  string consultar_nombre_categ() const;
 
   // Escritura / Lectura
 

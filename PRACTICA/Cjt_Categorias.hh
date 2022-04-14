@@ -5,6 +5,8 @@
 #ifndef _CJT_CATEGORIAS_HH_
 #define _CJT_CATEGORIAS_HH_
 
+#include "Categoria.hh"
+
 #ifndef NO_DIAGRAM
 #include <vector>
 #endif
@@ -40,14 +42,21 @@ public:
   */
   bool es_correcta_categoria(int id_categ);
 
-  // Escritura / Lectura
-
-  /** @brief Operación de lectura de Categorias
+  /** @brief Consulta la matriz de puntos por Categoria y nivel
 
       \pre <em>Cierto</em>
-      \post Se leen y almacenan las Categorias en el vector de Categorias
+      \post El resultado es la matriz de puntos por categoria y nivel
   */
-  void leer_categorias();
+  vector< vector<int> > consultar_puntos_categ_nivel() const;
+
+  // Escritura / Lectura
+
+  /** @brief Operación de lectura de Categorias y máximo de niveles
+
+      \pre <em>Cierto</em>
+      \post Se leen y almacenan las Categorias en el vector de Categorias y el máximo de niveles
+  */
+  void leer_categorias_niveles();
 
   /** @brief Operación de lectura de los puntos por categoria
 

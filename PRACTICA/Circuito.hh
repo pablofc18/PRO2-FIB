@@ -6,12 +6,11 @@
 #ifndef _CIRCUITO_HH_
 #define _CIRCUITO_HH_
 
-#include "Jugador.hh"
 #include "Torneo.hh"
-#include "Cjt_Categorias.hh"
 
 #ifndef NO_DIAGRAM
-#include <list>
+#include <vector>
+using namespace std;
 #endif
 
 /** @class Circuito
@@ -49,14 +48,42 @@ public:
   */
   void eliminar_torneo(string nombre_torneo);
 
+  /** @brief Inicia un Torneo
+
+      \pre El Torneo existe y no se ha iniciado
+      \post Se lee la inscripción del Torneo y se confecciona el cuadro de emparejamientos
+  */
+  void iniciar_torneo(string nombre_torneo);
+
+  /** @brief Finaliza un Torneo
+
+      \pre El Torneo existe y se ha iniciado
+      \post Se lee los resultados del Torneo y se confecciona el cuadro de resultados
+  */
+  void finalizar_torneo(string nombre_torneo);
+
   // Consultoras
 
   /** @brief Consulta si existe el Torneo
 
       \pre <em>Cierto</em>
-      \post El resultado indica si existe o no el Torneo con nombre nombre_torneo
+      \post El resultado indica si existe o no el Torneo 'nombre_torneo'
   */
-  bool existe_torneo(string nombre_torneo);
+  bool existe_torneo(string nombre_torneo) const;
+
+  /** @brief Consulta si se ha disputado el Torneo
+
+      \pre <em>Cierto</em>
+      \post El resultado indica si se ha disputado el Torneo 'nombre_torneo'
+  */
+  bool torneo_disputado(string nombre_torneo) const;
+
+  /** @brief Consultar Torneo con identificador 'nombre_torneo'
+
+      \pre El Torneo con ese nombre existe
+      \post El resultado es el Torneo 'nombre_torneo'
+  */
+  Torneo consultar_torneo(string nombre_torneo) const;
 
   /** @brief Consulta el total de torneos en la lista
 
@@ -82,9 +109,12 @@ public:
   void escribir_torneos() const;
 
 private:
-  list<Torneo> lista_torneos;
+  vector<Torneo> cjt_torneos;
+  // Búsqueda dicotómica para encontrar la posición del torneo
+  static int busq_dicot_torneos(const vector<Torneo> &cjt_t, int left, int right, string nombre);
   // Ordenar por nombre creciente
-  static bool sort_lista_torneos(const Torneo &a, const Torneo &b);
+  void ordenar_cjt_torneos();
+  static bool sort_vec_torneos(const Torneo &a, const Torneo &b);
 };
 
 #endif
