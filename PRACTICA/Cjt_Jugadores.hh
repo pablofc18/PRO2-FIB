@@ -9,13 +9,14 @@
 
 #ifndef NO_DIAGRAM
 #include <map>
-#include <list>
+#include <vector>
 #endif
 
 /** @class Conjunto de Jugadores
     @brief Representa el conjunto de los jugadores
 
-Dispone de blablabla...
+    Dispone de operaciones para poder modificar el conjunto de jugadores, consultarlo
+    y leer o escribir sus datos.
 */
 
 class Cjt_Jugadores
@@ -100,13 +101,14 @@ public:
   */
   void escribir_jugadores() const;
 
-
 private:
   map<int, Jugador> ranking;
-  list<Jugador> lista_jugadores;
+  vector<Jugador> cjt_jugadores;
+  // Búsqueda dicotómica para encontrar la posición del torneo
+  static int busq_dicot_jugador(const vector<Jugador> &cjt_jug, int left, int right, string nombre);
   // Ordenar por nombre creciente
   void ordenar_lista_jugadores();
-  static bool sort_lista_jug(const Jugador &a, const Jugador &b);
+  static bool sort_vec_jug(const Jugador &a, const Jugador &b);
 };
 
 #endif

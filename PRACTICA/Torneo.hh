@@ -16,7 +16,9 @@
 /** @class Torneo
     @brief Representa un Torneo del circuito
 
-Contiene los datos de un Torneo...
+    Dispone de diferentes operaciones para modificar el estado de un Torneo,
+    el cuadro de emparejamientos, el cuadro de resultados... También ofrece
+    diferentes operaciones de lectura y escritura para los datos del Torneo.
 */
 
 class Torneo
@@ -101,13 +103,6 @@ public:
   */
   void leer_participantes_torneo();
 
-  /** @brief Operación de lectura de un Torneo
-
-      \pre <em>Cierto</em>
-      \post Se lee el nombre y la categoria del torneo
-  */
-  void leer_torneo();
-
   /** @brief Operación de lectura de resultados del Torneo
 
       \pre <em>Cierto</em>
@@ -121,6 +116,13 @@ public:
       \post Se escriben los datos del Torneo, nombre y categoria
   */
   void escribir_torneo() const;
+
+  /** @brief Operación de escritura de los puntos ganados por cada participante en el Torneo
+
+      \pre <em>Cierto</em>
+      \post Se escriben los puntos ganados por cada participante en el orden de ranking anterior a disputarse el Torneo
+  */
+  void escribir_particip_puntos_ganados() const;
 
   /** @brief Operación de escritura del cuadro de emparejamientos
 
@@ -141,7 +143,7 @@ private:
   Categoria categ;
   bool iniciado;
   bool finalizado;
-  map<int, Jugador> jugadores_del_torneo;
+  map<int, Jugador> jugadores_del_torneo; // Puntos ganados --- Jugador
   // BinTree's de los cuadros de emparejamientos y resultados del Torneo (todavia no se que dato)
   BinTree< pair<Jugador, Jugador> > cuadro_emparejamientos;
   // BinTree<T> resultados;

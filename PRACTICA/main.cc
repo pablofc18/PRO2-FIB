@@ -25,9 +25,6 @@ using namespace std;
 #endif
 
 
-/** @brief Programa principal para la práctica de PRO2,  <em>Circuito de torneos de tenis</em>.
-*/
-
 int main() {
 
   // Clases: Jugador, Torneo, Categoria, Cjt_Jugadores, -CIRCUITO-
@@ -134,13 +131,23 @@ int main() {
       }
       else cout << "Torneo no existe o se ha iniciado anteriormente" << endl;
     }
-    // HAY QUE ESCRIBIR LISTA RANKING PARTICIPANTES ARRIBA(5) ?¿
 
     // 6
     else if (opc == "finalizar_torneo" or opc == "ft") {
       string nombre_torneo; cin >> nombre_torneo;
       // Si existe el torneo y se ha iniciado anteriormente, finalizamos
-
+      if (circ.existe_torneo(nombre_torneo)) {
+        if (circ.consultar_torneo(nombre_torneo).torneo_iniciado() and not circ.consultar_torneo(nombre_torneo).torneo_finalizado()) {
+          // (Actulizar ranking, datos jugadores...)
+          circ.finalizar_torneo(nombre_torneo);
+          // Imprime el cuadro de resultados
+          Torneo t = circ.consultar_torneo(nombre_torneo);
+          t.escribir_resultados_torneo();
+          // Listar puntos -> participantes (orden ranking en el momento de iniciar torneo)
+          t.escribir_particip_puntos_ganados();
+        }
+      }
+      else cout << "No existe el Torneo con ese nombre" << endl;
     }
 
     // 7

@@ -16,7 +16,8 @@ using namespace std;
 /** @class Circuito
     @brief Representa el Circuito de los torneos
 
-Contiene la lista de los torneos...
+    Dispone de operaciones de modificación, consulta, escritura y lectura del
+    conjunto de torneos.
 */
 
 class Circuito
@@ -109,7 +110,7 @@ public:
   void escribir_torneos() const;
 
 private:
-  vector<Torneo> cjt_torneos;
+  vector<Torneo> cjt_torneos; // o lista mejor?
   // Búsqueda dicotómica para encontrar la posición del torneo
   static int busq_dicot_torneos(const vector<Torneo> &cjt_t, int left, int right, string nombre);
   // Ordenar por nombre creciente

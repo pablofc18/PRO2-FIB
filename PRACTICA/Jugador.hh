@@ -15,7 +15,7 @@ using namespace std;
 /** @class Jugador
     @brief Representa un Jugador
 
-Dispone de blablabla...
+    Dispone de diferentes operaciones de modificación, consulta y escritura de un jugador.
 */
 
 class Jugador
@@ -40,49 +40,49 @@ public:
 
   // Modificadoras
 
+  /** @brief Modificador del ranking
+
+      \pre <em>Cierto</em>
+      \post El ranking del Jugador pasa a ser 'rank'
+  */
+  void modificar_ranking(int rank);
+
   /** @brief Modificador de los puntos
 
       \pre <em>Cierto</em>
-      \post Los puntos del Jugador pasan a ser puntos_jug
+      \post Los puntos del Jugador pasan a ser 'puntos_jug'
   */
   void modificar_puntos(int puntos_jug);
 
   /** @brief Modificador de los partidos jugados
 
   \pre El pair consta de first = ganados, second = perdidos
-  \post Los partidos disputados del Jugador pasan a ser partidos_jug
+  \post Los partidos disputados del Jugador pasan a ser 'partidos_jug'
   */
   void modificar_partidos_jugados(pair<int, int> partidos_jug);
 
   /** @brief Modificador de los sets jugados
 
       \pre El pair consta de first = ganados, second = perdidos
-      \post Los sets disputados del Jugador pasan a ser sets_jug
+      \post Los sets disputados del Jugador pasan a ser 'sets_jug'
   */
   void modificar_sets_jugados(pair<int, int> sets_jug);
 
   /** @brief Modificador de los juegos jugados
 
       \pre El pair consta de first = ganados, second = perdidos
-      \post Los juegos disputados del Jugador pasan a ser juegos_jug
+      \post Los juegos disputados del Jugador pasan a ser 'juegos_jug'
   */
   void modificar_juegos_jugados(pair<int, int> juegos_jug);
 
   /** @brief Modificador de los torneos disputados
 
       \pre torneo_disp = 1 o torneo_disp = -1
-      \post Los torneos disputados del Jugador se les suma torneo_disp
+      \post Los torneos disputados del Jugador se les suma 'torneo_disp'
   */
   void modificar_torneo_disputados(int torneo_disp);
 
   // Consultoras
-
-  // /** @brief Consultora si existe Jugador con ese nombre
-  //
-  //     \pre <em>Cierto</em>
-  //     \post El resultado es si existe o no el Jugador
-  // */
-  // bool existe_jugador(string nombre_jug) const;
 
   /** @brief Consultora del nombre del Jugador
 
@@ -90,6 +90,13 @@ public:
       \post El resultado es el nombre del Jugador
   */
   string consultar_nombre() const;
+
+  /** @brief Consultora del ranking del Jugador
+
+      \pre <em>Cierto</em>
+      \post El resultado es el ranknig del Jugador
+  */
+  int consultar_ranking() const;
 
   /** @brief Consultora de los puntos del Jugador
 
@@ -133,11 +140,11 @@ public:
       \pre <em>Cierto</em>
       \post Se han escrito todos los datos del Jugador
   */
-  void escribir() const;
+  void escribir_jug() const;
 
-
-private:    // POSICIÓN EN RANKING ?? MIRAR MAIN OPC == listar_jugadores
+private:
   string nombre;
+  int ranking;
   int puntos;
   int torneos_disputados;
   pair<int, int> partidos; // first = ganados, second = perdidos

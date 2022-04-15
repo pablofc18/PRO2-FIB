@@ -15,7 +15,8 @@ using namespace std;
 /** @class Categoria
     @brief Representa la Categoria de un torneo
 
-Dispone de blabalbalbala...
+    Dispone de dos atributos, nombre y identificador, y de diferentes operaciones
+    como escritura de sus datos o consulta.
 
 */
 
@@ -39,8 +40,6 @@ public:
   */
   Categoria(int id);
 
-  // Modificadoras
-
   // Consultoras
 
   /** @brief Consultora del id de la Categoria
@@ -58,6 +57,13 @@ public:
   string consultar_nombre_categ() const;
 
   // Escritura / Lectura
+
+  /** @brief Operación de escritura de una Categoria
+
+      \pre <em>Cierto</em>
+      \post Se esriben los datos de una Categoria
+  */
+  void escribir_categ() const;
 
 private:
   string nombre;

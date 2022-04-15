@@ -14,7 +14,8 @@
 /** @class Cjt_Categorias
     @brief Representa el conjunto de las Categorias del torneo
 
-Dispone de blabalbalbala...
+    Dispone de diferentes operaciones de consulta, lectura y escritura de los
+    diferentes atributos del conjunto de categorias.
 
 */
 
@@ -30,8 +31,6 @@ public:
       \post El resultado es un conjunto de Cateogorias sin inicializar
   */
   Cjt_Categorias();
-
-  // Modificadoras
 
   // Consultoras
 
