@@ -26,14 +26,10 @@ using namespace std;
 
 
 int main() {
-
   // Clases: Jugador, Torneo, Categoria, Cjt_Jugadores, -CIRCUITO-
   Circuito circ;
   Cjt_Categorias cjt_categ;
   Cjt_Jugadores cjt_jug;
-  // Torneo t;
-  // Jugador jug;
-  // Categoria c;
 
   // Lee número categorias C >= 1 y niveles K >= 4 ambos constantes.
   // Y seguidamente C strings con los nombres asociados a las categorias, orden creciente
@@ -165,7 +161,7 @@ int main() {
       string nombre_jug; cin >> nombre_jug;
       // Si existe el jugador, escribir datos
       if (cjt_jug.existe_jugador(nombre_jug)) {
-        cjt_jug.consultar_jugador(nombre_jug).escribir();
+        cjt_jug.consultar_jugador(nombre_jug).escribir_jug();
       }
       else {
         cout << "No existe el jugador con ese nombre" << endl;
