@@ -2,7 +2,8 @@
  * @mainpage Campeonato de torneos de tenis
 
 Práctica PRO2 donde se construye un circuito de torneos de tenis... Se introducen
-las clases <em>Circuito</em>, <em>Torneo</em>, <em>Categoria</em>, <em>Jugador</em>.
+las clases <em>Circuito</em>, <em>Torneo</em>, <em>Categoria</em>, <em>Jugador</em>,
+<em>Cjt_Categorias</em>, <em>Cjt_Jugadores</em>.
 
 Solo se documentan los elementos públicos...
 */
