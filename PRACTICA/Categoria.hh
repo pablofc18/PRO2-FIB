@@ -6,7 +6,6 @@
 #define _CATEGORIA_HH_
 
 #ifndef NO_DIAGRAM
-#include <string>
 #include <iostream>
 using namespace std;
 #endif

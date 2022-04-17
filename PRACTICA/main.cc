@@ -5,7 +5,6 @@ Práctica PRO2 donde se construye un circuito de torneos de tenis... Se introduc
 las clases <em>Circuito</em>, <em>Torneo</em>, <em>Categoria</em>, <em>Jugador</em>,
 <em>Cjt_Categorias</em>, <em>Cjt_Jugadores</em>.
 
-Solo se documentan los elementos públicos...
 */
 
 /** @file main.cc
@@ -27,7 +26,7 @@ using namespace std;
 
 
 int main() {
-  // Clases: Jugador, Torneo, Categoria, Cjt_Jugadores, -CIRCUITO-
+  
   Circuito circ;
   Cjt_Categorias cjt_categ;
   Cjt_Jugadores cjt_jug;

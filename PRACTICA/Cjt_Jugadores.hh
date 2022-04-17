@@ -103,7 +103,7 @@ public:
 
 private:
   map<int, Jugador> ranking;
-  vector<Jugador> cjt_jugadores;
+  vector<Jugador> cjt_jugadores; // lista ?¿
   // Búsqueda dicotómica para encontrar la posición del torneo
   static int busq_dicot_jugador(const vector<Jugador> &cjt_jug, int left, int right, string nombre);
   // Ordenar por nombre creciente
