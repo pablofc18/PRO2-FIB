@@ -13,10 +13,10 @@ las clases <em>Circuito</em>, <em>Torneo</em>, <em>Categoria</em>, <em>Jugador</
 
 
 #include "Circuito.hh"
-#include "Torneo.hh"
-#include "Categoria.hh"
+// #include "Torneo.hh"
+// #include "Categoria.hh"
 #include "Cjt_Categorias.hh"
-#include "Jugador.hh"
+// #include "Jugador.hh"
 #include "Cjt_Jugadores.hh"
 
 #ifndef NO_DIAGRAM
@@ -26,7 +26,7 @@ using namespace std;
 
 
 int main() {
-  
+
   Circuito circ;
   Cjt_Categorias cjt_categ;
   Cjt_Jugadores cjt_jug;
