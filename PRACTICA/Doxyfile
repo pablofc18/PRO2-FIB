@@ -101,7 +101,7 @@ FILE_PATTERNS          = *.hpp \ *.hh \
 			 program.cpp \ program.cc \
                          principal*.cpp \ principal*.cc
 RECURSIVE              = NO
-EXCLUDE                = *~ \ readbool.hh
+EXCLUDE                = *~ \ readbool.hh \ BinTree.hh
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       = *~
 EXCLUDE_SYMBOLS        =

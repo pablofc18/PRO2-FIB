@@ -1,5 +1,5 @@
 /** @file Cjt_Categorias.hh
-    @brief Especificación de la clase Conjunto de Categorias
+    @brief Especificación de la clase Cjt_Categorias
 */
 
 #ifndef _CJT_CATEGORIAS_HH_

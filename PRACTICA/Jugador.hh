@@ -125,34 +125,6 @@ public:
   */
   bool consultar_participando_torneo() const;
 
-  /** @brief Consultora de los torneos disputados del Jugador
-
-      \pre <em>Cierto</em>
-      \post El resultado es el numero de torneos disputados del Jugador
-  */
-  int consultar_torneos_disputados() const;
-
-  /** @brief Consultora de los partidos ganados y perdidos del Jugador
-
-      \pre <em>Cierto</em>
-      \post El resultado es un pair de los partidos ganados (first) y perdidos (second) del Jugador
-  */
-  pair<int, int> consultar_partidos() const;
-
-  /** @brief Consultora de los sets ganados y perdidos del Jugador
-
-      \pre <em>Cierto</em>
-      \post El resultado es un pair de los sets ganados (first) y perdidos (second) del Jugador
-  */
-  pair<int, int> consultar_sets() const;
-
-  /** @brief Consultora de los juegos ganados y perdidos del Jugador
-
-      \pre <em>Cierto</em>
-      \post El resultado es un pair de los juegos ganados (first) y perdidos (second) del Jugador
-  */
-  pair<int, int> consultar_juegos() const;
-
   // Escritura / Lectura
 
   /** @brief Operación de escritura

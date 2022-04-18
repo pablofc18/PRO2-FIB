@@ -12,7 +12,7 @@
 #include <vector>
 #endif
 
-/** @class Conjunto de Jugadores
+/** @class Cjt_Jugadores
     @brief Representa el conjunto de los jugadores
 
     Dispone de operaciones para poder modificar el conjunto de jugadores, consultarlo
