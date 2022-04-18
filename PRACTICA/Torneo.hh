@@ -64,6 +64,13 @@ public:
   */
   void confeccionar_cuadro_emparejamientos();
 
+  /** @brief Confecciona el cuadro de resultados
+
+      \pre <em>Cierto</em>
+      \post Se crea el arbol binario con los resultados
+  */
+  void confeccionar_cuadro_resultados();
+  
   // Consultoras
 
   /** @brief Consulta el nombre del Torneo

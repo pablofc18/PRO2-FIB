@@ -44,8 +44,8 @@ public:
 
   /** @brief Da de baja un Torneo
 
-      \pre nombre_torneo es un nombre que existe en nuestra lista de torneos
-      \post Se elimina el Torneo con nombre nombre_torneo
+      \pre 'nombre_torneo' es un nombre que existe en nuestra lista de torneos
+      \post Se elimina el Torneo con nombre 'nombre_torneo'
   */
   void eliminar_torneo(string nombre_torneo);
 
