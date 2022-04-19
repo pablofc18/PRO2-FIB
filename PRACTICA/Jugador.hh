@@ -93,7 +93,7 @@ public:
       \pre torneo_disp = 1 o torneo_disp = -1
       \post Los torneos disputados del Jugador se les suma 'torneo_disp'
   */
-  void modificar_torneo_disputados(int torneo_disp);
+  void modificar_torneos_disputados(int torneo_disp);
 
   // Consultoras
 

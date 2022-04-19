@@ -39,7 +39,7 @@ public:
       \pre <em>Cierto</em>
       \post El resultado indica si la categoria es correcta o no
   */
-  bool es_correcta_categoria(int id_categ);
+  bool es_correcta_categoria(int id_categ) const;
 
   /** @brief Consulta la matriz de puntos por Categoria y nivel
 

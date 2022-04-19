@@ -37,7 +37,14 @@ public:
       \pre El valor de id es correcto
       \post El resultado es una Cateogoria con el id inicializado
   */
-  Categoria(int id);
+  Categoria(int id_categ);
+
+  /** @brief Creadora con id y nombre de Categoria
+
+      \pre El valor de id es correcto, nombre no repetido
+      \post El resultado es una Cateogoria con el id y nombre inicializados
+  */
+  Categoria(string nombre_categ, int id_categ);
 
   // Consultoras
 
