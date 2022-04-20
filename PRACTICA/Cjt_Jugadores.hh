@@ -9,7 +9,6 @@
 
 #ifndef NO_DIAGRAM
 #include <map>
-#include <vector>
 #endif
 
 /** @class Cjt_Jugadores
@@ -28,7 +27,7 @@ public:
 
       Se ejecuta automáticamente al declarar un Conjunto de Jugadores
       \pre <em>Cierto</em>
-      \post El resultado es un map vacío, el ranking y una lista vacía, total de jugadores
+      \post El resultado es un map vacío de ranking y otro del listado de jugadores
   */
   Cjt_Jugadores();
 
@@ -76,7 +75,7 @@ public:
       \pre <em>Cierto</em>
       \post El resultado es el número de jugadores totales
   */
-  static int numero_jugadores_totales();
+  int numero_jugadores_totales() const;
 
   // Escritura / Lectura
 
@@ -102,13 +101,8 @@ public:
   void escribir_jugadores() const;
 
 private:
-  map<int, Jugador> ranking;
-  vector<Jugador> cjt_jugadores; // lista ?¿
-  // Búsqueda dicotómica para encontrar la posición del torneo
-  static int busq_dicot_jugador(const vector<Jugador> &cjt_jug, int left, int right, string nombre);
-  // Ordenar por nombre creciente
-  void ordenar_lista_jugadores();
-  static bool sort_vec_jug(const Jugador &a, const Jugador &b);
+  map<Jugador, int> ranking; // NO PUEDE SER MAP ?¿
+  map<string, Jugador> cjt_Jugadores;
 };
 
 #endif

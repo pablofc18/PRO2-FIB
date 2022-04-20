@@ -143,7 +143,6 @@ private:
   pair<int, int> partidos; // first = ganados, second = perdidos
   pair<int, int> sets;  // first = ganados, second = perdidos
   pair<int, int> juegos;  // first = ganados, second = perdidos
-
 };
 
 #endif
