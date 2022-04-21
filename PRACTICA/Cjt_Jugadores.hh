@@ -9,6 +9,8 @@
 
 #ifndef NO_DIAGRAM
 #include <map>
+#include <vector>
+#include <algorithm>
 #endif
 
 /** @class Cjt_Jugadores
@@ -38,7 +40,7 @@ public:
       \pre El párametro implícito no contiene al Jugador p
       \post Se añade el Jugador p al ranking y a la lista de jugadores
   */
-  void anadir_jugador(const Jugador &p);
+  void anadir_jugador(string nombre_jug);
 
   /** @brief Da de baja un Jugador
 
@@ -69,6 +71,13 @@ public:
       \post El resultado es el Jugador de nombre nombre_jug
   */
   Jugador consultar_jugador(string nombre_jug) const;
+
+  /** @brief Consulta de un Jugador
+
+      \pre rank tiene que ser válido
+      \post El resultado es el Jugador de ranking rank
+  */
+  Jugador consultar_jugador(int rank) const;
 
   /** @brief Consulta el total de jugadores en la lista
 
@@ -101,8 +110,9 @@ public:
   void escribir_jugadores() const;
 
 private:
-  map<Jugador, int> ranking; // NO PUEDE SER MAP ?¿
+  vector<Jugador> ranking;
   map<string, Jugador> cjt_Jugadores;
+  void ordenar_ranking();
 };
 
 #endif
