@@ -9,6 +9,8 @@
 #include "Jugador.hh"
 
 #ifndef NO_DIAGRAM
+#include "Cjt_Jugadores.hh"
+#include "Cjt_Categorias.hh"
 #include <map>
 #include "BinTree.hh"
 #endif
@@ -39,7 +41,7 @@ public:
       \pre Nombre no repetido
       \post El resultado es un Torneo con su nombre y su categoria correspondiente
   */
-  Torneo(string nombre_torneo, Categoria categ);
+  Torneo(string nombre_torneo, int id_categ);
 
   // Modificadoras
 
@@ -70,7 +72,7 @@ public:
       \post Se crea el arbol binario con los resultados
   */
   void confeccionar_cuadro_resultados();
-  
+
   // Consultoras
 
   /** @brief Consulta el nombre del Torneo
@@ -99,7 +101,7 @@ public:
       \pre <em>Cierto</em>
       \post El resultado es un map de los jugadores que han disputado el Torneo
   */
-  map<int, Jugador> consultar_jugadores_del_torneo() const;
+  vector<int> consultar_jugadores_del_torneo() const;
 
   // Escritura / Lectura
 
@@ -122,7 +124,7 @@ public:
       \pre <em>Cierto</em>
       \post Se escriben los datos del Torneo, nombre y categoria
   */
-  void escribir_torneo() const;
+  void escribir_torneo(const Cjt_Categorias &cjt_cat) const;
 
   /** @brief Operación de escritura de los puntos ganados por cada participante en el Torneo
 
@@ -147,10 +149,11 @@ public:
 
 private:
   string nombre;
-  Categoria categ;
+  int categ;
   bool iniciado;
   bool finalizado;
-  map<int, Jugador> jugadores_del_torneo; // Puntos ganados --- Jugador
+  // Modificar ?¿?¿
+  vector<int> jugadores_del_torneo; // vector de ints que equivalen al ranking de cada jugador
   // BinTree's de los cuadros de emparejamientos y resultados del Torneo (todavia no se que dato)
   BinTree< pair<Jugador, Jugador> > cuadro_emparejamientos;
   // BinTree<T> resultados;

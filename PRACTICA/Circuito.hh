@@ -91,7 +91,7 @@ public:
       \pre <em>Cierto</em>
       \post El resultado es el número de torneos totales
   */
-  static int numero_torneos_totales();
+  int numero_torneos_totales() const;
 
   // Escritura / Lectura
 
@@ -107,7 +107,7 @@ public:
       \pre <em>Cierto</em>
       \post Se escribe todos los torneos, en orden creciente de nombre, con su categoria correspondiente
   */
-  void escribir_torneos() const;
+  void escribir_torneos(const Cjt_Categorias &cjt_cat) const;
 
 private:
   map<string, Torneo> cjt_Torneos;

@@ -11,6 +11,11 @@ bool Cjt_Categorias::es_correcta_categoria(int id_categ) const
   return (1 <= id_categ and id_categ <= total_categorias);
 }
 
+string Cjt_Categorias::consultar_nombre_categ(int id_categ) const
+{
+  return cjt_Categorias[id_categ-1].consultar_nombre_categ();
+}
+
 vector< vector<int> > Cjt_Categorias::consultar_puntos_categ_nivel() const
 {
   return puntos_por_categoria_nivel;

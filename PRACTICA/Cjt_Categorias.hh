@@ -41,6 +41,13 @@ public:
   */
   bool es_correcta_categoria(int id_categ) const;
 
+  /** @brief Consulta el nombre de la categoria id_categ
+
+      \pre id_categ es correcto
+      \post El resultado es el nombre de la categoria
+  */
+  string consultar_nombre_categ(int id_categ) const;
+
   /** @brief Consulta la matriz de puntos por Categoria y nivel
 
       \pre <em>Cierto</em>

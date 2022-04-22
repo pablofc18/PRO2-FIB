@@ -27,7 +27,7 @@ using namespace std;
 
 int main() {
 
-  // Circuito circ;
+  Circuito circ;
   Cjt_Categorias cjt_categ;
   Cjt_Jugadores cjt_jug;
 
@@ -37,7 +37,7 @@ int main() {
   // Lee C * K enteros >= 0 que serán los puntos por categoria y nivel ordenados crecientemente (categoria, nivel)
   cjt_categ.leer_puntos_por_categoria_nivel();
   // Lee número inicial de torneos T >= 0 y una secuencia de T pares string, int nombre y categoria
-//  circ.leer_cjt_torneos();
+  circ.leer_cjt_torneos();
   // Lee número inicial de jugadores P >= 0 y una secuencia de P strings con los nombres de los jugadores
   cjt_jug.leer_jugadores();
 
@@ -47,11 +47,11 @@ int main() {
     // 1
     if (opc == "nuevo_jugador" or opc == "nj") {
       string nombre_jug; cin >> nombre_jug;
+      cout << '#' << opc << ' ' << nombre_jug << endl;
       // Si no existe el jugador con ese identificador, añadirlo
       if (not cjt_jug.existe_jugador(nombre_jug)) {
-        Jugador p(nombre_jug);
-        cjt_jug.anadir_jugador(p);
-        cout << "Número jugadores totales: " << cjt_jug.numero_jugadores_totales();
+        cjt_jug.anadir_jugador(nombre_jug);
+        cout << cjt_jug.numero_jugadores_totales();
         cout << endl;
       }
       else {
@@ -60,35 +60,36 @@ int main() {
     }
 
     // 2
-    // else if (opc == "nuevo_torneo" or opc == "nt") {
-    //   string nombre_torneo; cin >> nombre_torneo;
-    //   int id_categ; cin >> id_categ;
-    //   // Si la categoria es correcta y no existe ese torneo, añadirlo
-    //   if (cjt_categ.es_correcta_categoria(id_categ)) {
-    //     if (not circ.existe_torneo(nombre_torneo)) {
-    //       Categoria c(id_categ);
-    //       Torneo t(nombre_torneo, c);
-    //       circ.anadir_torneo(t);
-    //       cout << "Número de torneos totales: " << Circuito::numero_torneos_totales();
-    //       cout << endl;
-    //     }
-    //     else {
-    //       cout << "Ya existe un torneo con ese nombre" << endl;
-    //     }
-    //   }
-    //   else {
-    //     cout << "La categoria no es correcta" << endl;
-    //   }
-    // }
+    else if (opc == "nuevo_torneo" or opc == "nt") {
+      string nombre_torneo; cin >> nombre_torneo;
+      int id_categ; cin >> id_categ;
+      cout << '#' << opc << ' ' << nombre_torneo << ' ' << id_categ << endl;
+      // Si la categoria es correcta y no existe ese torneo, añadirlo
+      if (cjt_categ.es_correcta_categoria(id_categ)) {
+        if (not circ.existe_torneo(nombre_torneo)) {
+          Torneo t(nombre_torneo, id_categ);
+          circ.anadir_torneo(t);
+          cout << circ.numero_torneos_totales();
+          cout << endl;
+        }
+        else {
+          cout << "Ya existe un torneo con ese nombre" << endl;
+        }
+      }
+      else {
+        cout << "La categoria no es correcta" << endl;
+      }
+    }
 
     // 3
     else if (opc == "baja_jugador" or opc == "bj") {
       string nombre_jug; cin >> nombre_jug;
+      cout << '#' << opc << ' ' << nombre_jug << endl;
       // Si existe ese jugador, añadirlo
       if (cjt_jug.existe_jugador(nombre_jug)) {
         cjt_jug.eliminar_jugador(nombre_jug);
         // Al eliminar jugador ya se actualiza el ranking y la lista
-        cout << "Número jugadores totales: " << cjt_jug.numero_jugadores_totales();
+        cout << cjt_jug.numero_jugadores_totales();
         cout << endl;
       }
       else {
@@ -97,28 +98,30 @@ int main() {
     }
 
     // 4
-    // else if (opc == "baja_torneo" or opc == "bt") {
-    //   string nombre_torneo; cin >> nombre_torneo;
-    //   // Si existe el torneo, eliminarlo
-    //   if (circ.existe_torneo(nombre_torneo)) {
-    //     // Actualiza ranking si se ha jugado ese torneo
-    //     if (circ.torneo_disputado(nombre_torneo)) {
-    //       cjt_jug.actualizar_ranking(cjt_categ.consultar_puntos_categ_nivel(), circ.consultar_torneo(nombre_torneo).consultar_jugadores_del_torneo());
-    //     }
-    //     // Elimina torneo
-    //     circ.eliminar_torneo(nombre_torneo);
-    //
-    //     cout << "Número de torneos totales: " << Circuito::numero_torneos_totales();
-    //     cout << endl;
-    //   }
-    //   else {
-    //     cout << "No existe ningún torneo con ese nombre" << endl;
-    //   }
-    // }
-    //
+    else if (opc == "baja_torneo" or opc == "bt") {
+      string nombre_torneo; cin >> nombre_torneo;
+      cout << '#' << opc << ' ' << nombre_torneo << endl;
+      // Si existe el torneo, eliminarlo
+      if (circ.existe_torneo(nombre_torneo)) {
+        // Actualiza ranking si se ha jugado ese torneo
+        if (circ.torneo_disputado(nombre_torneo)) {
+          //cjt_jug.actualizar_ranking(cjt_categ.consultar_puntos_categ_nivel(), circ.consultar_torneo(nombre_torneo).consultar_jugadores_del_torneo());
+        }
+        // Elimina torneo
+        circ.eliminar_torneo(nombre_torneo);
+
+        cout << circ.numero_torneos_totales();
+        cout << endl;
+      }
+      else {
+        cout << "No existe ningún torneo con ese nombre" << endl;
+      }
+    }
+
     // // 5
     // else if (opc == "iniciar_torneo" or opc == "it") {
     //   string nombre_torneo; cin >> nombre_torneo;
+    //   cout << '#' << opc << ' ' << nombre_torneo << endl;
     //   // Si existe el Torneo y no se ha iniciado antes, inciar
     //   if (circ.existe_torneo(nombre_torneo) and not circ.consultar_torneo(nombre_torneo).torneo_iniciado()) {
     //     circ.iniciar_torneo(nombre_torneo);
@@ -131,6 +134,7 @@ int main() {
     // // 6
     // else if (opc == "finalizar_torneo" or opc == "ft") {
     //   string nombre_torneo; cin >> nombre_torneo;
+    //   cout << '#' << opc << ' ' << nombre_torneo << endl;
     //   // Si existe el torneo y se ha iniciado anteriormente, finalizamos
     //   if (circ.existe_torneo(nombre_torneo)) {
     //     if (circ.consultar_torneo(nombre_torneo).torneo_iniciado() and not circ.consultar_torneo(nombre_torneo).torneo_finalizado()) {
@@ -148,17 +152,21 @@ int main() {
 
     // 7
     else if (opc == "listar_ranking" or opc == "lr") {
-      // cjt_jug.escribir_ranking();
+      cout << '#' << opc << endl;
+      cjt_jug.escribir_ranking();
     }
 
     // 8
     else if (opc == "listar_jugadores" or opc == "lj") {
+      cout << '#' << opc << endl;
+      cout << cjt_jug.numero_jugadores_totales() << endl;
       cjt_jug.escribir_jugadores();
     }
 
     // 9
     else if (opc == "consultar_jugador" or opc == "cj") {
       string nombre_jug; cin >> nombre_jug;
+      cout << '#' << opc << ' ' << nombre_jug << endl;
       // Si existe el jugador, escribir datos
       if (cjt_jug.existe_jugador(nombre_jug)) {
         cjt_jug.consultar_jugador(nombre_jug).escribir_jug();
@@ -169,12 +177,15 @@ int main() {
     }
 
     // 10
-    // else if (opc == "listar_torneos" or opc == "lt") {
-    //   circ.escribir_torneos();
-    // }
+    else if (opc == "listar_torneos" or opc == "lt") {
+      cout << '#' << opc << endl;
+      cout << circ.numero_torneos_totales() << endl;
+      circ.escribir_torneos(cjt_categ);
+    }
 
     // 11
     else if (opc == "listar_categorias" or opc == "lc") {
+      cout << '#' << opc << endl;
       cjt_categ.escribir_categorias_puntos();
     }
 

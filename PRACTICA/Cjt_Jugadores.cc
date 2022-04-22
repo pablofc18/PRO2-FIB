@@ -5,7 +5,7 @@ Cjt_Jugadores::Cjt_Jugadores()
   // map<int, Jugador> ranking;
   // map<string, Jugador> cjt_jugadores;
 }
-// Para ordenar el vector de ranking
+// Para ordenar el vector de ranking        ¿¿¿¿¿ PÚBLICO ??????
 bool comp_rank(const Jugador &p1, const Jugador &p2)
 {
   if (p1.consultar_puntos() == p2.consultar_puntos()) {
@@ -33,23 +33,20 @@ void Cjt_Jugadores::eliminar_jugador(string nombre_jug)
 {
   // Eliminar el jugador con it, y así a partir de ese iterador hasta el final disminuye ranking en 1 a los jugadores
   map<string, Jugador>::iterator it = cjt_Jugadores.find(nombre_jug);
-  map<string, Jugador>::iterator it_aux = it;
   // Ranking del jugador eliminado
   int rank_jug_eliminado =  it->second.consultar_ranking();
-  it = cjt_Jugadores.erase(it_aux);
-  while (it != cjt_Jugadores.end()) {
-    it->second.modificar_ranking(it->second.consultar_ranking() - 1);
-    ++it;
-  }
-  // Eliminar el jugador del ranking y avanzar posición a los que estaban por debajo
+  cjt_Jugadores.erase(it);
+  // Elminar del ranking y modificar ranking en la lista de jugadores
   for (int i = rank_jug_eliminado; i < ranking.size(); ++i) {
+    it = cjt_Jugadores.find(ranking[i].consultar_nombre());
+    it->second.modificar_ranking(it->second.consultar_ranking() - 1);
     ranking[i-1] = ranking[i];
   }
   // Borrar el último que estará repetido
   ranking.pop_back();
 }
 
-// void Cjt_Jugadores::actualizar_ranking(vector< vector<int> > pts_categ_nivel, map<int, Jugador> jugadores_del_torneo)
+// void Cjt_Jugadores::actualizar_ranking(vector< vector<int> > pts_categ_nivel, vector<int> jugadores_del_torneo)
 // {
 // }
 
