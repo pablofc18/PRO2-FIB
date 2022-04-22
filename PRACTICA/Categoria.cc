@@ -28,8 +28,8 @@ string Categoria::consultar_nombre_categ() const
 }
 
 // Es lo mismo que consultar nombre !!!!!!!!!!!!!
-void Categoria::escribir_categ() const      /////
-{                                           /////
-  cout << nombre;                           /////
-}                                           /////
+// void Categoria::escribir_categ() const      /////
+// {                                           /////
+//   cout << nombre;                           /////
+// }                                           /////
 /////////////////////////////////////////////////

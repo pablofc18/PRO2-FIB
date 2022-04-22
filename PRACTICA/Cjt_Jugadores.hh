@@ -74,7 +74,7 @@ public:
 
   /** @brief Consulta de un Jugador
 
-      \pre rank tiene que ser válido
+      \pre rank es válido
       \post El resultado es el Jugador de ranking rank
   */
   Jugador consultar_jugador(int rank) const;

@@ -52,7 +52,7 @@ vector<int> Torneo::consultar_jugadores_del_torneo() const
 {
   return jugadores_del_torneo;
 }
-// ?¿?¿?¿?
+// ?¿?¿?¿? JUGADOR PARTICIPANDO TORNEO ?¿
 void Torneo::leer_participantes_torneo()
 {
   int num_jug_inscritos; cin >> num_jug_inscritos;
@@ -79,7 +79,7 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
 //
 // }
 
-// void Torneo::escribir_cuadro_emparejamientos() const 
+// void Torneo::escribir_cuadro_emparejamientos() const
 // {
 //
 // }
