@@ -111,12 +111,12 @@ public:
   */
   int consultar_ranking() const;
 
-  // /** @brief Consultora de los puntos del Jugador
-  //
-  //     \pre <em>Cierto</em>
-  //     \post El resultado son los puntos del Jugador
-  // */
-  // int consultar_puntos() const;
+  /** @brief Consultora de los puntos del Jugador
+
+      \pre <em>Cierto</em>
+      \post El resultado son los puntos del Jugador
+  */
+  int consultar_puntos() const;
 
   /** @brief Consultora de si el Jugador está participando en un torneo
 

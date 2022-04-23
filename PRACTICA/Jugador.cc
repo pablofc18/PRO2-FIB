@@ -74,10 +74,10 @@ int Jugador::consultar_ranking() const
   return ranking;
 }
 
-// int Jugador::consultar_puntos() const
-// {
-//   return puntos;
-// }
+int Jugador::consultar_puntos() const
+{
+  return puntos;
+}
 
 bool Jugador::consultar_participando_torneo() const
 {

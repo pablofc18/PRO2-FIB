@@ -55,7 +55,7 @@ int main() {
         cout << endl;
       }
       else {
-        cout << "Ya existe un jugador con ese nombre" << endl;
+        cout << "error: ya existe un jugador con ese nombre" << endl;
       }
     }
 
@@ -73,11 +73,11 @@ int main() {
           cout << endl;
         }
         else {
-          cout << "Ya existe un torneo con ese nombre" << endl;
+          cout << "error: ya existe un torneo con ese nombre" << endl;
         }
       }
       else {
-        cout << "La categoria no es correcta" << endl;
+        cout << "error: la categoria no existe" << endl;
       }
     }
 
@@ -93,7 +93,7 @@ int main() {
         cout << endl;
       }
       else {
-        cout << "No existe el jugador con ese nombre" << endl;
+        cout << "error: el jugador no existe" << endl;
       }
     }
 
@@ -114,7 +114,7 @@ int main() {
         cout << endl;
       }
       else {
-        cout << "No existe ningún torneo con ese nombre" << endl;
+        cout << "error: el torneo no existe" << endl;
       }
     }
 
@@ -130,7 +130,7 @@ int main() {
     //   }
     //   else cout << "Torneo no existe o se ha iniciado anteriormente" << endl;
     // }
-    //
+
     // // 6
     // else if (opc == "finalizar_torneo" or opc == "ft") {
     //   string nombre_torneo; cin >> nombre_torneo;
@@ -172,7 +172,7 @@ int main() {
         cjt_jug.consultar_jugador(nombre_jug).escribir_jug();
       }
       else {
-        cout << "No existe el jugador con ese nombre" << endl;
+        cout << "error: el jugador no existe" << endl;
       }
     }
 
