@@ -108,10 +108,11 @@ public:
       \post Se escribe todos los jugadores, en orden creciente de nombre, con todos sus datos
   */
   void escribir_jugadores() const;
-
+  
 private:
   vector<Jugador> ranking;
   map<string, Jugador> cjt_Jugadores;
+  // ESTO PRIVATE ESTOY TESTING:
   void ordenar_ranking();
 };
 

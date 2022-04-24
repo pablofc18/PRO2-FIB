@@ -49,7 +49,7 @@ public:
   /** @brief Modificador de los puntos
 
       \pre <em>Cierto</em>
-      \post Los puntos del Jugador pasan a ser 'puntos_jug'
+      \post Los puntos del Jugador se le suman 'puntos_jug'
   */
   void modificar_puntos(int puntos_jug);
 
@@ -70,21 +70,21 @@ public:
   /** @brief Modificador de los partidos jugados
 
   \pre El pair consta de first = ganados, second = perdidos
-  \post Los partidos disputados del Jugador pasan a ser 'partidos_jug'
+  \post Los partidos disputados del Jugador se le suman 'partidos_jug'
   */
   void modificar_partidos_jugados(pair<int, int> partidos_jug);
 
   /** @brief Modificador de los sets jugados
 
       \pre El pair consta de first = ganados, second = perdidos
-      \post Los sets disputados del Jugador pasan a ser 'sets_jug'
+      \post Los sets disputados del Jugador se le suman 'sets_jug'
   */
   void modificar_sets_jugados(pair<int, int> sets_jug);
 
   /** @brief Modificador de los juegos jugados
 
       \pre El pair consta de first = ganados, second = perdidos
-      \post Los juegos disputados del Jugador pasan a ser 'juegos_jug'
+      \post Los juegos disputados del Jugador se le suman 'juegos_jug'
   */
   void modificar_juegos_jugados(pair<int, int> juegos_jug);
 

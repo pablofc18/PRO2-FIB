@@ -15,11 +15,11 @@ void Circuito::eliminar_torneo(string nombre_torneo)
   cjt_Torneos.erase(nombre_torneo);
 }
 
-// void Circuito::iniciar_torneo(string nombre_torneo)
+// void Circuito::iniciar_torneo(string nombre_torneo, Cjt_Jugadores &cjt_jug)
 // {
 //   map<string, Torneo>::iterator it = cjt_Torneos.find(nombre_torneo);
 //   it->second.torneo_iniciar();
-//   it->second.leer_participantes_torneo();
+//   it->second.leer_participantes_torneo(cjt_jug);
 //   it->second.confeccionar_cuadro_emparejamientos();
 //   it->second.escribir_cuadro_emparejamientos();
 // }

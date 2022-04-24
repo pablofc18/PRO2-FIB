@@ -57,6 +57,14 @@ int main() {
       else {
         cout << "error: ya existe un jugador con ese nombre" << endl;
       }
+
+      // TESTING no funciona
+      // cjt_jug.consultar_jugador(5).modificar_puntos(500);
+      // cout << "atun";
+      // cjt_jug.consultar_jugador(7).modificar_puntos(500);
+      // cjt_jug.consultar_jugador(20).modificar_puntos(1000);
+      // cjt_jug.consultar_jugador(10).modificar_puntos(1000);
+      // cjt_jug.ordenar_ranking();
     }
 
     // 2

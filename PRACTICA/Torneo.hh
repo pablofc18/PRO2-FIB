@@ -110,7 +110,7 @@ public:
       \pre <em>Cierto</em>
       \post Se leen los jugadores que van a disputar el Torneo
   */
-  void leer_participantes_torneo();
+  void leer_participantes_torneo(Cjt_Jugadores &cjt_jug);
 
   /** @brief Operación de lectura de resultados del Torneo
 
@@ -155,7 +155,7 @@ private:
   // Modificar ?¿?¿
   vector<int> jugadores_del_torneo; // vector de ints que equivalen al ranking de cada jugador
   // BinTree's de los cuadros de emparejamientos y resultados del Torneo (todavia no se que dato)
-  BinTree< pair<Jugador, Jugador> > cuadro_emparejamientos;
+  BinTree<int> cuadro_emparejamientos;
   // BinTree<T> resultados;
 };
 

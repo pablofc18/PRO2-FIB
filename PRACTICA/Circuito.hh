@@ -10,6 +10,7 @@
 
 #ifndef NO_DIAGRAM
 #include <map>
+#include "Cjt_Jugadores.hh"
 using namespace std;
 #endif
 
@@ -54,7 +55,7 @@ public:
       \pre El Torneo existe y no se ha iniciado
       \post Se lee la inscripción del Torneo y se confecciona el cuadro de emparejamientos
   */
-  void iniciar_torneo(string nombre_torneo);
+  void iniciar_torneo(string nombre_torneo, Cjt_Jugadores &cjt_jug);
 
   /** @brief Finaliza un Torneo
 
