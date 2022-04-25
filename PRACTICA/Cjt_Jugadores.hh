@@ -44,10 +44,10 @@ public:
 
   /** @brief Da de baja un Jugador
 
-      \pre nombre_jug es un nombre que existe en nuestra lista de jugadores
-      \post Se elimina al Jugador con nombre nombre_jug
+      \pre <em>Cierto</em>
+      \post Se elimina al Jugador con nombre nombre_jug, si existe, devolviendo true. Y false si no existe
   */
-  void eliminar_jugador(string nombre_jug);
+  bool eliminar_jugador(string nombre_jug);
 
   /** @brief Actualiza el ranking de jugadores
 
@@ -108,11 +108,10 @@ public:
       \post Se escribe todos los jugadores, en orden creciente de nombre, con todos sus datos
   */
   void escribir_jugadores() const;
-  
+
 private:
   vector<Jugador> ranking;
   map<string, Jugador> cjt_Jugadores;
-  // ESTO PRIVATE ESTOY TESTING:
   void ordenar_ranking();
 };
 

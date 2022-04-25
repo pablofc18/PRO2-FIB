@@ -58,7 +58,7 @@ int main() {
         cout << "error: ya existe un jugador con ese nombre" << endl;
       }
 
-      // TESTING no funciona
+      // TESTING doesn not work
       // cjt_jug.consultar_jugador(5).modificar_puntos(500);
       // cout << "atun";
       // cjt_jug.consultar_jugador(7).modificar_puntos(500);
@@ -92,10 +92,9 @@ int main() {
     // 3
     else if (opc == "baja_jugador" or opc == "bj") {
       string nombre_jug; cin >> nombre_jug;
-      cout << '#' << opc << ' ' << nombre_jug << endl;
+      cout << '#' << opc << ' ' << nombre_jug << endl;  // HACER ELIMINAR BOOL
       // Si existe ese jugador, añadirlo
-      if (cjt_jug.existe_jugador(nombre_jug)) {
-        cjt_jug.eliminar_jugador(nombre_jug);
+      if (cjt_jug.eliminar_jugador(nombre_jug)) {
         // Al eliminar jugador ya se actualiza el ranking y la lista
         cout << cjt_jug.numero_jugadores_totales();
         cout << endl;
@@ -110,14 +109,7 @@ int main() {
       string nombre_torneo; cin >> nombre_torneo;
       cout << '#' << opc << ' ' << nombre_torneo << endl;
       // Si existe el torneo, eliminarlo
-      if (circ.existe_torneo(nombre_torneo)) {
-        // Actualiza ranking si se ha jugado ese torneo
-        if (circ.torneo_disputado(nombre_torneo)) {
-          //cjt_jug.actualizar_ranking(cjt_categ.consultar_puntos_categ_nivel(), circ.consultar_torneo(nombre_torneo).consultar_jugadores_del_torneo());
-        }
-        // Elimina torneo
-        circ.eliminar_torneo(nombre_torneo);
-
+      if (circ.eliminar_torneo(nombre_torneo)) {
         cout << circ.numero_torneos_totales();
         cout << endl;
       }
@@ -177,6 +169,7 @@ int main() {
       cout << '#' << opc << ' ' << nombre_jug << endl;
       // Si existe el jugador, escribir datos
       if (cjt_jug.existe_jugador(nombre_jug)) {
+        // Dos veces find, poner consultar jugador un if != end() ?¿?¿?¿
         cjt_jug.consultar_jugador(nombre_jug).escribir_jug();
       }
       else {

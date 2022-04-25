@@ -110,7 +110,7 @@ public:
       \pre <em>Cierto</em>
       \post Se leen los jugadores que van a disputar el Torneo
   */
-  void leer_participantes_torneo(Cjt_Jugadores &cjt_jug);
+  void leer_participantes_torneo(/*Cjt_Jugadores &cjt_jug*/);
 
   /** @brief Operación de lectura de resultados del Torneo
 

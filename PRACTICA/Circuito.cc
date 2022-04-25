@@ -10,9 +10,18 @@ void Circuito::anadir_torneo(const Torneo &t)
   cjt_Torneos[t.consultar_nombre()] = t;
 }
 
-void Circuito::eliminar_torneo(string nombre_torneo)
+bool Circuito::eliminar_torneo(string nombre_torneo)
 {
-  cjt_Torneos.erase(nombre_torneo);
+  map<string, Torneo>::const_iterator it = cjt_Torneos.find(nombre_torneo);
+  if (it != cjt_Torneos.end()) {
+    if (it->second.torneo_finalizado()) {
+      // actualiza ranking
+      //cjt_jug.actualizar_ranking(cjt_categ.consultar_puntos_categ_nivel(), circ.consultar_torneo(nombre_torneo).consultar_jugadores_del_torneo());
+    }
+    cjt_Torneos.erase(it);
+    return true;
+  }
+  else return false;
 }
 
 // void Circuito::iniciar_torneo(string nombre_torneo, Cjt_Jugadores &cjt_jug)

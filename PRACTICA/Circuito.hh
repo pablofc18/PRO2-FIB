@@ -45,10 +45,10 @@ public:
 
   /** @brief Da de baja un Torneo
 
-      \pre 'nombre_torneo' es un nombre que existe en nuestra lista de torneos
-      \post Se elimina el Torneo con nombre 'nombre_torneo'
+      \pre <em>Cierto</em>
+      \post Se elimina el Torneo con nombre 'nombre_torneo' si existe, devolviendo true. Y si no devuelve false
   */
-  void eliminar_torneo(string nombre_torneo);
+  bool eliminar_torneo(string nombre_torneo);
 
   /** @brief Inicia un Torneo
 

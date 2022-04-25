@@ -53,14 +53,13 @@ vector<int> Torneo::consultar_jugadores_del_torneo() const
   return jugadores_del_torneo;
 }
 // ?¿?¿?¿? JUGADOR PARTICIPANDO TORNEO ?¿
-void Torneo::leer_participantes_torneo(Cjt_Jugadores &cjt_jug)
+void Torneo::leer_participantes_torneo(/*Cjt_Jugadores &cjt_jug*/)
 {
   int num_jug_inscritos; cin >> num_jug_inscritos;
   for (int i = 0; i < num_jug_inscritos; ++i) {
     int num_rank; cin >> num_rank;
     jugadores_del_torneo[i] = num_rank;
-    // Modificar el atributo de participando en torneo (ranking)
-    cjt_jug.consultar_jugador(num_rank).participando_en_torneo();
+    // Modificar el atributo de participando en torneo (ranking) ?¿
   }
 }
 

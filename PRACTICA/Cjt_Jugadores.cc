@@ -29,21 +29,29 @@ void Cjt_Jugadores::anadir_jugador(string nombre_jug)
   ranking.push_back(p);
 }
 
-void Cjt_Jugadores::eliminar_jugador(string nombre_jug)
+bool Cjt_Jugadores::eliminar_jugador(string nombre_jug)
 {
-  // Eliminar el jugador con it, y así a partir de ese iterador hasta el final disminuye ranking en 1 a los jugadores
+  // Buscamos el jugador si existe
   map<string, Jugador>::iterator it = cjt_Jugadores.find(nombre_jug);
-  // Ranking del jugador eliminado
-  int rank_jug_eliminado =  it->second.consultar_ranking();
-  cjt_Jugadores.erase(it);
-  // Elminar del ranking y modificar ranking en la lista de jugadores
-  for (int i = rank_jug_eliminado; i < ranking.size(); ++i) {
-    it = cjt_Jugadores.find(ranking[i].consultar_nombre());
-    it->second.modificar_ranking(it->second.consultar_ranking() - 1);
-    ranking[i-1] = ranking[i];
+  // Si existe lo borramos y editamos datos
+  if (it != cjt_Jugadores.end()) {
+    // Guardamos ranking jugador eliminado y borramos jugador del map
+    int rank_jug_eliminado =  it->second.consultar_ranking();
+    cjt_Jugadores.erase(it);
+
+    for (int i = rank_jug_eliminado; i < ranking.size(); ++i) {
+      // FIND CADA VEZ / probar: otro bucle para recorrer linealmente
+      it = cjt_Jugadores.find(ranking[i].consultar_nombre());
+      it->second.modificar_ranking(it->second.consultar_ranking() - 1);
+      ranking[i].modificar_ranking(ranking[i].consultar_ranking() - 1);
+      ranking[i-1] = ranking[i];
+    }
+    // Borrar el último que estará repetido
+    ranking.pop_back();
+
+    return true;
   }
-  // Borrar el último que estará repetido
-  ranking.pop_back();
+  else return false;
 }
 
 // void Cjt_Jugadores::actualizar_ranking(vector< vector<int> > pts_categ_nivel, vector<int> jugadores_del_torneo)
