@@ -3,32 +3,29 @@
 Torneo::Torneo()
 {
   categ = 0;
-  iniciado = false;
-  finalizado = false;
+  disputado = false;
 }
 
 Torneo::Torneo(string nombre_torneo, int id_categ)
 {
   nombre = nombre_torneo;
   categ = id_categ;
-  iniciado = false;
-  finalizado = false;
-}
-
-void Torneo::torneo_iniciar()
-{
-  iniciado = true;
-}
-
-void Torneo::torneo_finalizar()
-{
-  finalizado = true;
+  disputado = false;
 }
 
 // void Torneo::confeccionar_cuadro_emparejamientos()
 // {
-// }
+//   int h = log2 (jugadores_del_torneo.size()) + 1;
+//   int m = pow (2, h - 1);
 //
+//
+//
+//
+//
+//
+//
+// }
+
 // void Torneo::confeccionar_cuadro_resultados()
 // {
 // }
@@ -38,28 +35,22 @@ string Torneo::consultar_nombre() const
   return nombre;
 }
 
-bool Torneo::torneo_iniciado() const
+bool Torneo::torneo_disputado() const
 {
-  return iniciado;
-}
-
-bool Torneo::torneo_finalizado() const
-{
-  return finalizado;
+  return disputado;
 }
 
 vector<int> Torneo::consultar_jugadores_del_torneo() const
 {
   return jugadores_del_torneo;
 }
-// ?¿?¿?¿? JUGADOR PARTICIPANDO TORNEO ?¿
-void Torneo::leer_participantes_torneo(/*Cjt_Jugadores &cjt_jug*/)
+
+void Torneo::leer_participantes_torneo()
 {
   int num_jug_inscritos; cin >> num_jug_inscritos;
   for (int i = 0; i < num_jug_inscritos; ++i) {
     int num_rank; cin >> num_rank;
     jugadores_del_torneo[i] = num_rank;
-    // Modificar el atributo de participando en torneo (ranking) ?¿
   }
 }
 

@@ -3,7 +3,6 @@
 Jugador::Jugador()
 {
   puntos = 0;
-  participando_torneo = false;
   torneos_disputados = 0;
   partidos = make_pair(0,0);
   sets = make_pair(0,0);
@@ -14,7 +13,6 @@ Jugador::Jugador(string nombre_jug)
 {
   nombre = nombre_jug;
   puntos = 0;
-  participando_torneo = false;
   torneos_disputados = 0;
   partidos = make_pair(0,0);
   sets = make_pair(0,0);
@@ -29,16 +27,6 @@ void Jugador::modificar_ranking(int rank)
 void Jugador::modificar_puntos(int puntos_jug)
 {
   puntos += puntos_jug;
-}
-
-void Jugador::participando_en_torneo()
-{
-  participando_torneo = true;
-}
-
-void Jugador::no_participando_torneo()
-{
-  participando_torneo = false;
 }
 
 void Jugador::modificar_partidos_jugados(pair<int, int> partidos_jug)
@@ -77,11 +65,6 @@ int Jugador::consultar_ranking() const
 int Jugador::consultar_puntos() const
 {
   return puntos;
-}
-
-bool Jugador::consultar_participando_torneo() const
-{
-  return participando_torneo;
 }
 
 void Jugador::escribir_jug() const  // Puede que no coincida con el Jutge !?¿!

@@ -73,13 +73,6 @@ public:
   */
   bool existe_torneo(string nombre_torneo) const;
 
-  /** @brief Consulta si se ha disputado el Torneo
-
-      \pre <em>Cierto</em>
-      \post El resultado indica si se ha disputado el Torneo 'nombre_torneo'
-  */
-  bool torneo_disputado(string nombre_torneo) const;
-
   /** @brief Consultar Torneo con identificador 'nombre_torneo'
 
       \pre El Torneo con ese nombre existe

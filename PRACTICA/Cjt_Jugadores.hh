@@ -54,7 +54,7 @@ public:
       \pre Se han modificado los puntos de Jugadores
       \post El resultado es el ranking actualizado con los valores más recientes
   */
-  void actualizar_ranking(vector< vector<int> > pts_categ_nivel, map<int, Jugador> jugadores_del_torneo);
+  void actualizar_ranking(vector< vector<int> > pts_categ_nivel, vector<int> jugadores_del_torneo);
 
   // Consultoras
 

@@ -13,6 +13,7 @@
 #include "Cjt_Categorias.hh"
 #include <map>
 #include "BinTree.hh"
+#include <math.h>
 #endif
 
 /** @class Torneo
@@ -45,20 +46,6 @@ public:
 
   // Modificadoras
 
-  /** @brief Modifica el atributo de Torneo 'iniciado'
-
-      \pre El Torneo no se ha disputado todavía
-      \post El valor correspondiente con si se ha inciado el Torneo pasa a ser true
-  */
-  void torneo_iniciar();
-
-  /** @brief Modifica el atributo de Torneo 'finalizado'
-
-      \pre El Torneo tiene que estar iniciado anteriormente
-      \post El valor correspondiente con si se ha finalizado el Torneo pasa a ser true
-  */
-  void torneo_finalizar();
-
   /** @brief Confecciona el cuadro de emparejamientos
 
       \pre <em>Cierto</em>
@@ -82,19 +69,12 @@ public:
   */
   string consultar_nombre() const;
 
-  /** @brief Consulta si el Torneo se ha iniciado
+  /** @brief Consulta si se ha disputado el Torneo
 
       \pre <em>Cierto</em>
-      \post El resultado indica si se ha iniciado el Torneo
+      \post Devuelve true si se ha disputado y false si no.
   */
-  bool torneo_iniciado() const;
-
-  /** @brief Consulta si el Torneo ha finalizado
-
-      \pre <em>Cierto</em>
-      \post El resultado indica si se ha finalizado el Torneo
-  */
-  bool torneo_finalizado() const;
+  bool torneo_disputado() const;
 
   /** @brief Consulta los jugadores que han disputado el Torneo
 
@@ -110,7 +90,7 @@ public:
       \pre <em>Cierto</em>
       \post Se leen los jugadores que van a disputar el Torneo
   */
-  void leer_participantes_torneo(/*Cjt_Jugadores &cjt_jug*/);
+  void leer_participantes_torneo();
 
   /** @brief Operación de lectura de resultados del Torneo
 
@@ -150,9 +130,7 @@ public:
 private:
   string nombre;
   int categ;
-  bool iniciado;
-  bool finalizado;
-  // Modificar ?¿?¿
+  bool disputado;
   vector<int> jugadores_del_torneo; // vector de ints que equivalen al ranking de cada jugador
   // BinTree's de los cuadros de emparejamientos y resultados del Torneo (todavia no se que dato)
   BinTree<int> cuadro_emparejamientos;

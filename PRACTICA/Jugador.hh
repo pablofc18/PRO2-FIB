@@ -53,20 +53,6 @@ public:
   */
   void modificar_puntos(int puntos_jug);
 
-  /** @brief Modificar el estado de si participa o no en un Torneo
-
-      \pre El bool participando_torneo es false
-      \post El bool participando_torneo ahora es true
-  */
-  void participando_en_torneo();
-
-  /** @brief Modificar el estado de si participa o no en un Torneo
-
-      \pre El bool participando_torneo es true
-      \post El bool participando_torneo ahora es false
-  */
-  void no_participando_torneo();
-
   /** @brief Modificador de los partidos jugados
 
   \pre El pair consta de first = ganados, second = perdidos
@@ -118,13 +104,6 @@ public:
   */
   int consultar_puntos() const;
 
-  /** @brief Consultora de si el Jugador está participando en un torneo
-
-      \pre <em>Cierto</em>
-      \post El resultado indica si el Jugador está participando actualmente en un torneo
-  */
-  bool consultar_participando_torneo() const;
-
   // Escritura / Lectura
 
   /** @brief Operación de escritura
@@ -138,7 +117,6 @@ private:
   string nombre;
   int ranking;
   int puntos;
-  bool participando_torneo;
   int torneos_disputados;
   pair<int, int> partidos; // first = ganados, second = perdidos
   pair<int, int> sets;  // first = ganados, second = perdidos

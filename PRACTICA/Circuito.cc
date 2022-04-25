@@ -14,7 +14,7 @@ bool Circuito::eliminar_torneo(string nombre_torneo)
 {
   map<string, Torneo>::const_iterator it = cjt_Torneos.find(nombre_torneo);
   if (it != cjt_Torneos.end()) {
-    if (it->second.torneo_finalizado()) {
+    if (it->second.torneo_disputado()) {
       // actualiza ranking
       //cjt_jug.actualizar_ranking(cjt_categ.consultar_puntos_categ_nivel(), circ.consultar_torneo(nombre_torneo).consultar_jugadores_del_torneo());
     }
@@ -27,7 +27,6 @@ bool Circuito::eliminar_torneo(string nombre_torneo)
 // void Circuito::iniciar_torneo(string nombre_torneo, Cjt_Jugadores &cjt_jug)
 // {
 //   map<string, Torneo>::iterator it = cjt_Torneos.find(nombre_torneo);
-//   it->second.torneo_iniciar();
 //   it->second.leer_participantes_torneo(cjt_jug);
 //   it->second.confeccionar_cuadro_emparejamientos();
 //   it->second.escribir_cuadro_emparejamientos();
@@ -43,12 +42,6 @@ bool Circuito::existe_torneo(string nombre_torneo) const
   map<string, Torneo>::const_iterator it;
   it = cjt_Torneos.find(nombre_torneo);
   return it != cjt_Torneos.end();
-}
-
-bool Circuito::torneo_disputado(string nombre_torneo) const
-{
-  map<string, Torneo>::const_iterator it = cjt_Torneos.find(nombre_torneo);
-  return it->second.torneo_finalizado();
 }
 
 Torneo Circuito::consultar_torneo(string nombre_torneo) const
