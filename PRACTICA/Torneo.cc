@@ -16,10 +16,11 @@ Torneo::Torneo(string nombre_torneo, int id_categ)
 BinTree<int> Torneo::confeccionar_cuadro_emparejamientos(int n, int val, int potencia2)
 {
   if (n < potencia2) {
-    return BinTree<int>();
+    if ((val <= potencia2-n and val >= 1) or (val > n)) return BinTree<int>();
+    else return BinTree<int>(val);
   }
   else if (n == potencia2) {
-    return BinTree<int>(potencia2*2+1-val);
+    return BinTree<int>(val);
   }
   else {
     BinTree<int> l,r;
@@ -77,13 +78,29 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
 // MAL !!!
 void Torneo::escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, const Cjt_Jugadores &cjt_jug) const
 {
-  if (cuadro_emp.empty()) return;
-  else {
+  // if (not cuadro_emp.left().empty()) {
+  //   cout << '(';
+  //   escribir_cuadro_emparejamientos(cuadro_emp.left(), cjt_jug);
+  //   /*if (cuadro_emp.left().empty() and cuadro_emp.right().empty())*/
+  //   cout << cuadro_emp.value() << '.' << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_emp.value()-1]).consultar_nombre() << ' ';
+  //   escribir_cuadro_emparejamientos(cuadro_emp.right(), cjt_jug);
+  //   cout << ')' << ' ';
+  // }
+
+
+  if (cuadro_emp.empty()) {
+    return;
+  }
+  if (cuadro_emp.left().empty() and cuadro_emp.right().empty()) {
+    cout << cuadro_emp.value() << '.' << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_emp.value()-1]).consultar_nombre() << ' ';
+  }
+  if (not cuadro_emp.left().empty()) {
     cout << '(';
     escribir_cuadro_emparejamientos(cuadro_emp.left(), cjt_jug);
-    if (cuadro_emp.left().empty() and cuadro_emp.right().empty()) cout << cuadro_emp.value() << '.' << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_emp.value()-1]).consultar_nombre() << ' ';
+  }
+  if (not cuadro_emp.right().empty()) {
     escribir_cuadro_emparejamientos(cuadro_emp.right(), cjt_jug);
-    cout << ')' << ' ';
+    cout << ')';
   }
 }
 
