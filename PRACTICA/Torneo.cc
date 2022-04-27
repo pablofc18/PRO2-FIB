@@ -78,30 +78,15 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
 // MAL !!!
 void Torneo::escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, const Cjt_Jugadores &cjt_jug) const
 {
-  // if (not cuadro_emp.left().empty()) {
-  //   cout << '(';
-  //   escribir_cuadro_emparejamientos(cuadro_emp.left(), cjt_jug);
-  //   /*if (cuadro_emp.left().empty() and cuadro_emp.right().empty())*/
-  //   cout << cuadro_emp.value() << '.' << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_emp.value()-1]).consultar_nombre() << ' ';
-  //   escribir_cuadro_emparejamientos(cuadro_emp.right(), cjt_jug);
-  //   cout << ')' << ' ';
-  // }
-
-
-  if (cuadro_emp.empty()) {
-    return;
-  }
-  if (cuadro_emp.left().empty() and cuadro_emp.right().empty()) {
-    cout << cuadro_emp.value() << '.' << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_emp.value()-1]).consultar_nombre() << ' ';
-  }
-  if (not cuadro_emp.left().empty()) {
+  if (cuadro_emp.left().empty()) cout << cuadro_emp.value() << '.' << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_emp.value()-1]).consultar_nombre();
+  else {
     cout << '(';
     escribir_cuadro_emparejamientos(cuadro_emp.left(), cjt_jug);
-  }
-  if (not cuadro_emp.right().empty()) {
+    cout << ' ';
     escribir_cuadro_emparejamientos(cuadro_emp.right(), cjt_jug);
     cout << ')';
   }
+
 }
 
 // void Torneo::escribir_resultados_torneo() const
