@@ -13,7 +13,6 @@
 #include "Cjt_Categorias.hh"
 #include <map>
 #include "BinTree.hh"
-#include <math.h>
 #endif
 
 /** @class Torneo
@@ -46,13 +45,6 @@ public:
 
   // Modificadoras
 
-  /** @brief Confecciona el cuadro de emparejamientos
-
-      \pre <em>Cierto</em>
-      \post Se crea el arbol binario con los emparejamientos
-  */
-  void confeccionar_cuadro_emparejamientos();
-
   /** @brief Confecciona el cuadro de resultados
 
       \pre <em>Cierto</em>
@@ -79,7 +71,7 @@ public:
   /** @brief Consulta los jugadores que han disputado el Torneo
 
       \pre <em>Cierto</em>
-      \post El resultado es un map de los jugadores que han disputado el Torneo
+      \post El resultado es un vector de ints correspondiente a los jugadores que han disputado el Torneo
   */
   vector<int> consultar_jugadores_del_torneo() const;
 
@@ -113,13 +105,6 @@ public:
   */
   void escribir_particip_puntos_ganados() const;
 
-  /** @brief Operación de escritura del cuadro de emparejamientos
-
-      \pre <em>Cierto</em>
-      \post Se escribe el cuadro de emparejamientos
-  */
-  void escribir_cuadro_emparejamientos() const;
-
   /** @brief Operación de escritura de los resultados del torneo
 
       \pre <em>Cierto</em>
@@ -127,13 +112,17 @@ public:
   */
   void escribir_resultados_torneo() const;
 
+  // MAL !!!
+  // Cuadro emparejamientos:
+  BinTree<int> confeccionar_cuadro_emparejamientos(int n, int &nivel_actual, int m, int altura, int pot2nivel);
+  void escribir_cuadro_emparejamientos();
 private:
   string nombre;
   int categ;
   bool disputado;
   vector<int> jugadores_del_torneo; // vector de ints que equivalen al ranking de cada jugador
   // BinTree's de los cuadros de emparejamientos y resultados del Torneo (todavia no se que dato)
-  BinTree<int> cuadro_emparejamientos;
+  BinTree<int> cuadro_emparejamientos;  // no haría falt
   // BinTree<T> resultados;
 };
 

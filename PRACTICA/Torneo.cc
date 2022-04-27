@@ -13,18 +13,23 @@ Torneo::Torneo(string nombre_torneo, int id_categ)
   disputado = false;
 }
 
-// void Torneo::confeccionar_cuadro_emparejamientos()
-// {
-//   int h = log2 (jugadores_del_torneo.size()) + 1;
-//   int m = pow (2, h - 1);
-//
-//
-//
-//
-//
-//
-//
-// }
+BinTree<int> Torneo::confeccionar_cuadro_emparejamientos(int n, int &nivel_actual, int m, int altura, int &pot2nivel)
+{
+  if (nivel_actual == altura) {
+    return BinTree<int>(pot2nivel);
+  }
+  else if (nivel_actual == altura-1) {
+    if (n == m) return BinTree<int>();
+    else BinTree<int>(pot2nivel);
+  }
+  else {
+    BinTree<int> l,r;
+    l = confeccionar_cuadro_emparejamientos(n, nivel_actual+1, m, altura, 1); // a....b
+    r = confeccionar_cuadro_emparejamientos(n, nivel_actual+1, m, altura, pot2nivel+1-a);
+
+    return BinTree<int>(n, l, r);
+  }
+}
 
 // void Torneo::confeccionar_cuadro_resultados()
 // {
@@ -70,11 +75,18 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
 // {
 //
 // }
-
-// void Torneo::escribir_cuadro_emparejamientos() const
-// {
-//
-// }
+// MAL !!!
+void Torneo::escribir_cuadro_emparejamientos()
+{
+  if (cuadro_emparejamientos.left().empty()) return;
+  else {
+    cout << '(' << endl;
+    escribir_cuadro_emparejamientos(cuadro_emparejamientos.left());
+    cout << cuadro_emparejamientos.value() << endl;
+    escribir_cuadro_emparejamientos(cuadro_emparejamientos.right());
+    cout << ')' << endl;
+  }
+}
 
 // void Torneo::escribir_resultados_torneo() const
 // {

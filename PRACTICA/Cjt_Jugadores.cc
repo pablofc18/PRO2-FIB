@@ -99,7 +99,8 @@ void Cjt_Jugadores::leer_jugadores()
 void Cjt_Jugadores::escribir_ranking() const
 {
   for (int i = 0; i < ranking.size(); ++i) {
-    cout << ranking[i].consultar_ranking() << ' ' << ranking[i].consultar_nombre() << ' '
+    // .consultar_ranking() cuesta más...
+    cout << i+1 << ' ' << ranking[i].consultar_nombre() << ' '
          << ranking[i].consultar_puntos() << endl;
   }
 }
