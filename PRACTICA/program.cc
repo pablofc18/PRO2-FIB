@@ -122,33 +122,27 @@ int main() {
     else if (opc == "iniciar_torneo" or opc == "it") {
       string nombre_torneo; cin >> nombre_torneo;
       cout << '#' << opc << ' ' << nombre_torneo << endl;
-      // Si existe el Torneo y no se ha iniciado antes, inciar
-      if (circ.existe_torneo(nombre_torneo)) {
-        circ.iniciar_torneo(nombre_torneo, cjt_jug);
-        // Imprime el cuadro de emparejamientos
-        //circ.consultar_torneo(nombre_torneo).escribir_cuadro_emparejamientos();
-      }
-      else cout << "Torneo no existe o se ha iniciado anteriormente" << endl;
+      circ.iniciar_torneo(nombre_torneo, cjt_jug);
     }
 
-    // // 6
-    // else if (opc == "finalizar_torneo" or opc == "ft") {
-    //   string nombre_torneo; cin >> nombre_torneo;
-    //   cout << '#' << opc << ' ' << nombre_torneo << endl;
-    //   // Si existe el torneo y se ha iniciado anteriormente, finalizamos
-    //   if (circ.existe_torneo(nombre_torneo)) {
-    //     if (circ.consultar_torneo(nombre_torneo).torneo_iniciado() and not circ.consultar_torneo(nombre_torneo).torneo_finalizado()) {
-    //       // (Actulizar ranking, datos jugadores...)
-    //       circ.finalizar_torneo(nombre_torneo);
-    //       // Imprime el cuadro de resultados
-    //       Torneo t = circ.consultar_torneo(nombre_torneo);
-    //       t.escribir_resultados_torneo();
-    //       // Listar puntos -> participantes (orden ranking en el momento de iniciar torneo)
-    //       t.escribir_particip_puntos_ganados();
-    //     }
-    //   }
-    //   else cout << "No existe el Torneo con ese nombre" << endl;
-    // }
+    // 6
+    else if (opc == "finalizar_torneo" or opc == "ft") {
+      // string nombre_torneo; cin >> nombre_torneo;
+      // cout << '#' << opc << ' ' << nombre_torneo << endl;
+      // // Si existe el torneo y se ha iniciado anteriormente, finalizamos
+      // if (circ.existe_torneo(nombre_torneo)) {
+      //   if (circ.consultar_torneo(nombre_torneo).torneo_iniciado() and not circ.consultar_torneo(nombre_torneo).torneo_finalizado()) {
+      //     // (Actulizar ranking, datos jugadores...)
+      //     circ.finalizar_torneo(nombre_torneo);
+      //     // Imprime el cuadro de resultados
+      //     Torneo t = circ.consultar_torneo(nombre_torneo);
+      //     t.escribir_resultados_torneo();
+      //     // Listar puntos -> participantes (orden ranking en el momento de iniciar torneo)
+      //     t.escribir_particip_puntos_ganados();
+      //   }
+      // }
+      // else cout << "No existe el Torneo con ese nombre" << endl;
+    }
 
     // 7
     else if (opc == "listar_ranking" or opc == "lr") {

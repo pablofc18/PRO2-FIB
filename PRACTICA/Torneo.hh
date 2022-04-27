@@ -45,6 +45,13 @@ public:
 
   // Modificadoras
 
+  /* @brief Confecciona el cuadro de emparejamientos
+
+      \pre n = numero participantes, val = valor de cada nodo del arbol, pot2nivel = número nodos por nivel
+      \post Devuelve un BinTree con el cuadro de emparejamientos
+  **/
+  BinTree<int> confeccionar_cuadro_emparejamientos(int n, int val, int pot2nivel);
+
   /** @brief Confecciona el cuadro de resultados
 
       \pre <em>Cierto</em>
@@ -112,18 +119,18 @@ public:
   */
   void escribir_resultados_torneo() const;
 
-  // MAL !!!
-  // Cuadro emparejamientos:
-  BinTree<int> confeccionar_cuadro_emparejamientos(int n, int val, int pot2nivel);
- void escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, const Cjt_Jugadores &cjt_jug) const;
+  /* @brief Operación de escritura del cuadro de emparejamientos
+
+      \pre <em>Cierto</em>
+      \post Se escriben los emparejamientos del torneo
+  **/
+  void escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, const Cjt_Jugadores &cjt_jug) const;
+
 private:
   string nombre;
   int categ;
   bool disputado;
   vector<int> jugadores_del_torneo; // vector de ints que equivalen al ranking de cada jugador
-  // BinTree's de los cuadros de emparejamientos y resultados del Torneo (todavia no se que dato)
-  BinTree<int> cuadro_emparejamientos;  // no haría falt
-  // BinTree<T> resultados;
 };
 
 #endif

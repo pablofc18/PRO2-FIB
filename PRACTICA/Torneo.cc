@@ -1,5 +1,5 @@
 #include "Torneo.hh"
-// INACABADA !!!
+
 Torneo::Torneo()
 {
   categ = 0;
@@ -75,7 +75,7 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
 // {
 //
 // }
-// MAL !!!
+
 void Torneo::escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, const Cjt_Jugadores &cjt_jug) const
 {
   if (cuadro_emp.left().empty()) cout << cuadro_emp.value() << '.' << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_emp.value()-1]).consultar_nombre();

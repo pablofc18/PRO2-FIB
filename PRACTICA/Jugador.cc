@@ -67,7 +67,7 @@ int Jugador::consultar_puntos() const
   return puntos;
 }
 
-void Jugador::escribir_jug() const  // Puede que no coincida con el Jutge !?¿!
+void Jugador::escribir_jug() const  
 {
   cout << nombre << " Rk:" << ranking << " Ps:" << puntos
        << " Ts:" << torneos_disputados << " WM:" << partidos.first

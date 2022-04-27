@@ -5,19 +5,19 @@ Cjt_Jugadores::Cjt_Jugadores()
   // map<int, Jugador> ranking;
   // map<string, Jugador> cjt_jugadores;
 }
-// Para ordenar el vector de ranking        ¿¿¿¿¿ PÚBLICO ??????
-bool comp_rank(const Jugador &p1, const Jugador &p2)
-{
-  if (p1.consultar_puntos() == p2.consultar_puntos()) {
-    return p1.consultar_ranking() < p2.consultar_ranking();
-  }
-  return p1.consultar_puntos() > p2.consultar_puntos();
-}
-
-void Cjt_Jugadores::ordenar_ranking()
-{
-  sort(ranking.begin(), ranking.end(), comp_rank);
-}
+// Para ordenar el vector de ranking ¿público?
+// bool comp_rank(const Jugador &p1, const Jugador &p2)
+// {
+//   if (p1.consultar_puntos() == p2.consultar_puntos()) {
+//     return p1.consultar_ranking() < p2.consultar_ranking();
+//   }
+//   return p1.consultar_puntos() > p2.consultar_puntos();
+// }
+//
+// void Cjt_Jugadores::ordenar_ranking()
+// {
+//   sort(ranking.begin(), ranking.end(), comp_rank);
+// }
 
 void Cjt_Jugadores::anadir_jugador(string nombre_jug)
 {
@@ -40,7 +40,7 @@ bool Cjt_Jugadores::eliminar_jugador(string nombre_jug)
     cjt_Jugadores.erase(it);
 
     for (int i = rank_jug_eliminado; i < ranking.size(); ++i) {
-      // FIND CADA VEZ / probar: otro bucle para recorrer linealmente
+      // FIND CADA VEZ / ¿ probar: otro bucle para recorrer linealmente ?
       it = cjt_Jugadores.find(ranking[i].consultar_nombre());
       it->second.modificar_ranking(it->second.consultar_ranking() - 1);
       ranking[i].modificar_ranking(ranking[i].consultar_ranking() - 1);
@@ -99,7 +99,7 @@ void Cjt_Jugadores::leer_jugadores()
 void Cjt_Jugadores::escribir_ranking() const
 {
   for (int i = 0; i < ranking.size(); ++i) {
-    // .consultar_ranking() cuesta más...
+    // .consultar_ranking() ¿ cuesta más ?
     cout << i+1 << ' ' << ranking[i].consultar_nombre() << ' '
          << ranking[i].consultar_puntos() << endl;
   }

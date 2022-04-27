@@ -26,10 +26,3 @@ string Categoria::consultar_nombre_categ() const
 {
   return nombre;
 }
-
-// Es lo mismo que consultar nombre !!!!!!!!!!!!!
-// void Categoria::escribir_categ() const      /////
-// {                                           /////
-//   cout << nombre;                           /////
-// }                                           /////
-/////////////////////////////////////////////////

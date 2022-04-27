@@ -62,15 +62,6 @@ public:
   */
   string consultar_nombre_categ() const;
 
-  // Escritura / Lectura
-
-  // /** @brief Operación de escritura de una Categoria
-  //
-  //     \pre <em>Cierto</em>
-  //     \post Se esriben los datos de una Categoria
-  // */
-  // void escribir_categ() const;
-
 private:
   string nombre;
   int id;
