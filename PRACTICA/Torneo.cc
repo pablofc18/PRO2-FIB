@@ -13,21 +13,20 @@ Torneo::Torneo(string nombre_torneo, int id_categ)
   disputado = false;
 }
 
-BinTree<int> Torneo::confeccionar_cuadro_emparejamientos(int n, int &nivel_actual, int m, int altura, int &pot2nivel)
+BinTree<int> Torneo::confeccionar_cuadro_emparejamientos(int n, int val, int potencia2)
 {
-  if (nivel_actual == altura) {
-    return BinTree<int>(pot2nivel);
+  if (n < potencia2) {
+    return BinTree<int>();
   }
-  else if (nivel_actual == altura-1) {
-    if (n == m) return BinTree<int>();
-    else BinTree<int>(pot2nivel);
+  else if (n == potencia2) {
+    return BinTree<int>(potencia2*2+1-val);
   }
   else {
     BinTree<int> l,r;
-    l = confeccionar_cuadro_emparejamientos(n, nivel_actual+1, m, altura, 1); // a....b
-    r = confeccionar_cuadro_emparejamientos(n, nivel_actual+1, m, altura, pot2nivel+1-a);
+    l = confeccionar_cuadro_emparejamientos(n, val, potencia2*2);
+    r = confeccionar_cuadro_emparejamientos(n, potencia2*2+1-val, potencia2*2);
 
-    return BinTree<int>(n, l, r);
+    return BinTree<int>(val, l, r);
   }
 }
 
@@ -55,7 +54,7 @@ void Torneo::leer_participantes_torneo()
   int num_jug_inscritos; cin >> num_jug_inscritos;
   for (int i = 0; i < num_jug_inscritos; ++i) {
     int num_rank; cin >> num_rank;
-    jugadores_del_torneo[i] = num_rank;
+    jugadores_del_torneo.push_back(num_rank);
   }
 }
 
@@ -76,15 +75,15 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
 //
 // }
 // MAL !!!
-void Torneo::escribir_cuadro_emparejamientos()
+void Torneo::escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, const Cjt_Jugadores &cjt_jug) const
 {
-  if (cuadro_emparejamientos.left().empty()) return;
+  if (cuadro_emp.empty()) return;
   else {
-    cout << '(' << endl;
-    escribir_cuadro_emparejamientos(cuadro_emparejamientos.left());
-    cout << cuadro_emparejamientos.value() << endl;
-    escribir_cuadro_emparejamientos(cuadro_emparejamientos.right());
-    cout << ')' << endl;
+    cout << '(';
+    escribir_cuadro_emparejamientos(cuadro_emp.left(), cjt_jug);
+    if (cuadro_emp.left().empty() and cuadro_emp.right().empty()) cout << cuadro_emp.value() << '.' << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_emp.value()-1]).consultar_nombre() << ' ';
+    escribir_cuadro_emparejamientos(cuadro_emp.right(), cjt_jug);
+    cout << ')' << ' ';
   }
 }
 

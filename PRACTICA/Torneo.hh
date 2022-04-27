@@ -114,8 +114,8 @@ public:
 
   // MAL !!!
   // Cuadro emparejamientos:
-  BinTree<int> confeccionar_cuadro_emparejamientos(int n, int &nivel_actual, int m, int altura, int pot2nivel);
-  void escribir_cuadro_emparejamientos();
+  BinTree<int> confeccionar_cuadro_emparejamientos(int n, int val, int pot2nivel);
+ void escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, const Cjt_Jugadores &cjt_jug) const;
 private:
   string nombre;
   int categ;

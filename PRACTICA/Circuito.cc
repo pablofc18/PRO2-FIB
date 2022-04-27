@@ -24,18 +24,20 @@ bool Circuito::eliminar_torneo(string nombre_torneo)
   else return false;
 }
 // MAL !!!
-void Circuito::iniciar_torneo(string nombre_torneo)
+void Circuito::iniciar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug)
 {
   map<string, Torneo>::iterator it = cjt_Torneos.find(nombre_torneo);
   it->second.leer_participantes_torneo();
   // Calcular altura y pot2nivel
-  double altura = log2(it->second.consultar_jugadores_del_torneo().size()) + 1;
-  int h = ceil(altura);
-  int m = pow(2,h-1);
-  int nivel_actual = 1;
-  int pot2nivel = pow(2,nivel_actual-1);
-  it->second.confeccionar_cuadro_emparejamientos(1, nivel_actual, m, h, pot2nivel);
-  it->second.escribir_cuadro_emparejamientos();
+  // double altura = log2(it->second.consultar_jugadores_del_torneo().size()) + 1;
+  // int h = ceil(altura);
+  // int m = pow(2,h-1);
+  // int nivel_actual = 1;
+  // int pot2nivel = pow(2,nivel_actual-1);
+  int val = 1; int pot2nivel = 1;
+  BinTree<int> cuadro_emp = it->second.confeccionar_cuadro_emparejamientos(it->second.consultar_jugadores_del_torneo().size(), val, pot2nivel);
+  it->second.escribir_cuadro_emparejamientos(cuadro_emp, cjt_jug);
+  cout << endl;
 }
 
 // void Circuito::finalizar_torneo(string nombre_torneo)

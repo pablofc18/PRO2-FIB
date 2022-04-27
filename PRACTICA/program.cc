@@ -118,18 +118,18 @@ int main() {
       }
     }
 
-    // // 5
-    // else if (opc == "iniciar_torneo" or opc == "it") {
-    //   string nombre_torneo; cin >> nombre_torneo;
-    //   cout << '#' << opc << ' ' << nombre_torneo << endl;
-    //   // Si existe el Torneo y no se ha iniciado antes, inciar
-    //   if (circ.existe_torneo(nombre_torneo) and not circ.consultar_torneo(nombre_torneo).torneo_iniciado()) {
-    //     circ.iniciar_torneo(nombre_torneo);
-    //     // Imprime el cuadro de emparejamientos
-    //     circ.consultar_torneo(nombre_torneo).escribir_cuadro_emparejamientos();
-    //   }
-    //   else cout << "Torneo no existe o se ha iniciado anteriormente" << endl;
-    // }
+    // 5
+    else if (opc == "iniciar_torneo" or opc == "it") {
+      string nombre_torneo; cin >> nombre_torneo;
+      cout << '#' << opc << ' ' << nombre_torneo << endl;
+      // Si existe el Torneo y no se ha iniciado antes, inciar
+      if (circ.existe_torneo(nombre_torneo)) {
+        circ.iniciar_torneo(nombre_torneo, cjt_jug);
+        // Imprime el cuadro de emparejamientos
+        //circ.consultar_torneo(nombre_torneo).escribir_cuadro_emparejamientos();
+      }
+      else cout << "Torneo no existe o se ha iniciado anteriormente" << endl;
+    }
 
     // // 6
     // else if (opc == "finalizar_torneo" or opc == "ft") {

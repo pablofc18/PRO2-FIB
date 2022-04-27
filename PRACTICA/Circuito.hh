@@ -56,7 +56,7 @@ public:
       \pre El Torneo existe y no se ha iniciado
       \post Se lee la inscripción del Torneo y se confecciona el cuadro de emparejamientos
   */
-  void iniciar_torneo(string nombre_torneo);
+  void iniciar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug);
 
   /** @brief Finaliza un Torneo
 
