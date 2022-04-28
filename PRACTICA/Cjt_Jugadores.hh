@@ -109,10 +109,10 @@ public:
   */
   void escribir_jugadores() const;
 
+  void ordenar_ranking();
 private:
   vector<Jugador> ranking;
   map<string, Jugador> cjt_Jugadores;
-  void ordenar_ranking();
 };
 
 #endif

@@ -26,7 +26,6 @@ BinTree<int> Torneo::confeccionar_cuadro_emparejamientos(int n, int val, int pot
     BinTree<int> l,r;
     l = confeccionar_cuadro_emparejamientos(n, val, potencia2*2);
     r = confeccionar_cuadro_emparejamientos(n, potencia2*2+1-val, potencia2*2);
-
     return BinTree<int>(val, l, r);
   }
 }
