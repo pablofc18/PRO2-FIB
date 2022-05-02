@@ -119,9 +119,10 @@ int main() {
 
     // 6
     else if (opc == "finalizar_torneo" or opc == "ft") {
-      // string nombre_torneo; cin >> nombre_torneo;
-      // cout << '#' << opc << ' ' << nombre_torneo << endl;
+      string nombre_torneo; cin >> nombre_torneo;
+      cout << '#' << opc << ' ' << nombre_torneo << endl;
       // // Si existe el torneo y se ha iniciado anteriormente, finalizamos
+      circ.finalizar_torneo(nombre_torneo);
       // if (circ.existe_torneo(nombre_torneo)) {
       //   if (circ.consultar_torneo(nombre_torneo).torneo_iniciado() and not circ.consultar_torneo(nombre_torneo).torneo_finalizado()) {
       //     // (Actulizar ranking, datos jugadores...)

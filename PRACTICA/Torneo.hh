@@ -55,9 +55,16 @@ public:
   /** @brief Confecciona el cuadro de resultados
 
       \pre <em>Cierto</em>
-      \post Se crea el arbol binario con los resultados
+      \post Crea un BinTree con los resultados: cuadro_res
   */
-  void confeccionar_cuadro_resultados();
+  void confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res);
+
+  /** @brief Asigna el BinTree parametro implícito el arbol por pasado por parametro
+
+      \pre <em>Cierto</em>
+      \post cuadro_emp = cuadro_emparejamientos
+  */
+  void asignar_cuadro_emp(const BinTree<int> &cuadro_emparejamientos);
 
   // Consultoras
 
@@ -82,6 +89,13 @@ public:
   */
   vector<int> consultar_jugadores_del_torneo() const;
 
+  /** @brief
+
+      \pre <em>Cierto</em>
+      \post Devuelve el arbol del cuadro de emparejamientos
+  */
+  BinTree<int> consultar_emparejamientos();
+
   // Escritura / Lectura
 
   /** @brief Operación de lectura de jugadores que disputan el torneo
@@ -96,7 +110,7 @@ public:
       \pre <em>Cierto</em>
       \post Se leen los resultados del Torneo
   */
-  void leer_resultados();
+  void leer_resultados(BinTree<string> &resultados_partidos);
 
   /** @brief Operación de escritura de los datos de un Torneo
 
@@ -131,6 +145,10 @@ private:
   int categ;
   bool disputado;
   vector<int> jugadores_del_torneo; // vector de ints que equivalen al ranking de cada jugador
+  // BinTree cuadro emparejamientos
+  BinTree<int> cuadro_emp;
+  // BinTree cuadro resultados ?¿?¿?¿
+  BinTree< pair<pair<int,int>, string> > cuadro_resultados;
 };
 
 #endif

@@ -30,9 +30,49 @@ BinTree<int> Torneo::confeccionar_cuadro_emparejamientos(int n, int val, int pot
   }
 }
 
-// void Torneo::confeccionar_cuadro_resultados()
-// {
-// }
+void Torneo::asignar_cuadro_emp(const BinTree<int> &cuadro_emparejamientos)
+{
+  cuadro_emp = cuadro_emparejamientos;
+}
+
+void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp)
+{
+
+  if (results.left().empty() and not results.right().empty()) {
+    confeccionar_cuadro_resultados(results.right(), cuadro_emp.right());
+    pair<pair<int,int>, string> val;
+    pair<int,int> jugs;
+    jugs.first = cuadro_emp.value();
+    // jugs.second =
+    // mirando el ultimo set del partido entre los dos para ver quien gana
+    if (results.right().value()[results.right().value().size() - 1] < results.right().value()[results.right().value().size() - 3]) {
+      jugs.second =
+    }
+
+    val = make_pair(jugs, results.value());
+    cuadro_resultados = BinTree(val);
+  }
+
+  else if (results.left().empty() and results.right().empty()) {
+    pair<pair<int,int>, string> val;
+    pair<int,int> jugs = make_pair(cuadro_emp.left().value(), cuadro_emp.right().value());
+    val = make_pair(jugs, results.value());
+    return BinTree< pair<pair<int,int>, string> >(val);
+  }
+
+  else {
+    BinTree< pair< pair<int,int>, string> > l, r;
+    l = confeccionar_cuadro_resultados(results.left(), cuadro_emp.left());
+    r = confeccionar_cuadro_resultados(results.right(), cuadro_emp.right());
+
+    pair<pair<int,int>, string> val;
+
+
+
+    return BinTree< pair< pair<int,int>, string> >(val, l, r);
+  }
+
+}
 
 string Torneo::consultar_nombre() const
 {
@@ -49,6 +89,11 @@ vector<int> Torneo::consultar_jugadores_del_torneo() const
   return jugadores_del_torneo;
 }
 
+BinTree<int> Torneo::consultar_emparejamientos()
+{
+  return cuadro_emp;
+}
+
 void Torneo::leer_participantes_torneo()
 {
   int num_jug_inscritos; cin >> num_jug_inscritos;
@@ -58,10 +103,19 @@ void Torneo::leer_participantes_torneo()
   }
 }
 
-// void Torneo::leer_resultados()
-// {
-//
-// }
+void Torneo::leer_resultados(BinTree<string> &resultados_partidos)
+{
+  string resultado;
+  cin >> resultado;
+
+  if (resultado.size() == 3 or resultado.size() == 7 or resultado.size() == 11) {
+    BinTree<string> l;
+    leer_resultados(l);
+    BinTree<string> r;
+    leer_resultados(r);
+    resultados_partidos = BinTree<string>(resultado, l, r);
+  }
+}
 
 void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
 {
@@ -87,8 +141,12 @@ void Torneo::escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, con
   }
 
 }
-
-// void Torneo::escribir_resultados_torneo() const
-// {
-//
-// }
+// NO DEFINITIVO !!
+void Torneo::escribir_resultados_torneo() const
+{
+  if (not cuadro_resultados.empty()) {
+    cout << cuadro_resultados.value() << endl; // !!!
+    escribir_resultados_torneo(cuadro_resultados.left());
+    escribir_resultados_torneo(cuadro_resultados.right());
+  }
+}

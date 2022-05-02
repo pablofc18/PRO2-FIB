@@ -56,6 +56,8 @@ public:
   */
   void actualizar_ranking(vector< vector<int> > pts_categ_nivel, vector<int> jugadores_del_torneo);
 
+  // mod rank jugs / dats
+
   // Consultoras
 
   /** @brief Consulta si existe el Jugador
