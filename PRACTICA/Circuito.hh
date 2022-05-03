@@ -10,7 +10,6 @@
 
 #ifndef NO_DIAGRAM
 #include <map>
-#include "Cjt_Jugadores.hh"
 #include <math.h>
 using namespace std;
 #endif
@@ -63,7 +62,7 @@ public:
       \pre El Torneo existe y se ha iniciado
       \post Se lee los resultados del Torneo y se confecciona el cuadro de resultados
   */
-  void finalizar_torneo(string nombre_torneo);
+  void finalizar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug);
 
   // Consultoras
 

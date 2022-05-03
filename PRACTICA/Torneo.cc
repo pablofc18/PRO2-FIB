@@ -35,43 +35,60 @@ void Torneo::asignar_cuadro_emp(const BinTree<int> &cuadro_emparejamientos)
   cuadro_emp = cuadro_emparejamientos;
 }
 
-void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp)
+void Torneo::torneo_ya_disputado()
 {
+  disputado = true;
+}
 
-  if (results.left().empty() and not results.right().empty()) {
-    confeccionar_cuadro_resultados(results.right(), cuadro_emp.right());
-    pair<pair<int,int>, string> val;
-    pair<int,int> jugs;
-    jugs.first = cuadro_emp.value();
-    // jugs.second =
-    // mirando el ultimo set del partido entre los dos para ver quien gana
-    if (results.right().value()[results.right().value().size() - 1] < results.right().value()[results.right().value().size() - 3]) {
-      jugs.second =
-    }
 
-    val = make_pair(jugs, results.value());
-    cuadro_resultados = BinTree(val);
+BinTree<int> Torneo::modificar_cuadro_emparej_con_results(const BinTree<string> &results, const BinTree<int> &emparej)
+{
+  if (emparej.left().empty()) {
+    return BinTree<int>(emparej.value());
   }
 
-  else if (results.left().empty() and results.right().empty()) {
+  else {
+    BinTree<int> l, r;
+    l = modificar_cuadro_emparej_con_results(results.left(), emparej.left());
+    r = modificar_cuadro_emparej_con_results(results.right(), emparej.right());
+
+    int val;
+    if (results.value()[results.value().size() - 1] < results.value()[results.value().size() - 3]) {
+      val = emparej.left().value();
+    }
+    else val = emparej.right().value();
+
+    return BinTree<int>(val, l, r);
+  }
+}
+
+
+void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res)
+{
+  if (results.left().empty() and results.right().empty()) {
     pair<pair<int,int>, string> val;
-    pair<int,int> jugs = make_pair(cuadro_emp.left().value(), cuadro_emp.right().value());
+    int a = cuadro_emp.left().value();
+    int b = cuadro_emp.right().value();
+    pair<int,int> jugs = make_pair(a,b);
     val = make_pair(jugs, results.value());
-    return BinTree< pair<pair<int,int>, string> >(val);
+
+    cuadro_res = BinTree< pair<pair<int,int>, string> >(val);
   }
 
   else {
     BinTree< pair< pair<int,int>, string> > l, r;
-    l = confeccionar_cuadro_resultados(results.left(), cuadro_emp.left());
-    r = confeccionar_cuadro_resultados(results.right(), cuadro_emp.right());
+    BinTree<int> l_e = cuadro_emp.left(), r_e = cuadro_emp.right();
+    if (not results.left().empty()) confeccionar_cuadro_resultados(results.left(), l_e, l);
+    confeccionar_cuadro_resultados(results.right(), r_e, r);
 
     pair<pair<int,int>, string> val;
+    pair<int,int> jugs;
+    jugs.first = cuadro_emp.left().value();
+    jugs.second = cuadro_emp.right().value();
+    val = make_pair(jugs, results.value());
 
-
-
-    return BinTree< pair< pair<int,int>, string> >(val, l, r);
+    cuadro_res = BinTree< pair< pair<int,int>, string> >(val, l, r);
   }
-
 }
 
 string Torneo::consultar_nombre() const
@@ -124,7 +141,7 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
   cout << cjt_cat.consultar_nombre_categ(categ) << endl;
 }
 
-// void Torneo::escribir_particip_puntos_ganados() const
+// void Torneo::escribir_particip_puntos_ganados(const Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat) const
 // {
 //
 // }
@@ -141,12 +158,17 @@ void Torneo::escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, con
   }
 
 }
-// NO DEFINITIVO !!
-void Torneo::escribir_resultados_torneo() const
+
+void Torneo::escribir_resultados_torneo(const BinTree< pair<pair<int,int>, string> > &cuadro_res, const Cjt_Jugadores &cjt_jug) const
 {
-  if (not cuadro_resultados.empty()) {
-    cout << cuadro_resultados.value() << endl; // !!!
-    escribir_resultados_torneo(cuadro_resultados.left());
-    escribir_resultados_torneo(cuadro_resultados.right());
+  if (not cuadro_res.empty()) {
+    cout << '(' << cuadro_res.value().first.first << '.'
+    << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_res.value().first.first - 1]).consultar_nombre()
+    << " vs " << cuadro_res.value().first.second << '.'
+    << cjt_jug.consultar_jugador(jugadores_del_torneo[cuadro_res.value().first.second - 1]).consultar_nombre()
+    << ' ' << cuadro_res.value().second;
+    escribir_resultados_torneo(cuadro_res.left(), cjt_jug);
+    escribir_resultados_torneo(cuadro_res.right(), cjt_jug);
+    cout << ')';
   }
 }

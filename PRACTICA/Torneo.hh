@@ -66,6 +66,20 @@ public:
   */
   void asignar_cuadro_emp(const BinTree<int> &cuadro_emparejamientos);
 
+  /** @brief Crea un arbol a partir de los emparejamientos y los resultados
+
+      \pre <em>Cierto</em>
+      \post Crea un BinTree igual que el de emparejamientos pero cada nodo no hijo tiene el ganador del partido disputado
+  */
+  BinTree<int> modificar_cuadro_emparej_con_results(const BinTree<string> &results, const BinTree<int> &emparej);
+
+  /** @brief Asigna el atributo de torneo disputado a true
+
+      \pre El atributo está en false
+      \post El atributo pasa a estar a true
+  */
+  void torneo_ya_disputado();
+
   // Consultoras
 
   /** @brief Consulta el nombre del Torneo
@@ -124,14 +138,14 @@ public:
       \pre <em>Cierto</em>
       \post Se escriben los puntos ganados por cada participante en el orden de ranking anterior a disputarse el Torneo
   */
-  void escribir_particip_puntos_ganados() const;
+  void escribir_particip_puntos_ganados(const Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat) const;
 
   /** @brief Operación de escritura de los resultados del torneo
 
       \pre <em>Cierto</em>
       \post Se escriben los resultados del Torneo
   */
-  void escribir_resultados_torneo() const;
+  void escribir_resultados_torneo(const BinTree< pair<pair<int,int>, string> > &cuadro_res, const Cjt_Jugadores &cjt_jug) const;
 
   /* @brief Operación de escritura del cuadro de emparejamientos
 
