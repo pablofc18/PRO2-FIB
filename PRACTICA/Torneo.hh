@@ -71,7 +71,7 @@ public:
       \pre <em>Cierto</em>
       \post Crea un BinTree igual que el de emparejamientos pero cada nodo no hijo tiene el ganador del partido disputado
   */
-  void modificar_cuadro_emparej_con_results(const BinTree<string> &results, BinTree<int> &emparej);
+    void modificar_cuadro_emparej_con_results(const BinTree<string> &results, int nivel, BinTree<int> &emparej);
 
   /** @brief Asigna el atributo de torneo disputado a true
 
@@ -101,7 +101,7 @@ public:
       \pre <em>Cierto</em>
       \post El resultado es un vector de ints correspondiente a los jugadores que han disputado el Torneo
   */
-  vector<int> consultar_jugadores_del_torneo() const;
+  vector< pair<int,int> > consultar_jugadores_del_torneo() const;
 
   /** @brief
 
@@ -158,7 +158,7 @@ private:
   string nombre;
   int categ;
   bool disputado;
-  vector<int> jugadores_del_torneo; // vector de ints que equivalen al ranking de cada jugador
+  vector<pair<int,int> > jugadores_del_torneo; // vector de pair que equivalen al ranking de cada jugador y el nivel para luego los puntos
   // BinTree cuadro emparejamientos
   BinTree<int> cuadro_emp;
   // BinTree cuadro resultados ?¿?¿?¿

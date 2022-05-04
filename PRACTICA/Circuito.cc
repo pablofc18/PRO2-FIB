@@ -34,19 +34,20 @@ void Circuito::iniciar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug
   cout << endl;
 }
 
-void Circuito::finalizar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug)
+void Circuito::finalizar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat)
 {
   map<string, Torneo>::iterator it = cjt_Torneos.find(nombre_torneo);
   BinTree<string> resultados_partidos;
   it->second.leer_resultados(resultados_partidos);
   //
   BinTree<int> emparej_modif = it->second.consultar_emparejamientos();
-  it->second.modificar_cuadro_emparej_con_results(resultados_partidos, emparej_modif);
+  int nivel = 1;
+  it->second.modificar_cuadro_emparej_con_results(resultados_partidos, nivel, emparej_modif);
   BinTree<pair<pair<int,int>, string> > cuadro_res;
   it->second.confeccionar_cuadro_resultados(resultados_partidos, emparej_modif, cuadro_res);
   it->second.escribir_resultados_torneo(cuadro_res, cjt_jug);
   cout << endl;
-  // escribir_particip_puntos_ganados();
+  it->second.escribir_particip_puntos_ganados(cjt_jug, cjt_cat);
 }
 
 bool Circuito::existe_torneo(string nombre_torneo) const

@@ -62,7 +62,7 @@ public:
       \pre El Torneo existe y se ha iniciado
       \post Se lee los resultados del Torneo y se confecciona el cuadro de resultados
   */
-  void finalizar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug);
+  void finalizar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat);
 
   // Consultoras
 

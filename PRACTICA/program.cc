@@ -121,7 +121,7 @@ int main() {
     else if (opc == "finalizar_torneo" or opc == "ft") {
       string nombre_torneo; cin >> nombre_torneo;
       cout << '#' << opc << ' ' << nombre_torneo << endl;
-      circ.finalizar_torneo(nombre_torneo, cjt_jug);
+      circ.finalizar_torneo(nombre_torneo, cjt_jug, cjt_categ);
 
     }
 
