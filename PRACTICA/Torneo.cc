@@ -41,24 +41,26 @@ void Torneo::torneo_ya_disputado()
 }
 
 
-BinTree<int> Torneo::modificar_cuadro_emparej_con_results(const BinTree<string> &results, const BinTree<int> &emparej)
+void Torneo::modificar_cuadro_emparej_con_results(const BinTree<string> &results, BinTree<int> &emparej)
 {
   if (emparej.left().empty()) {
-    return BinTree<int>(emparej.value());
+    emparej = BinTree<int>(emparej.value());
   }
 
   else {
-    BinTree<int> l, r;
-    l = modificar_cuadro_emparej_con_results(results.left(), emparej.left());
-    r = modificar_cuadro_emparej_con_results(results.right(), emparej.right());
+    BinTree<int> l_emp = emparej.left(), r_emp = emparej.right();
+    modificar_cuadro_emparej_con_results(results.left(), l_emp);
+    modificar_cuadro_emparej_con_results(results.right(), r_emp);
 
     int val;
-    if (results.value()[results.value().size() - 1] < results.value()[results.value().size() - 3]) {
+    string res = results.value();
+    int res_size = results.value().size();
+    if (res[res_size - 1] < res[res_size - 3]) {
       val = emparej.left().value();
     }
     else val = emparej.right().value();
 
-    return BinTree<int>(val, l, r);
+    emparej = BinTree<int>(val, l_emp, r_emp);
   }
 }
 

@@ -71,7 +71,7 @@ public:
       \pre <em>Cierto</em>
       \post Crea un BinTree igual que el de emparejamientos pero cada nodo no hijo tiene el ganador del partido disputado
   */
-  BinTree<int> modificar_cuadro_emparej_con_results(const BinTree<string> &results, const BinTree<int> &emparej);
+  void modificar_cuadro_emparej_con_results(const BinTree<string> &results, BinTree<int> &emparej);
 
   /** @brief Asigna el atributo de torneo disputado a true
 

@@ -40,9 +40,10 @@ void Circuito::finalizar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_j
   BinTree<string> resultados_partidos;
   it->second.leer_resultados(resultados_partidos);
   //
+  BinTree<int> emparej_modif = it->second.consultar_emparejamientos();
+  it->second.modificar_cuadro_emparej_con_results(resultados_partidos, emparej_modif);
   BinTree<pair<pair<int,int>, string> > cuadro_res;
-  BinTree<int> emparej_para_modif = it->second.modificar_cuadro_emparej_con_results(resultados_partidos, it->second.consultar_emparejamientos());
-  it->second.confeccionar_cuadro_resultados(resultados_partidos, emparej_para_modif, cuadro_res);
+  it->second.confeccionar_cuadro_resultados(resultados_partidos, emparej_modif, cuadro_res);
   it->second.escribir_resultados_torneo(cuadro_res, cjt_jug);
   cout << endl;
   // escribir_particip_puntos_ganados();
