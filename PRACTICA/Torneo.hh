@@ -57,7 +57,7 @@ public:
       \pre <em>Cierto</em>
       \post Crea un BinTree con los resultados: cuadro_res
   */
-  void confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res);
+  void confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res/*, const Cjt_Jugadores &cjt_jug*/);
 
   /** @brief Asigna el BinTree parametro implícito el arbol por pasado por parametro
 
@@ -96,13 +96,6 @@ public:
   */
   bool torneo_disputado() const;
 
-  /** @brief Consulta los jugadores que han disputado el Torneo
-
-      \pre <em>Cierto</em>
-      \post El resultado es un vector de ints correspondiente a los jugadores que han disputado el Torneo
-  */
-  vector< pair<int,int> > consultar_jugadores_del_torneo() const;
-
   /** @brief
 
       \pre <em>Cierto</em>
@@ -115,9 +108,9 @@ public:
   /** @brief Operación de lectura de jugadores que disputan el torneo
 
       \pre <em>Cierto</em>
-      \post Se leen los jugadores que van a disputar el Torneo
+      \post Se leen los jugadores que van a disputar el Torneo, devuelve por referencia el numero de participantes
   */
-  void leer_participantes_torneo();
+  void leer_participantes_torneo(const Cjt_Jugadores &cjt_jug, int &num_participantes);
 
   /** @brief Operación de lectura de resultados del Torneo
 
@@ -138,31 +131,46 @@ public:
       \pre <em>Cierto</em>
       \post Se escriben los puntos ganados por cada participante en el orden de ranking anterior a disputarse el Torneo
   */
-  void escribir_particip_puntos_ganados(const Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat) const;
+  void escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat) const;
 
   /** @brief Operación de escritura de los resultados del torneo
 
       \pre <em>Cierto</em>
       \post Se escriben los resultados del Torneo
   */
-  void escribir_resultados_torneo(const BinTree< pair<pair<int,int>, string> > &cuadro_res, const Cjt_Jugadores &cjt_jug) const;
+  void escribir_resultados_torneo(const BinTree< pair<pair<int,int>, string> > &cuadro_res) const;
 
   /* @brief Operación de escritura del cuadro de emparejamientos
 
       \pre <em>Cierto</em>
       \post Se escriben los emparejamientos del torneo
   **/
-  void escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp, const Cjt_Jugadores &cjt_jug) const;
+  void escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp) const;
 
 private:
   string nombre;
   int categ;
   bool disputado;
-  vector<pair<int,int> > jugadores_del_torneo; // vector de pair que equivalen al ranking de cada jugador y el nivel para luego los puntos
-  // BinTree cuadro emparejamientos
+
+  struct Jugador_de_Torneo {
+    string nombre_jug;
+    int rank;
+    int nivel;
+  };
+  vector<Jugador_de_Torneo> jugadores_del_torneo;
+
+  vector<Jugador_de_Torneo> jugadores_del_torneo_anterior;
+
+    // modificar ?¿?¿?¿?¿?¿?¿? texto
+  // /** @brief Asigna el vector de jugadores del torneo a otro vector y vacía el usado
+  //
+  //     \pre No está vacío el vector, torneo se disputa por segunda vez
+  //     \post Guarda los jugadores del torneo en jugadores_del_torneo_anterior y modifica el de jugadores_del_torneo
+  // */
+  void asignar_jugadores_anterior_torneo();
+
+  // BinTree cuadro emparejamientos (hay que salvarlo)
   BinTree<int> cuadro_emp;
-  // BinTree cuadro resultados ?¿?¿?¿
-  BinTree< pair<pair<int,int>, string> > cuadro_resultados;
 };
 
 #endif

@@ -57,6 +57,11 @@ bool Cjt_Jugadores::eliminar_jugador(string nombre_jug)
 // void Cjt_Jugadores::actualizar_ranking(vector< vector<int> > pts_categ_nivel, vector<int> jugadores_del_torneo)
 // {
 // }
+// NNNNEEEEWWWWW !!!!!
+// void modificar_estadisticas_jug(string nombre_jug_a, string nombre_jug_b, string result)
+// {
+//
+// }
 
 bool Cjt_Jugadores::existe_jugador(string nombre_jug) const
 {

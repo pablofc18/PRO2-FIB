@@ -27,10 +27,11 @@ bool Circuito::eliminar_torneo(string nombre_torneo)
 void Circuito::iniciar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_jug)
 {
   map<string, Torneo>::iterator it = cjt_Torneos.find(nombre_torneo);
-  it->second.leer_participantes_torneo();
+  int num_participantes = 0;
+  it->second.leer_participantes_torneo(cjt_jug, num_participantes);
   int val = 1; int pot2nivel = 1;
-  it->second.asignar_cuadro_emp(it->second.confeccionar_cuadro_emparejamientos(it->second.consultar_jugadores_del_torneo().size(), val, pot2nivel));
-  it->second.escribir_cuadro_emparejamientos(it->second.consultar_emparejamientos(), cjt_jug);
+  it->second.asignar_cuadro_emp(it->second.confeccionar_cuadro_emparejamientos(num_participantes, val, pot2nivel));
+  it->second.escribir_cuadro_emparejamientos(it->second.consultar_emparejamientos());
   cout << endl;
 }
 
@@ -39,15 +40,17 @@ void Circuito::finalizar_torneo(string nombre_torneo, const Cjt_Jugadores &cjt_j
   map<string, Torneo>::iterator it = cjt_Torneos.find(nombre_torneo);
   BinTree<string> resultados_partidos;
   it->second.leer_resultados(resultados_partidos);
-  //
+
   BinTree<int> emparej_modif = it->second.consultar_emparejamientos();
   int nivel = 1;
   it->second.modificar_cuadro_emparej_con_results(resultados_partidos, nivel, emparej_modif);
   BinTree<pair<pair<int,int>, string> > cuadro_res;
   it->second.confeccionar_cuadro_resultados(resultados_partidos, emparej_modif, cuadro_res);
-  it->second.escribir_resultados_torneo(cuadro_res, cjt_jug);
+  it->second.escribir_resultados_torneo(cuadro_res);
   cout << endl;
-  it->second.escribir_particip_puntos_ganados(cjt_jug, cjt_cat);
+  it->second.escribir_particip_puntos_ganados(cjt_cat);
+  // Ponemos a true que se ha disputado el torneo
+  it->second.torneo_ya_disputado();
 }
 
 bool Circuito::existe_torneo(string nombre_torneo) const

@@ -54,9 +54,15 @@ public:
       \pre Se han modificado los puntos de Jugadores
       \post El resultado es el ranking actualizado con los valores más recientes
   */
-  void actualizar_ranking(vector< vector<int> > pts_categ_nivel, vector<int> jugadores_del_torneo);
+  void actualizar_ranking(vector< vector<int> > pts_categ_nivel/*, vector< Jugador_de_Torneo > jugadores_del_torneo*/);
 
   // mod rank jugs / dats
+  /** @brief Actualiza estadísticas de jugador
+
+      \pre
+      \post
+  */
+  void modificar_estadisticas_jug(string nombre_jug_a, string nombre_jug_b, string result);
 
   // Consultoras
 
