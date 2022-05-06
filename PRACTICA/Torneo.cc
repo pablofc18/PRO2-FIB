@@ -69,7 +69,7 @@ void Torneo::modificar_cuadro_emparej_con_results(const BinTree<string> &results
   }
 }
 // ultimo parametro
-void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emparej, BinTree< pair<pair<int,int>, string> > &cuadro_res/*, const Cjt_Jugadores &cjt_jug*/)
+void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emparej, BinTree< pair<pair<int,int>, string> > &cuadro_res, Cjt_Jugadores &cjt_jug)
 {
   if (results.left().empty() and results.right().empty()) {
     pair<pair<int,int>, string> val;
@@ -78,10 +78,10 @@ void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, cons
     pair<int,int> jugs = make_pair(a,b);
     val = make_pair(jugs, results.value());
 
-    // TO DO LIST:
     // modificar estadísticas de los jugadores con el resultado
-    // string nombre_jug_a = cjt_jug.consultar_jugador(jugadores_del_torneo[a-1].first).consultar_nombre();
-
+    string nombre_jug_a = jugadores_del_torneo[a-1].nombre_jug;
+    string nombre_jug_b = jugadores_del_torneo[b-1].nombre_jug;
+    cjt_jug.modificar_estadisticas_jug(nombre_jug_a, nombre_jug_b, results.value());
 
     cuadro_res = BinTree< pair<pair<int,int>, string> >(val);
   }
@@ -89,14 +89,20 @@ void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, cons
   else {
     BinTree< pair< pair<int,int>, string> > l, r;
     BinTree<int> l_e = cuadro_emparej.left(), r_e = cuadro_emparej.right();
-    if (not results.left().empty()) confeccionar_cuadro_resultados(results.left(), l_e, l);
-    confeccionar_cuadro_resultados(results.right(), r_e, r);
+    if (not results.left().empty()) confeccionar_cuadro_resultados(results.left(), l_e, l, cjt_jug);
+    confeccionar_cuadro_resultados(results.right(), r_e, r, cjt_jug);
 
     pair<pair<int,int>, string> val;
     pair<int,int> jugs;
     jugs.first = cuadro_emparej.left().value();
     jugs.second = cuadro_emparej.right().value();
     val = make_pair(jugs, results.value());
+
+    // modificar estadisticas jugadores
+    string nombre_jug_a = jugadores_del_torneo[jugs.first-1].nombre_jug;
+    string nombre_jug_b = jugadores_del_torneo[jugs.second-1].nombre_jug;
+    cjt_jug.modificar_estadisticas_jug(nombre_jug_a, nombre_jug_b, results.value());
+
 
     cuadro_res = BinTree< pair< pair<int,int>, string> >(val, l, r);
   }
@@ -165,11 +171,17 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
   cout << cjt_cat.consultar_nombre_categ(categ) << endl;
 }
 
-void Torneo::escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat) const
+void Torneo::escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt_Jugadores &cjt_jug) const
 {
   for (int i = 0; i < jugadores_del_torneo.size(); ++i) {
+    int pts = cjt_cat.consultar_puntos_categ_nivel()[categ-1][jugadores_del_torneo[i].nivel - 1];
     cout << i+1 << '.' << jugadores_del_torneo[i].nombre_jug << ' '
-         << cjt_cat.consultar_puntos_categ_nivel()[categ-1][jugadores_del_torneo[i].nivel - 1] << endl;
+         << pts << endl;
+
+    // Por cada jugador del torneo ++torneo_disp
+    cjt_jug.sumar_torneo_disputado(jugadores_del_torneo[i].nombre_jug);
+    // Sumar puntos a cada jugador
+    cjt_jug.sumar_puntos_jug(jugadores_del_torneo[i].nombre_jug, pts);
   }
 }
 

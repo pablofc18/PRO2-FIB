@@ -128,6 +128,7 @@ int main() {
     // 7
     else if (opc == "listar_ranking" or opc == "lr") {
       cout << '#' << opc << endl;
+      cjt_jug.ordenar_ranking();
       cjt_jug.escribir_ranking();
     }
 
@@ -135,6 +136,7 @@ int main() {
     else if (opc == "listar_jugadores" or opc == "lj") {
       cout << '#' << opc << endl;
       cout << cjt_jug.numero_jugadores_totales() << endl;
+      cjt_jug.ordenar_ranking();
       cjt_jug.escribir_jugadores();
     }
 
@@ -145,6 +147,7 @@ int main() {
       // Si existe el jugador, escribir datos
       if (cjt_jug.existe_jugador(nombre_jug)) {
         // Dos veces find, poner consultar jugador un if != end() ?¿?¿?¿
+        cjt_jug.ordenar_ranking();
         cjt_jug.consultar_jugador(nombre_jug).escribir_jug();
       }
       else {

@@ -57,7 +57,7 @@ public:
       \pre <em>Cierto</em>
       \post Crea un BinTree con los resultados: cuadro_res
   */
-  void confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res/*, const Cjt_Jugadores &cjt_jug*/);
+  void confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res, Cjt_Jugadores &cjt_jug);
 
   /** @brief Asigna el BinTree parametro implícito el arbol por pasado por parametro
 
@@ -131,7 +131,7 @@ public:
       \pre <em>Cierto</em>
       \post Se escriben los puntos ganados por cada participante en el orden de ranking anterior a disputarse el Torneo
   */
-  void escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat) const;
+  void escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt_Jugadores &cjt_jug) const;
 
   /** @brief Operación de escritura de los resultados del torneo
 

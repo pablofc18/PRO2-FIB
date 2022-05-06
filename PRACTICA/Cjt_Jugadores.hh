@@ -59,10 +59,38 @@ public:
   // mod rank jugs / dats
   /** @brief Actualiza estadísticas de jugador
 
-      \pre
-      \post
+      \pre <em>Cierto</em>
+      \post Se modifican las estadisticas en el map de cjt_Jugadores según el resultado
   */
   void modificar_estadisticas_jug(string nombre_jug_a, string nombre_jug_b, string result);
+
+  /** @brief Suma puntos al jugador (tanto en el map como en el vector)
+
+      \pre <em>Cierto</em>
+      \post Se suman los puntos al jugador en ambas estructuras de datos
+  */
+  void sumar_puntos_jug(string nombre_jug, int pts);
+
+  /** @brief Modifica aumentando los torneos disputados
+
+      \pre <em>Cierto</em>
+      \post ++torneo_disp
+  */
+  void sumar_torneo_disputado(string nombre_jug);
+
+  /**  @brief Modifica disminuyendo los torneos disputados
+
+      \pre <em>Cierto</em>
+      \post --torneo_disp
+  */
+  void restar_torneo_disputado(string nombre_jug);
+
+  /** @brief Ordena el ranknig (vector) y modifica datos ranking en map y vector
+
+      \pre Ha habido alguna modificación en los puntos de jugadores
+      \post Se ordena el ranking y modifican los datos de ranking del map y del vector
+  */
+  void ordenar_ranking();
 
   // Consultoras
 
@@ -117,7 +145,6 @@ public:
   */
   void escribir_jugadores() const;
 
-  void ordenar_ranking();
 private:
   vector<Jugador> ranking;
   map<string, Jugador> cjt_Jugadores;
