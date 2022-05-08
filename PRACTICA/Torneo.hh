@@ -80,6 +80,27 @@ public:
   */
   void torneo_ya_disputado();
 
+  /** @brief Resta los puntos al eliminar un torneo
+
+      \pre <em>Cierto</em>
+      \post Resta los puntos de ese torneo que hizo cada jugador que participó
+  */
+  void restar_puntos_torneo(Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat);
+
+  /** @brief Resta los puntos a los jugadores que participaron en la edición anterior pero no en la más reciente
+
+      \pre Se ha disputado dos ediciones del torneo
+      \post Se restan los puntos a los jugadores que participaron en la anterior edición pero no la más reciente
+  */
+  void restar_edicion_no_jugada(Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat);
+
+  /** @brief Borra el registro de ese jugador en el torneo
+
+      \pre <em>Cierto</em>
+      \post Elimina el registro de ese jugador en el torneo
+  */
+  void borrar_registro_jug(string nombre_jug);
+
   // Consultoras
 
   /** @brief Consulta el nombre del Torneo
@@ -102,6 +123,13 @@ public:
       \post Devuelve el arbol del cuadro de emparejamientos
   */
   BinTree<int> consultar_emparejamientos();
+
+  /** @brief Consulta los puntos del jugador en la edición anterior
+
+      \pre El jugador ya ha disputado una edición anterior
+      \post Devuelve los puntos que hizo en dicha edición
+  */
+  int consultar_puntos_edicion_anterior(string nombre_jug, const Cjt_Categorias &cjt_cat);
 
   // Escritura / Lectura
 
@@ -131,7 +159,7 @@ public:
       \pre <em>Cierto</em>
       \post Se escriben los puntos ganados por cada participante en el orden de ranking anterior a disputarse el Torneo
   */
-  void escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt_Jugadores &cjt_jug) const;
+  void escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt_Jugadores &cjt_jug);
 
   /** @brief Operación de escritura de los resultados del torneo
 
@@ -161,7 +189,6 @@ private:
 
   vector<Jugador_de_Torneo> jugadores_del_torneo_anterior;
 
-    // modificar ?¿?¿?¿?¿?¿?¿? texto
   // /** @brief Asigna el vector de jugadores del torneo a otro vector y vacía el usado
   //
   //     \pre No está vacío el vector, torneo se disputa por segunda vez

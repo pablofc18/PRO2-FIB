@@ -48,7 +48,7 @@ public:
       \pre <em>Cierto</em>
       \post Se elimina el Torneo con nombre 'nombre_torneo' si existe, devolviendo true. Y si no devuelve false
   */
-  bool eliminar_torneo(string nombre_torneo);
+  bool eliminar_torneo(string nombre_torneo, Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat);
 
   /** @brief Inicia un Torneo
 
@@ -63,6 +63,13 @@ public:
       \post Se lee los resultados del Torneo y se confecciona el cuadro de resultados
   */
   void finalizar_torneo(string nombre_torneo, Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat);
+
+  /** @brief Borra el registro que tenga el jugador en los torneos que haya participado
+
+      \pre <em>Cierto</em>
+      \post Se eliminan los registros de ese jugador en los torneos que ha disputado
+  */
+  void borrar_registros_jug_de_torneos(string nombre);
 
   // Consultoras
 

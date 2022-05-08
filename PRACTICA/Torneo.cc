@@ -68,7 +68,7 @@ void Torneo::modificar_cuadro_emparej_con_results(const BinTree<string> &results
     emparej = BinTree<int>(val, l_emp, r_emp);
   }
 }
-// ultimo parametro
+
 void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emparej, BinTree< pair<pair<int,int>, string> > &cuadro_res, Cjt_Jugadores &cjt_jug)
 {
   if (results.left().empty() and results.right().empty()) {
@@ -108,6 +108,54 @@ void Torneo::confeccionar_cuadro_resultados(const BinTree<string> &results, cons
   }
 }
 
+void Torneo::restar_puntos_torneo(Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat)
+{
+  // Para cada jugador que ha disputado el torneo resta los puntos que hizo
+  for (int i = 0; i < jugadores_del_torneo.size(); ++i) {
+    string nomb = jugadores_del_torneo[i].nombre_jug;
+    int pts = cjt_cat.consultar_puntos_categ_nivel()[categ-1][jugadores_del_torneo[i].nivel - 1];
+    cjt_jug.restar_puntos_jug(nomb, pts);
+  }
+}
+
+void Torneo::restar_edicion_no_jugada(Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat)
+{
+  for (int i = 0; i < jugadores_del_torneo_anterior.size(); ++i) {
+    bool found = false;
+    for (int j = 0; j < jugadores_del_torneo.size() and not found; ++j) {
+      if (jugadores_del_torneo_anterior[i].nombre_jug == jugadores_del_torneo[j].nombre_jug) {
+        found = true;
+      }
+    }
+    if (not found) {
+      string nomb = jugadores_del_torneo_anterior[i].nombre_jug;
+      int pts = cjt_cat.consultar_puntos_categ_nivel()[categ-1][jugadores_del_torneo_anterior[i].nivel - 1];
+      cjt_jug.restar_puntos_jug(nomb, pts);
+    }
+  }
+}
+
+void Torneo::borrar_registro_jug(string nombre_jug)
+{
+  int i = 0;
+  bool fuera_del_size_ant = false;
+  bool fuera_del_size_rec = false;
+  while (i < jugadores_del_torneo.size() or i < jugadores_del_torneo_anterior.size()) {
+    if (i == jugadores_del_torneo.size()) fuera_del_size_rec = true;
+    if (i == jugadores_del_torneo_anterior.size()) fuera_del_size_ant = true;
+
+    if (not fuera_del_size_rec and jugadores_del_torneo[i].nombre_jug == nombre_jug) {
+      jugadores_del_torneo[i].nombre_jug = "XXXXX"; // Para que no sea muy ineficiente
+    }
+
+    if (not fuera_del_size_ant and jugadores_del_torneo_anterior[i].nombre_jug == nombre_jug) {
+      jugadores_del_torneo_anterior[i].nombre_jug = "XXXXX";
+    }
+
+    ++i;
+  }
+}
+
 string Torneo::consultar_nombre() const
 {
   return nombre;
@@ -129,6 +177,20 @@ void Torneo::asignar_jugadores_anterior_torneo()
   for (int i = 0; i < jugadores_del_torneo_anterior.size(); ++i) {
     jugadores_del_torneo.pop_back();
   }
+}
+
+int Torneo::consultar_puntos_edicion_anterior(string nombre_jug, const Cjt_Categorias &cjt_cat)
+{
+  int pts = 0;
+  int i = 0; bool found = false;
+  while (not found and i < jugadores_del_torneo_anterior.size()) {
+    if (jugadores_del_torneo_anterior[i].nombre_jug == nombre_jug) {
+      pts = cjt_cat.consultar_puntos_categ_nivel()[categ-1][jugadores_del_torneo_anterior[i].nivel - 1];
+      found = true;
+    }
+    ++i;
+  }
+  return pts;
 }
 
 void Torneo::leer_participantes_torneo(const Cjt_Jugadores &cjt_jug, int &num_participantes)
@@ -171,7 +233,7 @@ void Torneo::escribir_torneo(const Cjt_Categorias &cjt_cat) const
   cout << cjt_cat.consultar_nombre_categ(categ) << endl;
 }
 
-void Torneo::escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt_Jugadores &cjt_jug) const
+void Torneo::escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt_Jugadores &cjt_jug)
 {
   for (int i = 0; i < jugadores_del_torneo.size(); ++i) {
     int pts = cjt_cat.consultar_puntos_categ_nivel()[categ-1][jugadores_del_torneo[i].nivel - 1];
@@ -180,7 +242,14 @@ void Torneo::escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt
 
     // Por cada jugador del torneo ++torneo_disp
     cjt_jug.sumar_torneo_disputado(jugadores_del_torneo[i].nombre_jug);
+    // Restar puntos si ha habido una edición anterior
+    int restar_pts = 0;
+    if (disputado) {
+      // Buscar en jugadores_del_torneo_anterior si aparece nombre_jug y devolver puntos que hizo
+      restar_pts = Torneo::consultar_puntos_edicion_anterior(jugadores_del_torneo[i].nombre_jug, cjt_cat);
+    }
     // Sumar puntos a cada jugador
+    pts = pts - restar_pts;
     cjt_jug.sumar_puntos_jug(jugadores_del_torneo[i].nombre_jug, pts);
   }
 }

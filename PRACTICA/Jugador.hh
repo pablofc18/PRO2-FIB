@@ -7,6 +7,7 @@
 
 #ifndef NO_DIAGRAM
 #include <utility>
+#include <list>
 #include <iostream>
 using namespace std;
 #endif

@@ -44,7 +44,7 @@ bool Cjt_Jugadores::eliminar_jugador(string nombre_jug)
   // Si existe lo borramos y editamos datos
   if (it != cjt_Jugadores.end()) {
     // Guardamos ranking jugador eliminado y borramos jugador del map
-    int rank_jug_eliminado =  it->second.consultar_ranking();
+    int rank_jug_eliminado = it->second.consultar_ranking();
     cjt_Jugadores.erase(it);
 
     for (int i = rank_jug_eliminado; i < ranking.size(); ++i) {
@@ -62,64 +62,78 @@ bool Cjt_Jugadores::eliminar_jugador(string nombre_jug)
   else return false;
 }
 
-// void Cjt_Jugadores::actualizar_ranking(vector< vector<int> > pts_categ_nivel, vector<int> jugadores_del_torneo)
-// {
-// }
-
 void Cjt_Jugadores::modificar_estadisticas_jug(string nombre_jug_a, string nombre_jug_b, string result)
 {
   // Todos los datos excepto ranking y puntos y torneo_disp
   map<string, Jugador>::iterator it_a = cjt_Jugadores.find(nombre_jug_a);
   map<string, Jugador>::iterator it_b = cjt_Jugadores.find(nombre_jug_b);
 
+  // Sets
+  pair<int,int> sets_jug_a(0,0);
+  pair<int,int> sets_jug_b(0,0);
+  // Total juegs
   int a = 0, b = 0;
   int result_size = result.size();
   for (int i = 0; i < result_size; ++i) {
     if (i%4 == 0) a += (result[i] - '0');
     else if (i%2 == 0) b += (result[i] - '0');
-  }
-  // Juegos
-  if (result_size != 3) {
-    pair<int,int> juegos_jug_a(a, b);
-    it_a->second.modificar_juegos_jugados(juegos_jug_a);
-    pair<int,int> juegos_jug_b(b, a);
-    it_b->second.modificar_juegos_jugados(juegos_jug_b);
+    // Sets
+    if (i == 2) {
+      if (result[i] - '0' < result[i-2] - '0') {
+        sets_jug_a.first += 1;
+        sets_jug_b.second += 1;
+      }
+      else {
+        sets_jug_a.second += 1;
+        sets_jug_b.first += 1;
+      }
+    }
+    else if (i == 6) {
+      if (result[i] - '0' < result[i-2] - '0') {
+        sets_jug_a.first += 1;
+        sets_jug_b.second += 1;
+      }
+      else {
+        sets_jug_a.second += 1;
+        sets_jug_b.first += 1;
+      }
+    }
+    else if (i == 10) {
+      if (result[i] - '0' < result[i-2] - '0') {
+        sets_jug_a.first += 1;
+        sets_jug_b.second += 1;
+      }
+      else {
+        sets_jug_a.second += 1;
+        sets_jug_b.first += 1;
+      }
+    }
   }
   // Partidos
   pair<int,int> partidos_jug_a;
   pair<int,int> partidos_jug_b;
-  // Sets
-  pair<int,int> sets_jug_a;
-  pair<int,int> sets_jug_b;
-  if (a > b) {
+  if (sets_jug_a.first > sets_jug_a.second) {
     partidos_jug_a = make_pair(1,0);
     partidos_jug_b = make_pair(0,1);
-    if (result_size == 7) {
-      sets_jug_a = make_pair(2,0);
-      sets_jug_b = make_pair(0,2);
-    }
-    else if (result_size == 11) {
-      sets_jug_a = make_pair(2,1);
-      sets_jug_b = make_pair(1,2);
-    }
   }
   else {
     partidos_jug_a = make_pair(0,1);
     partidos_jug_b = make_pair(1,0);
-    if (result_size == 7) {
-      sets_jug_a = make_pair(0,2);
-      sets_jug_b = make_pair(2,0);
-    }
-    else if (result_size == 11) {
-      sets_jug_a = make_pair(1,2);
-      sets_jug_b = make_pair(2,1);
-    }
   }
   it_a->second.modificar_partidos_jugados(partidos_jug_a);
   it_b->second.modificar_partidos_jugados(partidos_jug_b);
 
-  it_a->second.modificar_sets_jugados(sets_jug_a);
-  it_b->second.modificar_sets_jugados(sets_jug_b);
+  // Juegos y sets
+  if (result_size != 3) {
+    // Juegos
+    pair<int,int> juegos_jug_a(a, b);
+    it_a->second.modificar_juegos_jugados(juegos_jug_a);
+    pair<int,int> juegos_jug_b(b, a);
+    it_b->second.modificar_juegos_jugados(juegos_jug_b);
+    // Sets
+    it_a->second.modificar_sets_jugados(sets_jug_a);
+    it_b->second.modificar_sets_jugados(sets_jug_b);
+  }
 }
 
 void Cjt_Jugadores::sumar_puntos_jug(string nombre_jug, int pts)
@@ -130,16 +144,21 @@ void Cjt_Jugadores::sumar_puntos_jug(string nombre_jug, int pts)
   ranking[rank-1].modificar_puntos(pts);
 }
 
+void Cjt_Jugadores::restar_puntos_jug(string nombre_jug, int pts)
+{
+  map<string, Jugador>::iterator it = cjt_Jugadores.find(nombre_jug);
+  pts = pts*-1;
+  if (it != cjt_Jugadores.end()) {
+    it->second.modificar_puntos(pts);
+    int rank = it->second.consultar_ranking();
+    ranking[rank-1].modificar_puntos(pts);
+  }
+}
+
 void Cjt_Jugadores::sumar_torneo_disputado(string nombre_jug)
 {
   map<string, Jugador>::iterator it = cjt_Jugadores.find(nombre_jug);
   it->second.modificar_torneos_disputados(1);
-}
-
-void Cjt_Jugadores::restar_torneo_disputado(string nombre_jug)
-{
-  map<string, Jugador>::iterator it = cjt_Jugadores.find(nombre_jug);
-  it->second.modificar_torneos_disputados(-1);
 }
 
 bool Cjt_Jugadores::existe_jugador(string nombre_jug) const

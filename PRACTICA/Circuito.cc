@@ -10,13 +10,13 @@ void Circuito::anadir_torneo(const Torneo &t)
   cjt_Torneos[t.consultar_nombre()] = t;
 }
 
-bool Circuito::eliminar_torneo(string nombre_torneo)
+bool Circuito::eliminar_torneo(string nombre_torneo, Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat)
 {
-  map<string, Torneo>::const_iterator it = cjt_Torneos.find(nombre_torneo);
+  map<string, Torneo>::iterator it = cjt_Torneos.find(nombre_torneo);
   if (it != cjt_Torneos.end()) {
     if (it->second.torneo_disputado()) {
-      // actualiza ranking
-      //cjt_jug.actualizar_ranking(cjt_categ.consultar_puntos_categ_nivel(), circ.consultar_torneo(nombre_torneo).consultar_jugadores_del_torneo());
+      it->second.restar_puntos_torneo(cjt_jug, cjt_cat);
+      cjt_jug.ordenar_ranking();
     }
     cjt_Torneos.erase(it);
     return true;
@@ -49,10 +49,21 @@ void Circuito::finalizar_torneo(string nombre_torneo, Cjt_Jugadores &cjt_jug, co
   it->second.escribir_resultados_torneo(cuadro_res);
   cout << endl;
   it->second.escribir_particip_puntos_ganados(cjt_cat, cjt_jug);
+  // Restar puntos a los que no participan esta edición pero participaron la anterior
+  if (it->second.torneo_disputado()) it->second.restar_edicion_no_jugada(cjt_jug, cjt_cat);
   // Ponemos a true que se ha disputado el torneo
-  it->second.torneo_ya_disputado();
+  else it->second.torneo_ya_disputado();
   // Ordenar ranking
-  // cjt_jug.ordenar_ranking();
+  cjt_jug.ordenar_ranking();
+}
+
+void Circuito::borrar_registros_jug_de_torneos(string nombre_jug)
+{
+  map<string, Torneo>::iterator it = cjt_Torneos.begin();
+  while (it != cjt_Torneos.end()) {
+    it->second.borrar_registro_jug(nombre_jug);
+    ++it;
+  }
 }
 
 bool Circuito::existe_torneo(string nombre_torneo) const

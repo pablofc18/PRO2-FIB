@@ -27,6 +27,7 @@ void Jugador::modificar_ranking(int rank)
 void Jugador::modificar_puntos(int puntos_jug)
 {
   puntos += puntos_jug;
+  if (puntos < 0) puntos = 0;
 }
 
 void Jugador::modificar_partidos_jugados(pair<int, int> partidos_jug)
@@ -67,7 +68,7 @@ int Jugador::consultar_puntos() const
   return puntos;
 }
 
-void Jugador::escribir_jug() const  
+void Jugador::escribir_jug() const
 {
   cout << nombre << " Rk:" << ranking << " Ps:" << puntos
        << " Ts:" << torneos_disputados << " WM:" << partidos.first

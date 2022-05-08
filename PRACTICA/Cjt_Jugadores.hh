@@ -8,6 +8,7 @@
 #include "Jugador.hh"
 
 #ifndef NO_DIAGRAM
+#include "Cjt_Categorias.hh"
 #include <map>
 #include <vector>
 #include <algorithm>
@@ -49,14 +50,6 @@ public:
   */
   bool eliminar_jugador(string nombre_jug);
 
-  /** @brief Actualiza el ranking de jugadores
-
-      \pre Se han modificado los puntos de Jugadores
-      \post El resultado es el ranking actualizado con los valores más recientes
-  */
-  void actualizar_ranking(vector< vector<int> > pts_categ_nivel/*, vector< Jugador_de_Torneo > jugadores_del_torneo*/);
-
-  // mod rank jugs / dats
   /** @brief Actualiza estadísticas de jugador
 
       \pre <em>Cierto</em>
@@ -71,6 +64,13 @@ public:
   */
   void sumar_puntos_jug(string nombre_jug, int pts);
 
+  /** @brief Resta los puntos del jugador si se ha disputado dos veces el mismo torneo
+
+      \pre El jugador ha disputado el mismo torneo anteriormente
+      \post Resta los puntos de la edición anterior del torneo disputado
+  */
+  void restar_puntos_jug(string nombre_jug, int pts);
+
   /** @brief Modifica aumentando los torneos disputados
 
       \pre <em>Cierto</em>
@@ -78,16 +78,9 @@ public:
   */
   void sumar_torneo_disputado(string nombre_jug);
 
-  /**  @brief Modifica disminuyendo los torneos disputados
-
-      \pre <em>Cierto</em>
-      \post --torneo_disp
-  */
-  void restar_torneo_disputado(string nombre_jug);
-
   /** @brief Ordena el ranknig (vector) y modifica datos ranking en map y vector
 
-      \pre Ha habido alguna modificación en los puntos de jugadores
+      \pre <em>Cierto</em>
       \post Se ordena el ranking y modifican los datos de ranking del map y del vector
   */
   void ordenar_ranking();

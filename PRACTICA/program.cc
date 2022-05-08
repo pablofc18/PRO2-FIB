@@ -11,7 +11,6 @@ las clases <em>Circuito</em>, <em>Torneo</em>, <em>Categoria</em>, <em>Jugador</
     @brief Programa principal para la práctica de PRO2,  <em>Circuito de torneos de tenis</em>.
 */
 
-
 #include "Circuito.hh"
 // #include "Torneo.hh"
 // #include "Categoria.hh"
@@ -84,10 +83,12 @@ int main() {
     // 3
     else if (opc == "baja_jugador" or opc == "bj") {
       string nombre_jug; cin >> nombre_jug;
-      cout << '#' << opc << ' ' << nombre_jug << endl;  // HACER ELIMINAR BOOL
-      // Si existe ese jugador, añadirlo
+      cout << '#' << opc << ' ' << nombre_jug << endl;
+      // Si existe ese jugador, eliminarlo
+      // Al eliminar jugador ya se actualiza el ranking y la lista
       if (cjt_jug.eliminar_jugador(nombre_jug)) {
-        // Al eliminar jugador ya se actualiza el ranking y la lista
+        // Borrar registro de nombre_jug en todos los torneos que haya disputado
+        circ.borrar_registros_jug_de_torneos(nombre_jug);
         cout << cjt_jug.numero_jugadores_totales();
         cout << endl;
       }
@@ -101,7 +102,7 @@ int main() {
       string nombre_torneo; cin >> nombre_torneo;
       cout << '#' << opc << ' ' << nombre_torneo << endl;
       // Si existe el torneo, eliminarlo
-      if (circ.eliminar_torneo(nombre_torneo)) {
+      if (circ.eliminar_torneo(nombre_torneo, cjt_jug, cjt_categ)) {
         cout << circ.numero_torneos_totales();
         cout << endl;
       }
@@ -128,7 +129,6 @@ int main() {
     // 7
     else if (opc == "listar_ranking" or opc == "lr") {
       cout << '#' << opc << endl;
-      cjt_jug.ordenar_ranking();
       cjt_jug.escribir_ranking();
     }
 
@@ -136,7 +136,6 @@ int main() {
     else if (opc == "listar_jugadores" or opc == "lj") {
       cout << '#' << opc << endl;
       cout << cjt_jug.numero_jugadores_totales() << endl;
-      cjt_jug.ordenar_ranking();
       cjt_jug.escribir_jugadores();
     }
 
@@ -147,7 +146,6 @@ int main() {
       // Si existe el jugador, escribir datos
       if (cjt_jug.existe_jugador(nombre_jug)) {
         // Dos veces find, poner consultar jugador un if != end() ?¿?¿?¿
-        cjt_jug.ordenar_ranking();
         cjt_jug.consultar_jugador(nombre_jug).escribir_jug();
       }
       else {
