@@ -140,16 +140,19 @@ void Torneo::borrar_registro_jug(string nombre_jug)
   int i = 0;
   bool fuera_del_size_ant = false;
   bool fuera_del_size_rec = false;
-  while (i < jugadores_del_torneo.size() or i < jugadores_del_torneo_anterior.size()) {
+  bool encontrado_ant = false, encontrado_rec = false;
+  while ((not encontrado_ant and not encontrado_rec) and (i < jugadores_del_torneo.size() or i < jugadores_del_torneo_anterior.size())) {
     if (i == jugadores_del_torneo.size()) fuera_del_size_rec = true;
     if (i == jugadores_del_torneo_anterior.size()) fuera_del_size_ant = true;
 
     if (not fuera_del_size_rec and jugadores_del_torneo[i].nombre_jug == nombre_jug) {
-      jugadores_del_torneo[i].nombre_jug = "XXXXX"; // Para que no sea muy ineficiente
+      jugadores_del_torneo[i].nombre_jug = "XXXXX";
+      encontrado_rec = true;
     }
 
     if (not fuera_del_size_ant and jugadores_del_torneo_anterior[i].nombre_jug == nombre_jug) {
       jugadores_del_torneo_anterior[i].nombre_jug = "XXXXX";
+      encontrado_ant = true;
     }
 
     ++i;
@@ -237,8 +240,7 @@ void Torneo::escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt
 {
   for (int i = 0; i < jugadores_del_torneo.size(); ++i) {
     int pts = cjt_cat.consultar_puntos_categ_nivel()[categ-1][jugadores_del_torneo[i].nivel - 1];
-    cout << i+1 << '.' << jugadores_del_torneo[i].nombre_jug << ' '
-         << pts << endl;
+    if (pts != 0) cout << i+1 << '.' << jugadores_del_torneo[i].nombre_jug << ' ' << pts << endl;
 
     // Por cada jugador del torneo ++torneo_disp
     cjt_jug.sumar_torneo_disputado(jugadores_del_torneo[i].nombre_jug);
