@@ -38,7 +38,7 @@ public:
 
   /** @brief Da de alta un Jugador
 
-      \pre El párametro implícito no contiene al Jugador p
+      \pre El párametro implícito no contiene al Jugador p, (nombres reales)
       \post Se añade el Jugador p al ranking y a la lista de jugadores
   */
   void anadir_jugador(string nombre_jug);
