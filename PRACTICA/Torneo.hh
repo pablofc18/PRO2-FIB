@@ -45,33 +45,19 @@ public:
 
   // Modificadoras
 
-  /* @brief Confecciona el cuadro de emparejamientos
-
-      \pre n = numero participantes, val = valor de cada nodo del arbol, pot2nivel = número nodos por nivel
-      \post Devuelve un BinTree con el cuadro de emparejamientos
-  **/
-  BinTree<int> confeccionar_cuadro_emparejamientos(int n, int val, int pot2nivel);
-
-  /** @brief Confecciona el cuadro de resultados
+  /** @brief Inicia el torneo
 
       \pre <em>Cierto</em>
-      \post Crea un BinTree con los resultados: cuadro_res
+      \post Inicia el torneo generando los emparejamientos y escribiéndolos
   */
-  void confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res, Cjt_Jugadores &cjt_jug);
+  void iniciar_torneo(const Cjt_Jugadores &cjt_jug);
 
-  /** @brief Asigna el BinTree parametro implícito el arbol por pasado por parametro
+  /** @brief Finaliza el torneo
 
       \pre <em>Cierto</em>
-      \post cuadro_emp = cuadro_emparejamientos
+      \post Finaliza el torneo leyendo los resultados, generando el arbol de resultados y escribiéndolo, además de los puntos que gana cada jugador
   */
-  void asignar_cuadro_emp(const BinTree<int> &cuadro_emparejamientos);
-
-  /** @brief Crea un arbol a partir de los emparejamientos y los resultados
-
-      \pre <em>Cierto</em>
-      \post Crea un BinTree igual que el de emparejamientos pero cada nodo no hijo tiene el ganador del partido disputado
-  */
-    void modificar_cuadro_emparej_con_results(const BinTree<string> &results, int nivel, BinTree<int> &emparej);
+  void finalizar_torneo(Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat);
 
   /** @brief Asigna el atributo de torneo disputado a true
 
@@ -117,35 +103,7 @@ public:
   */
   bool torneo_disputado() const;
 
-  /** @brief
-
-      \pre <em>Cierto</em>
-      \post Devuelve el arbol del cuadro de emparejamientos
-  */
-  BinTree<int> consultar_emparejamientos();
-
-  /** @brief Consulta los puntos del jugador en la edición anterior
-
-      \pre El jugador ya ha disputado una edición anterior
-      \post Devuelve los puntos que hizo en dicha edición
-  */
-  int consultar_puntos_edicion_anterior(string nombre_jug, const Cjt_Categorias &cjt_cat);
-
   // Escritura / Lectura
-
-  /** @brief Operación de lectura de jugadores que disputan el torneo
-
-      \pre <em>Cierto</em>
-      \post Se leen los jugadores que van a disputar el Torneo, devuelve por referencia el numero de participantes
-  */
-  void leer_participantes_torneo(const Cjt_Jugadores &cjt_jug, int &num_participantes);
-
-  /** @brief Operación de lectura de resultados del Torneo
-
-      \pre <em>Cierto</em>
-      \post Se leen los resultados del Torneo
-  */
-  void leer_resultados(BinTree<string> &resultados_partidos);
 
   /** @brief Operación de escritura de los datos de un Torneo
 
@@ -153,27 +111,6 @@ public:
       \post Se escriben los datos del Torneo, nombre y categoria
   */
   void escribir_torneo(const Cjt_Categorias &cjt_cat) const;
-
-  /** @brief Operación de escritura de los puntos ganados por cada participante en el Torneo
-
-      \pre <em>Cierto</em>
-      \post Se escriben los puntos ganados por cada participante en el orden de ranking anterior a disputarse el Torneo
-  */
-  void escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt_Jugadores &cjt_jug);
-
-  /** @brief Operación de escritura de los resultados del torneo
-
-      \pre <em>Cierto</em>
-      \post Se escriben los resultados del Torneo
-  */
-  void escribir_resultados_torneo(const BinTree< pair<pair<int,int>, string> > &cuadro_res) const;
-
-  /* @brief Operación de escritura del cuadro de emparejamientos
-
-      \pre <em>Cierto</em>
-      \post Se escriben los emparejamientos del torneo
-  **/
-  void escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp) const;
 
 private:
   string nombre;
@@ -198,6 +135,70 @@ private:
 
   // BinTree cuadro emparejamientos (hay que salvarlo)
   BinTree<int> cuadro_emp;
+
+  /** @brief Operación de lectura de jugadores que disputan el torneo
+
+      \pre <em>Cierto</em>
+      \post Se leen los jugadores que van a disputar el Torneo, devuelve por referencia el numero de participantes
+  */
+  void leer_participantes_torneo(const Cjt_Jugadores &cjt_jug);
+
+  /* @brief Confecciona el cuadro de emparejamientos
+
+      \pre n = numero participantes, val = valor de cada nodo del arbol, pot2nivel = número nodos por nivel
+      \post Devuelve un BinTree con el cuadro de emparejamientos
+  **/
+  BinTree<int> confeccionar_cuadro_emparejamientos(int n, int val, int pot2nivel);
+
+  /* @brief Operación de escritura del cuadro de emparejamientos
+
+      \pre <em>Cierto</em>
+      \post Se escriben los emparejamientos del torneo
+  **/
+  void escribir_cuadro_emparejamientos(const BinTree<int> &cuadro_emp) const;
+
+  /** @brief Operación de lectura de resultados del Torneo
+
+      \pre <em>Cierto</em>
+      \post Se leen los resultados del Torneo
+  */
+  void leer_resultados(BinTree<string> &resultados_partidos);
+
+  /** @brief Confecciona el cuadro de resultados
+
+      \pre <em>Cierto</em>
+      \post Crea un BinTree con los resultados: cuadro_res
+  */
+  void confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res, Cjt_Jugadores &cjt_jug);
+
+  /** @brief Crea un arbol a partir de los emparejamientos y los resultados
+
+      \pre <em>Cierto</em>
+      \post Crea un BinTree igual que el de emparejamientos pero cada nodo no hijo tiene el ganador del partido disputado
+  */
+  void modificar_cuadro_emparej_con_results(const BinTree<string> &results, int nivel, BinTree<int> &emparej);
+
+  /** @brief Operación de escritura de los resultados del torneo
+
+      \pre <em>Cierto</em>
+      \post Se escriben los resultados del Torneo
+  */
+  void escribir_resultados_torneo(const BinTree< pair<pair<int,int>, string> > &cuadro_res) const;
+
+  /** @brief Operación de escritura de los puntos ganados por cada participante en el Torneo
+
+      \pre <em>Cierto</em>
+      \post Se escriben los puntos ganados por cada participante en el orden de ranking anterior a disputarse el Torneo
+  */
+  void escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt_Jugadores &cjt_jug);
+
+  /** @brief Consulta los puntos del jugador en la edición anterior
+
+      \pre El jugador ya ha disputado una edición anterior
+      \post Devuelve los puntos que hizo en dicha edición
+  */
+  int consultar_puntos_edicion_anterior(string nombre_jug, const Cjt_Categorias &cjt_cat);
+
 };
 
 #endif

@@ -10,7 +10,6 @@
 
 #ifndef NO_DIAGRAM
 #include <map>
-#include <math.h>
 using namespace std;
 #endif
 
@@ -79,13 +78,6 @@ public:
       \post El resultado indica si existe o no el Torneo 'nombre_torneo'
   */
   bool existe_torneo(string nombre_torneo) const;
-
-  /** @brief Consultar Torneo con identificador 'nombre_torneo'
-
-      \pre El Torneo con ese nombre existe
-      \post El resultado es el Torneo 'nombre_torneo'
-  */
-  Torneo consultar_torneo(string nombre_torneo) const;
 
   /** @brief Consulta el total de torneos en la lista
 

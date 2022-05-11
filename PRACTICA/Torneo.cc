@@ -13,6 +13,28 @@ Torneo::Torneo(string nombre_torneo, int id_categ)
   disputado = false;
 }
 
+void Torneo::iniciar_torneo(const Cjt_Jugadores &cjt_jug)
+{
+  leer_participantes_torneo(cjt_jug);
+  int val = 1; int pot2nivel = 1;
+  cuadro_emp = confeccionar_cuadro_emparejamientos(jugadores_del_torneo.size(), val, pot2nivel);
+  escribir_cuadro_emparejamientos(cuadro_emp);
+  cout << endl;
+}
+
+void Torneo::finalizar_torneo(Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat)
+{
+  BinTree<string> resultados_partidos;
+  leer_resultados(resultados_partidos);
+  int nivel = 1;
+  modificar_cuadro_emparej_con_results(resultados_partidos, nivel, cuadro_emp);
+  BinTree<pair<pair<int,int>, string> > cuadro_res;
+  confeccionar_cuadro_resultados(resultados_partidos, cuadro_emp, cuadro_res, cjt_jug);
+  escribir_resultados_torneo(cuadro_res);
+  cout << endl;
+  escribir_particip_puntos_ganados(cjt_cat, cjt_jug);
+}
+
 BinTree<int> Torneo::confeccionar_cuadro_emparejamientos(int n, int val, int potencia2)
 {
   if (n < potencia2) {
@@ -28,11 +50,6 @@ BinTree<int> Torneo::confeccionar_cuadro_emparejamientos(int n, int val, int pot
     r = confeccionar_cuadro_emparejamientos(n, potencia2*2+1-val, potencia2*2);
     return BinTree<int>(val, l, r);
   }
-}
-
-void Torneo::asignar_cuadro_emp(const BinTree<int> &cuadro_emparejamientos)
-{
-  cuadro_emp = cuadro_emparejamientos;
 }
 
 void Torneo::torneo_ya_disputado()
@@ -169,11 +186,6 @@ bool Torneo::torneo_disputado() const
   return disputado;
 }
 
-BinTree<int> Torneo::consultar_emparejamientos()
-{
-  return cuadro_emp;
-}
-
 void Torneo::asignar_jugadores_anterior_torneo()
 {
   jugadores_del_torneo_anterior = jugadores_del_torneo;
@@ -196,15 +208,14 @@ int Torneo::consultar_puntos_edicion_anterior(string nombre_jug, const Cjt_Categ
   return pts;
 }
 
-void Torneo::leer_participantes_torneo(const Cjt_Jugadores &cjt_jug, int &num_participantes)
+void Torneo::leer_participantes_torneo(const Cjt_Jugadores &cjt_jug)
 {
   // Si se ha disputado anteriormente el torneo guardamos los jugadores en otro vector
   if (disputado) {
-    Torneo::asignar_jugadores_anterior_torneo();
+    asignar_jugadores_anterior_torneo();
   }
 
   int num_jug_inscritos; cin >> num_jug_inscritos;
-  num_participantes = num_jug_inscritos;
   for (int i = 0; i < num_jug_inscritos; ++i) {
     int num_rank; cin >> num_rank;
     Jugador_de_Torneo j;
@@ -248,7 +259,7 @@ void Torneo::escribir_particip_puntos_ganados(const Cjt_Categorias &cjt_cat, Cjt
     int restar_pts = 0;
     if (disputado) {
       // Buscar en jugadores_del_torneo_anterior si aparece nombre_jug y devolver puntos que hizo
-      restar_pts = Torneo::consultar_puntos_edicion_anterior(jugadores_del_torneo[i].nombre_jug, cjt_cat);
+      restar_pts = consultar_puntos_edicion_anterior(jugadores_del_torneo[i].nombre_jug, cjt_cat);
     }
     // Sumar puntos a cada jugador
     pts = pts - restar_pts;
