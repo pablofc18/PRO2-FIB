@@ -1,3 +1,8 @@
+/** @file Cjt_Categorias.cc
+    @brief Código de la clase Cjt_Categorias 
+*/
+
+
 #include "Cjt_Categorias.hh"
 
 Cjt_Categorias::Cjt_Categorias()

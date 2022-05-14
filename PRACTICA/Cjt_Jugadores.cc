@@ -1,3 +1,7 @@
+/** @file Cjt_Jugadores.cc
+    @brief Código de la clase Cjt_Jugadores
+*/
+
 #include "Cjt_Jugadores.hh"
 
 Cjt_Jugadores::Cjt_Jugadores()
@@ -5,7 +9,7 @@ Cjt_Jugadores::Cjt_Jugadores()
   // map<int, Jugador> ranking;
   // map<string, Jugador> cjt_jugadores;
 }
-// Para ordenar el vector de ranking ¿público?
+// Función para ordenar el vector de ranking
 bool comp_rank(const Jugador &p1, const Jugador &p2)
 {
   if (p1.consultar_puntos() == p2.consultar_puntos()) {

@@ -1,3 +1,7 @@
+/** @file Torneo.cc
+    @brief Código de la clase Torneo 
+*/
+
 #include "Torneo.hh"
 
 Torneo::Torneo()

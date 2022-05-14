@@ -42,7 +42,7 @@ public:
 
   /** @brief Modificador del ranking
 
-      \pre <em>Cierto</em>
+      \pre rank = nueva posición del ranking, válida
       \post El ranking del Jugador pasa a ser 'rank'
   */
   void modificar_ranking(int rank);
@@ -77,7 +77,7 @@ public:
 
   /** @brief Modificador de los torneos disputados
 
-      \pre torneo_disp = 1 o torneo_disp = -1
+      \pre torneo_disp = 1
       \post Los torneos disputados del Jugador se les suma 'torneo_disp'
   */
   void modificar_torneos_disputados(int torneo_disp);
@@ -115,13 +115,20 @@ public:
   void escribir_jug() const;
 
 private:
+  /** @brief Nombre del jugador */
   string nombre;
+  /** @brief Posición del ranking */
   int ranking;
+  /** @brief Puntos del jugador */
   int puntos;
+  /** @brief Número de torneos disputados */
   int torneos_disputados;
-  pair<int, int> partidos; // first = ganados, second = perdidos
-  pair<int, int> sets;  // first = ganados, second = perdidos
-  pair<int, int> juegos;  // first = ganados, second = perdidos
+  /** @brief Partidos disputados, first = ganados, second = perdidos */
+  pair<int, int> partidos;
+  /** @brief Sets disputados, first = ganados, second = perdidos */
+  pair<int, int> sets;
+  /** @brief Juegos disputados, first = ganados, second = perdidos */
+  pair<int, int> juegos;
 };
 
 #endif

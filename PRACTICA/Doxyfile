@@ -51,7 +51,7 @@ TYPEDEF_HIDES_STRUCT   = NO
 # Build related configuration options
 #---------------------------------------------------------------------------
 EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = NO
+EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = NO
 EXTRACT_LOCAL_CLASSES  = YES
 EXTRACT_LOCAL_METHODS  = NO
@@ -95,11 +95,8 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 INPUT                  = "."
 INPUT_ENCODING         = utf-8
-FILE_PATTERNS          = *.hpp \ *.hh \
-                         main*.cpp \ main*.cc \
-                         pro2*.cpp \ pro2*.cc \
-			 program.cpp \ program.cc \
-                         principal*.cpp \ principal*.cc
+FILE_PATTERNS          = *.hh \
+                         *.cc   # para que todos ficheros intervengan en documentación
 RECURSIVE              = NO
 EXCLUDE                = *~ \ readbool.hh \ BinTree.hh
 EXCLUDE_SYMLINKS       = NO

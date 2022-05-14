@@ -63,7 +63,9 @@ public:
   string consultar_nombre_categ() const;
 
 private:
+  /** @brief Nombre de la categoria */
   string nombre;
+  /** @brief identificador de la categoria */
   int id;
 };
 

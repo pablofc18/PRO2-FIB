@@ -80,10 +80,14 @@ public:
   void escribir_categorias_puntos() const;
 
 private:
+  /** @brief Número máximo de niveles que tendrán posibilidad de conseguir puntos */
   int num_max_niveles;
+  /** @brief Número total de categorias */
   int total_categorias;
-  vector<Categoria> cjt_Categorias; // Tamaño: total_categorias
-  vector< vector<int> > puntos_por_categoria_nivel; // Tamaño: num_max_niveles * total_categorias
+  /** @brief Vector del conjunto de categorias, tamaño: "total_categorias" */
+  vector<Categoria> cjt_Categorias;
+  /** @brief Matríz de los puntos que se obtendrán según nivel y categoria, tamaño: "num_max_niveles" * "total_categorias" */
+  vector< vector<int> > puntos_por_categoria_nivel;
 };
 
 #endif

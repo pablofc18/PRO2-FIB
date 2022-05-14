@@ -139,7 +139,9 @@ public:
   void escribir_jugadores() const;
 
 private:
+  /** @brief Vector del ranking de los jugadores */
   vector<Jugador> ranking;
+  /** @brief Map de la lista de los jugadores (para poder ver todas sus estadísticas) */
   map<string, Jugador> cjt_Jugadores;
 };
 

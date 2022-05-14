@@ -38,7 +38,7 @@ public:
 
   /** @brief Creadora con valores correctos
 
-      \pre Nombre no repetido
+      \pre Nombre no repetido, categoria válida
       \post El resultado es un Torneo con su nombre y su categoria correspondiente
   */
   Torneo(string nombre_torneo, int id_categ);
@@ -75,14 +75,14 @@ public:
 
   /** @brief Resta los puntos a los jugadores que participaron en la edición anterior pero no en la más reciente
 
-      \pre Se ha disputado dos ediciones del torneo
+      \pre <em>Cierto</em>
       \post Se restan los puntos a los jugadores que participaron en la anterior edición pero no la más reciente
   */
   void restar_edicion_no_jugada(Cjt_Jugadores &cjt_jug, const Cjt_Categorias &cjt_cat);
 
   /** @brief Borra el registro de ese jugador en el torneo
 
-      \pre <em>Cierto</em>
+      \pre el nombre existe en nuestro registro de jugadores
       \post Elimina el registro de ese jugador en el torneo
   */
   void borrar_registro_jug(string nombre_jug);
@@ -113,27 +113,36 @@ public:
   void escribir_torneo(const Cjt_Categorias &cjt_cat) const;
 
 private:
+  /** @brief Nombre del torneo */
   string nombre;
+  /** @brief identificador de la categoria */
   int categ;
+  /** @brief Indica si se ha disputado el torneo anteriormente (true) o no (false) */
   bool disputado;
 
+  /** @brief Estructura que tendrán los vectores mencionados posteriormente */
   struct Jugador_de_Torneo {
+    /** @brief Nombre del jugador */
     string nombre_jug;
+    /** @brief Posición del ranking*/
     int rank;
+    /** @brief Nivel que consigue al finalizar el torneo, equivalente a los puntos que obtendrá el jugador */
     int nivel;
   };
+  /** @brief Vector de los jugadores que están participando en el torneo */
   vector<Jugador_de_Torneo> jugadores_del_torneo;
-
+ /** @brief Vector de los jugadores que participaron en la edición anterior del torneo,
+            solo se utiliza si se disputa por segunda vez el mismo torneo */
   vector<Jugador_de_Torneo> jugadores_del_torneo_anterior;
 
-  // /** @brief Asigna el vector de jugadores del torneo a otro vector y vacía el usado
-  //
-  //     \pre No está vacío el vector, torneo se disputa por segunda vez
-  //     \post Guarda los jugadores del torneo en jugadores_del_torneo_anterior y modifica el de jugadores_del_torneo
-  // */
+  /** @brief Asigna el vector de jugadores del torneo a otro vector y vacía el ya utilizado
+
+      \pre No está vacío el vector, torneo se disputa por segunda vez
+      \post Guarda los jugadores del torneo en jugadores_del_torneo_anterior y modifica el de jugadores_del_torneo
+  */
   void asignar_jugadores_anterior_torneo();
 
-  // BinTree cuadro emparejamientos (hay que salvarlo)
+  /** @brief Estructura del cuadro de emparejamientos */
   BinTree<int> cuadro_emp;
 
   /** @brief Operación de lectura de jugadores que disputan el torneo
@@ -159,21 +168,21 @@ private:
 
   /** @brief Operación de lectura de resultados del Torneo
 
-      \pre <em>Cierto</em>
+      \pre El arbol del parámetro está vacío
       \post Se leen los resultados del Torneo
   */
   void leer_resultados(BinTree<string> &resultados_partidos);
 
   /** @brief Confecciona el cuadro de resultados
 
-      \pre <em>Cierto</em>
-      \post Crea un BinTree con los resultados: cuadro_res
+      \pre El arbol cuadro_res está inicialmente vacío
+      \post Se confecciona el arbol de resultados en cuadro_res
   */
   void confeccionar_cuadro_resultados(const BinTree<string> &results, const BinTree<int> &cuadro_emp, BinTree< pair<pair<int,int>, string> > &cuadro_res, Cjt_Jugadores &cjt_jug);
 
   /** @brief Crea un arbol a partir de los emparejamientos y los resultados
 
-      \pre <em>Cierto</em>
+      \pre nivel = 1, emparej = cuadro_emp
       \post Crea un BinTree igual que el de emparejamientos pero cada nodo no hijo tiene el ganador del partido disputado
   */
   void modificar_cuadro_emparej_con_results(const BinTree<string> &results, int nivel, BinTree<int> &emparej);
@@ -194,7 +203,7 @@ private:
 
   /** @brief Consulta los puntos del jugador en la edición anterior
 
-      \pre El jugador ya ha disputado una edición anterior
+      \pre El jugador ya ha disputado una edición anterior, nombre válido
       \post Devuelve los puntos que hizo en dicha edición
   */
   int consultar_puntos_edicion_anterior(string nombre_jug, const Cjt_Categorias &cjt_cat);

@@ -103,6 +103,7 @@ public:
   void escribir_torneos(const Cjt_Categorias &cjt_cat) const;
 
 private:
+  /** @brief Map del conjunto de torneos */
   map<string, Torneo> cjt_Torneos;
 };
 

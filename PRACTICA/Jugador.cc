@@ -1,3 +1,7 @@
+/** @file Jugador.cc
+    @brief Código de la clase Jugador
+*/
+
 #include "Jugador.hh"
 
 Jugador::Jugador()
