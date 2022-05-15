@@ -12,7 +12,7 @@
 #endif
 
 /** @class Cjt_Categorias
-    @brief Representa el conjunto de las Categorias del torneo
+    @brief Representa el conjunto de las categorias del torneo
 
     Dispone de diferentes operaciones de consulta, lectura y escritura de los
     diferentes atributos del conjunto de categorias.
