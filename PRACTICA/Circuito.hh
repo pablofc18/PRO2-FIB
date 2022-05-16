@@ -8,10 +8,6 @@
 
 #include "Torneo.hh"
 
-#ifndef NO_DIAGRAM
-#include <map>
-using namespace std;
-#endif
 
 /** @class Circuito
     @brief Representa el Circuito de los torneos
