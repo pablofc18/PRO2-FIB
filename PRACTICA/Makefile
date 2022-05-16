@@ -24,8 +24,8 @@ Cjt_Jugadores.o: Cjt_Jugadores.cc Cjt_Jugadores.hh Jugador.hh
 program.o: program.cc Categoria.hh Cjt_Categorias.hh Cjt_Jugadores.hh Jugador.hh Circuito.hh Torneo.hh BinTree.hh
 	g++ -c program.cc $(OPCIONS)
 
-tar: program.cc Categoria.hh Cjt_Categorias.hh Cjt_Jugadores.hh Jugador.hh Circuito.hh Torneo.hh Categoria.cc Cjt_Categorias.cc Cjt_Jugadores.cc Jugador.cc Circuito.cc Torneo.cc
-		tar -cvf practica.tar Makefile program.cc Categoria.hh Cjt_Categorias.hh Cjt_Jugadores.hh Jugador.hh Circuito.hh Torneo.hh Categoria.cc Cjt_Categorias.cc Cjt_Jugadores.cc Jugador.cc Circuito.cc Torneo.cc
+tar: program.cc html.zip jp_pablo.franco.c.zip Makefile Categoria.hh Cjt_Categorias.hh Cjt_Jugadores.hh Jugador.hh Circuito.hh Torneo.hh Categoria.cc Cjt_Categorias.cc Cjt_Jugadores.cc Jugador.cc Circuito.cc Torneo.cc
+		tar -cvf practica.tar html.zip jp_pablo.franco.c.zip Makefile program.cc Categoria.hh Cjt_Categorias.hh Cjt_Jugadores.hh Jugador.hh Circuito.hh Torneo.hh Categoria.cc Cjt_Categorias.cc Cjt_Jugadores.cc Jugador.cc Circuito.cc Torneo.cc
 
 clean:
 	rm *.o
