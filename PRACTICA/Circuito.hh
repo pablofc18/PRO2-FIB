@@ -29,7 +29,7 @@ public:
 
       Se ejecuta automáticamente al declarar un Circuito
       \pre <em>Cierto</em>
-      \post El resultado es un Circuito sin inicializar
+      \post Declara el objeto vacío no inicializa nada
   */
   Circuito();
 

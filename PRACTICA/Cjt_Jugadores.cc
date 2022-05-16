@@ -6,7 +6,7 @@
 
 Cjt_Jugadores::Cjt_Jugadores()
 {
-  // map<int, Jugador> ranking;
+  // vector<Jugador> ranking;
   // map<string, Jugador> cjt_jugadores;
 }
 // Función para ordenar el vector de ranking
@@ -52,7 +52,6 @@ bool Cjt_Jugadores::eliminar_jugador(string nombre_jug)
     cjt_Jugadores.erase(it);
 
     for (int i = rank_jug_eliminado; i < ranking.size(); ++i) {
-      // FIND CADA VEZ / ¿ probar: otro bucle para recorrer linealmente ?
       it = cjt_Jugadores.find(ranking[i].consultar_nombre());
       it->second.modificar_ranking(it->second.consultar_ranking() - 1);
       ranking[i].modificar_ranking(ranking[i].consultar_ranking() - 1);

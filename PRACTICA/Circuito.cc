@@ -1,7 +1,6 @@
 /** @file Circuito.cc
-    @brief Código de la clase Circuito 
+    @brief Código de la clase Circuito
 */
-
 
 #include "Circuito.hh"
 

@@ -30,7 +30,7 @@ public:
 
       Se ejecuta automáticamente al declarar un Conjunto de Jugadores
       \pre <em>Cierto</em>
-      \post El resultado es un map vacío de ranking y otro del listado de jugadores
+      \post Declara el objeto vacío, no se inicializa nada
   */
   Cjt_Jugadores();
 

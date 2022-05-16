@@ -28,7 +28,7 @@ public:
 
       Se ejecuta automáticamente al declarar Cjt_Categorias
       \pre <em>Cierto</em>
-      \post El resultado es un conjunto de Cateogorias sin inicializar
+      \post Se inicializa a 0 el numero maximo de niveles y el total de categorias
   */
   Cjt_Categorias();
 

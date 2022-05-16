@@ -1,5 +1,5 @@
 /** @file Torneo.cc
-    @brief Código de la clase Torneo 
+    @brief Código de la clase Torneo
 */
 
 #include "Torneo.hh"
@@ -162,10 +162,10 @@ void Torneo::borrar_registro_jug(string nombre_jug)
   bool fuera_del_size_ant = false;
   bool fuera_del_size_rec = false;
   bool encontrado_ant = false, encontrado_rec = false;
-  while ((not encontrado_ant and not encontrado_rec) and (i < jugadores_del_torneo.size() or i < jugadores_del_torneo_anterior.size())) {
+  while ((not encontrado_ant or not encontrado_rec) and (i < jugadores_del_torneo.size() or i < jugadores_del_torneo_anterior.size())) {
     if (i == jugadores_del_torneo.size()) fuera_del_size_rec = true;
     if (i == jugadores_del_torneo_anterior.size()) fuera_del_size_ant = true;
-
+    // Para no quitar mucha eficiencia "tachamos" el nombre...
     if (not fuera_del_size_rec and jugadores_del_torneo[i].nombre_jug == nombre_jug) {
       jugadores_del_torneo[i].nombre_jug = "XXXXX";
       encontrado_rec = true;

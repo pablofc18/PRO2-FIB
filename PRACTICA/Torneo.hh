@@ -119,7 +119,7 @@ private:
   int categ;
   /** @brief Indica si se ha disputado el torneo anteriormente (true) o no (false) */
   bool disputado;
- 
+
   /** @brief Estructura que tendrán los vectores de los jugadores que participan/aron en el torneo */
   struct Jugador_de_Torneo {
     /** @brief Nombre del jugador */
