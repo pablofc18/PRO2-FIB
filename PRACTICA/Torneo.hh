@@ -131,8 +131,7 @@ private:
   };
   /** @brief Vector de los jugadores que están participando en el torneo */
   vector<Jugador_de_Torneo> jugadores_del_torneo;
- /** @brief Vector de los jugadores que participaron en la edición anterior del torneo,
-            solo se utiliza si se disputa por segunda vez el mismo torneo */
+  /** @brief Vector de los jugadores que participaron en la edición anterior del torneo, solo se utiliza si se disputa por segunda vez el mismo torneo */
   vector<Jugador_de_Torneo> jugadores_del_torneo_anterior;
 
   /** @brief Asigna el vector de jugadores del torneo a otro vector y vacía el ya utilizado

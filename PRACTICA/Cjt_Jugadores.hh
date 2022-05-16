@@ -8,7 +8,6 @@
 #include "Jugador.hh"
 
 #ifndef NO_DIAGRAM
-#include "Cjt_Categorias.hh"
 #include <map>
 #include <vector>
 #include <algorithm>

@@ -20,12 +20,6 @@ Categoria::Categoria(string nombre_categ, int id_categ)
   id = id_categ;
 }
 
-// Inútil ???????
-int Categoria::consultar_id_categ() const
-{
-  return id;
-}
-
 string Categoria::consultar_nombre_categ() const
 {
   return nombre;

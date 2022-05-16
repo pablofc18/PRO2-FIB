@@ -48,13 +48,6 @@ public:
 
   // Consultoras
 
-  /** @brief Consultora del id de la Categoria
-
-      \pre <em>Cierto</em>
-      \post El resultado es el id de la Categoria
-  */
-  int consultar_id_categ() const;
-
   /** @brief Consultora del nombre de la Categoria
 
       \pre <em>Cierto</em>
