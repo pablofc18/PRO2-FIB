@@ -145,7 +145,6 @@ int main() {
       cout << '#' << opc << ' ' << nombre_jug << endl;
       // Si existe el jugador, escribir datos
       if (cjt_jug.existe_jugador(nombre_jug)) {
-        // Dos veces find, poner consultar jugador un if != end() ?¿?¿?¿
         cjt_jug.consultar_jugador(nombre_jug).escribir_jug();
       }
       else {

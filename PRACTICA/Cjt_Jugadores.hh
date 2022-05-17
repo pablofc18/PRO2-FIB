@@ -73,7 +73,7 @@ public:
   /** @brief Modifica aumentando los torneos disputados
 
       \pre <em>Cierto</em>
-      \post ++torneo_disp
+      \post Se incrementa los torneos disputados
   */
   void sumar_torneo_disputado(string nombre_jug);
 

@@ -14,8 +14,8 @@ using namespace std;
 /** @class Categoria
     @brief Representa la Categoria de un torneo
 
-    Dispone de dos atributos, nombre y identificador, y de diferentes operaciones
-    como consulta de sus datos.
+    Dispone de dos atributos, nombre y identificador, y una operación
+    de consulta de sus datos.
 
 */
 
